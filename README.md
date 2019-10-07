@@ -1,6 +1,8 @@
 # Purple Pages
 
-## An online notice board for your local community.
+## An online notice board for your local community
+
+A full stack framework milestone project for Code Institute.
 
 Django web application utilising Bulma CSS framework, Postgres DB, Stripe payments and Heroku hosting.
 
