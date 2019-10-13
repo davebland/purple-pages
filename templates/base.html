@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Purple Pages</title>
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <!-- JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>		
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">    		
 </head>
 <body>
     <header>
         <!-- Nav Bar -->
         <nav class="navbar">
             <div class="navbar-brand">
-                <a href="#" class="navbar-item">Logo</a>
+                <a href="#" class="navbar-item">Purple Pages</a>
                 <a href="#" class="navbar-item">Notice Boards</a>
                 <a class="navbar-burger">
                     <span aria-hidden="true"></span>
@@ -39,6 +38,11 @@
                 </div>
             </div>
         </nav>
+        <hr class="navbar-divider">
     </header>
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- App JS -->
+    <script src="{% static 'js/home.js' %}"></script>
 </body>
 </html>
