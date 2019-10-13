@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.shortcuts import render
-
-# Temporary basic view to render a template
-def home(request):
-    return render(request, 'base.html')
+from home.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
