@@ -14,8 +14,8 @@
         <!-- Nav Bar -->
         <nav class="navbar">
             <div class="navbar-brand">
-                <a href="#" class="navbar-item">Purple Pages</a>
-                <a href="#" class="navbar-item">Notice Boards</a>
+                <a href="{% url 'home' %}" class="navbar-item">Purple Pages</a>
+                <a href="{% url 'boards' %}" class="navbar-item">Notice Boards</a>
                 <a class="navbar-burger">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -40,6 +40,17 @@
         </nav>
         <hr class="navbar-divider">
     </header>
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-1 has-text-centered">{{ page_title }}</h1>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            {% block main-content %}
+            {% endblock %}
+        </div>
+    </section>
     <!-- JS Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <!-- App JS -->
