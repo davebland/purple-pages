@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block main-content %}
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda aut voluptatum impedit perspiciatis suscipit exercitationem eos iure quibusdam fuga quidem numquam sequi eveniet ab, possimus pariatur dolorum rerum animi. Illo atque doloremque ut repellat aliquid possimus tempore porro culpa repudiandae vitae laudantium consequuntur laborum facere, saepe dolorum praesentium expedita quo veritatis corrupti quia omnis nobis ab impedit eaque! Doloremque nihil, dolor at temporibus placeat aspernatur esse est quod sapiente nobis a vitae. Ipsam animi, omnis dolores vitae vero explicabo perferendis ab possimus aut repellat placeat natus recusandae odit dolorem, cumque minus ad voluptatem deserunt, nisi quas voluptatibus. Amet, dolor sequi.
+<div class="box">
+    <!-- Favourite notice board -->
+    <div class="tile is-ancester">
+        <div class="tile is-parent is-vertical">
+            {% for ad in ads %}
+            <!-- Loop through ads and create a tile for each -->
+            <article class="tile is-child box has-background-primary">
+                {{ ad }}                
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
