@@ -1,4 +1,5 @@
 from django.test import TestCase
+from adverts.views import get_ads
 
 class TestViews(TestCase):
     """ Tests for views """
@@ -15,3 +16,8 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_boards.html')
+
+    def test_get_ads(self):
+        """ Test get_ads view returns a dictionary """
+        ads = get_ads()
+        self.assertTrue(type(ads) == dict)
