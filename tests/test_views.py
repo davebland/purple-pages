@@ -18,6 +18,6 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'notice_boards.html')
 
     def test_get_ads(self):
-        """ Test get_ads view returns a dictionary """
+        """ Test get_ads view returns a tuple """
         ads = get_ads()
-        self.assertTrue(type(ads) == dict)
+        self.assertEqual(type(ads), tuple)
