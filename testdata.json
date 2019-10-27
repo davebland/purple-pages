@@ -1,0 +1,1 @@
+[{"model": "adverts.advert", "pk": 1, "fields": {"title": "Test Ad", "textContent": "text content for test ad"}}, {"model": "adverts.advert", "pk": 2, "fields": {"title": "Test Ad 2", "textContent": "Text content for test ad 2"}}]

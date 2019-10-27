@@ -3,6 +3,10 @@ from adverts.views import get_ads
 
 class TestViews(TestCase):
     """ Tests for views """
+
+    # Import some test data
+    fixtures = ['testdata.json']
+
     def test_get_home_page(self):
         """ Get home page and test for successful response and correct template """ 
         page = self.client.get("/")
@@ -20,8 +24,6 @@ class TestViews(TestCase):
     def test_get_ads(self):
         """ Test get_ads view returns a tuple of strings """
         ads = get_ads()
-        print(ads)
         self.assertEqual(type(ads), tuple)
         for ad in ads:
-            print(ad)
-            self.assertEqual(type(ad), str)
+            self.assertTrue(isinstance(ad, str))
