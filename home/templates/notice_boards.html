@@ -7,7 +7,7 @@
             <div class="box">
                 <h2 class="title is-3">{{ board.postCodeDistrict }}</h2>
                 <p class="subtitle">{{ board.name }}</p>
-                <button class="button is-success">Go</button>                
+                <a href="{% url 'display_single_board' board.id %}"><button class="button is-success">Go</button></a>
             </div>
         </div>             
     {% endfor %}

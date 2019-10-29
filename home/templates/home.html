@@ -1,16 +1,4 @@
 {% extends 'base.html' %}
 {% block main-content %}
-<div class="box">
-    <!-- Favourite notice board -->
-    <div class="tile is-ancester">
-        <div class="tile is-parent is-vertical">
-            {% for ad in ads %}
-            <!-- Loop through ads and create a tile for each -->
-            <article class="tile is-child box has-background-primary">
-                {{ ad }}
-            </article>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+    {{ favourite_notice_board }}
 {% endblock %}

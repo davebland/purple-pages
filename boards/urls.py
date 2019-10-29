@@ -4,5 +4,5 @@ from django.urls import path
 from .views import display_single_board
 
 urlpatterns = [
-    path('<int:board_pk>/', display_single_board),
+    path('<int:board_pk>/', display_single_board, name="display_single_board"),
 ]
