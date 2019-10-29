@@ -17,7 +17,7 @@ class TestViews(TestCase):
 
     def test_get_notice_board_page(self):
         """ Get notice board page and test for successful response and correct template """ 
-        page = self.client.get("/boards/")
+        page = self.client.get("/boards")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_boards.html')
@@ -32,8 +32,7 @@ class TestViews(TestCase):
     def test_get_active_board_list(self):
         """ Test get_active_board_list view returns a list of dictionaries """
         boards = get_active_board_list()
-        self.assertEqual(type(boards), list)
-        print(boards)
+        self.assertEqual(type(boards), list)      
         for board in boards:
             self.assertTrue(isinstance(board, dict))
 
