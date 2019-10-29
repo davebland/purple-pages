@@ -24,7 +24,7 @@ class TestViews(TestCase):
 
     def test_get_ads(self):
         """ Test get_ads view returns a tuple of strings """
-        ads = get_ads()
+        ads = get_ads(1)
         self.assertEqual(type(ads), tuple)
         for ad in ads:
             self.assertTrue(isinstance(ad, str))

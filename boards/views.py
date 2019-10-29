@@ -22,5 +22,5 @@ def display_single_board(request, board_pk):
     return render(request, 'single_notice_board.html', {
         'page_title':"Notice Board",
         'board_meta' : board_meta,
-        'ads': get_ads()
+        'ads': get_ads(board_pk)
         })
