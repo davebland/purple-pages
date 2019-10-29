@@ -14,8 +14,8 @@ class TestModels(TestCase):
 
     def test_create_board(self):
         """ Create a board and test for correct postCodeDistrict, name and dateActive (today) """
-        board = Board(postCodeDistrict="AB12", name="Test Town")
-        self.assertEqual(str(board), 'AB12')
+        board = Board(postCodeDistrict="AB123", name="Test Town")
+        self.assertEqual(str(board), 'AB123')
         self.assertEqual(board.name, 'Test Town')
         board.save()
         self.assertEqual(board.dateActive, date.today())

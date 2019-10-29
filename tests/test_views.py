@@ -1,5 +1,6 @@
 from django.test import TestCase
 from adverts.views import get_ads
+from boards.views import get_active_board_list
 
 class TestViews(TestCase):
     """ Tests for views """
@@ -27,3 +28,11 @@ class TestViews(TestCase):
         self.assertEqual(type(ads), tuple)
         for ad in ads:
             self.assertTrue(isinstance(ad, str))
+
+    def test_get_active_board_list(self):
+        """ Test get_active_board_list view returns a list of dictionaries """
+        boards = get_active_board_list()
+        self.assertEqual(type(boards), list)
+        print(boards)
+        for board in boards:
+            self.assertTrue(isinstance(board, dict))
