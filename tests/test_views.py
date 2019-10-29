@@ -41,4 +41,5 @@ class TestViews(TestCase):
         page = self.client.get("/boards/1/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
-        self.assertTemplateUsed(page, 'single_notice_board.html')
+        self.assertTemplateUsed(page, 'notice_board_frame.html')
+        self.assertTemplateUsed(page, 'notice_board.html')

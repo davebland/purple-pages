@@ -1,0 +1,15 @@
+<!-- Notice Board Template -->
+{{ board_meta.postCodeDistrict }} - {{ board_meta.name }}
+<div class="box">
+    <!-- All Adverts for Notice Board -->
+    <div class="tile is-ancester">
+        <div class="tile is-parent is-vertical">
+            {% for ad in ads %}
+            <!-- Loop through ads and create a tile for each -->
+            <article class="tile is-6 is-child box has-background-primary">
+                {{ ad }}
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</div>
