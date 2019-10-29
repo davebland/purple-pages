@@ -36,3 +36,6 @@ class TestViews(TestCase):
         print(boards)
         for board in boards:
             self.assertTrue(isinstance(board, dict))
+
+    def test_display_single_board(self):
+        """ Test display_single_board view returns x """
