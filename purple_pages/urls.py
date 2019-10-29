@@ -18,10 +18,12 @@ from django.urls import path, include
 
 from home.views import home, notice_boards
 from boards import urls as urls_boards
+from tests import urls as urls_test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('boards', notice_boards, name="boards"),
-    path('boards/', include(urls_boards))
+    path('boards/', include(urls_boards)),
+    path('test/', include(urls_test))
 ]
