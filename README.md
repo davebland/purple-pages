@@ -31,10 +31,18 @@ The colour scheme of the site will be purple and is complementing colours to ref
 ## Future Additions
 
 ## Technologies
+
 - HTML5
 - CSS3
+    - Bulma.io CSS framework
+- JavaScript
+    - jQuery
+- Python
+    - Django
 
 ## Testing
+
+Test driven development using Django inbuilt test suite (TestCase).
 
 ### User Story Testing
 
