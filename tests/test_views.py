@@ -54,3 +54,17 @@ class TestViews(TestCase):
         page = self.client.get("/board/1/unset_as_favourite/")
         self.assertEqual(page.status_code, 302)
         self.assertFalse(self.client.session.__contains__('favourite_board'))
+
+    def test_login_view(self):
+        """ Test that login view for un-authenticated user returns Http response with correct template """
+        page = self.client.get("/account/login/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'base.html')
+        self.assertTemplateUsed(page, 'registration/login.html')
+
+    def test_logout_view(self):
+        """ Test that logout view returns Http response with correct template """
+        page = self.client.get("/account/logout/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'base.html')
+        self.assertTemplateUsed(page, 'home.html')

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'adverts',
     'boards',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# Default URL Overrides
+
+LOGOUT_REDIRECT_URL = 'home'
