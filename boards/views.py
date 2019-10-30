@@ -33,8 +33,7 @@ def get_notice_board(board_pk):
         {
             'board_meta' : board_meta,
             'ads' : board_ads
-        }
-    )
+        })
     return notice_board
 
 def set_favourite_board(request, board_pk, set_unset=False):
