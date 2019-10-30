@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import Http404
+from django.shortcuts import render, redirect
+from django.http import Http404, HttpResponse
 from django.forms.models import model_to_dict
 from django.template.loader import render_to_string
 
@@ -17,7 +17,7 @@ def get_active_board_list():
 def display_single_board(request, board_pk):
     """ Render a single notice board page for the requested board """
     notice_board = get_notice_board(board_pk)
-    return render(request, 'notice_board_frame.html', {'notice_board':notice_board})
+    return render(request, 'notice_board_frame.html', {'page_title':"Notice Board", 'notice_board':notice_board})
 
 def get_notice_board(board_pk):
     """ Generate html for requested notice board with all its adverts """
@@ -36,3 +36,12 @@ def get_notice_board(board_pk):
         }
     )
     return notice_board
+
+def set_favourite_board(request):
+    """ Set favourite board pk in browser cookie and reload page """
+    try:
+        request.session.favourite_board
+        return HttpResponse(request.session.favourite_board)
+    except:
+        request.session.favourite_board('test board id')
+    return redirect('/board/1')

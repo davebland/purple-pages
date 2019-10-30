@@ -17,7 +17,7 @@ class TestViews(TestCase):
 
     def test_get_notice_board_page(self):
         """ Get notice board page and test for successful response and correct templates """ 
-        page = self.client.get("/boards")
+        page = self.client.get("/boards/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_boards.html')
@@ -38,7 +38,7 @@ class TestViews(TestCase):
 
     def test_display_single_board(self):
         """ Get a single notice board page and test for successful response and correct base templates """ 
-        page = self.client.get("/boards/1/")
+        page = self.client.get("/board/1/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_board_frame.html')

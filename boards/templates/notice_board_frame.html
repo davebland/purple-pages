@@ -1,5 +1,13 @@
 <!-- Frame for a single notice board -->
 {% extends 'base.html' %}
 {% block main-content %}
+<div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="{% url 'set_favourite_board' %}" class="button is-info">Store As Favourite Board</a>
+        </div>        
+    </div>
+</div>
     {{ notice_board }}
 {% endblock %}
