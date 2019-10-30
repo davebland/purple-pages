@@ -43,3 +43,14 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_board_frame.html')
         self.assertTemplateUsed(page, 'notice_board.html')
+
+    def test_set_unset_favourite_board(self):
+        """ Call set_favourite_board and check 302 redirect and favourite_board in session has been set and unset correctly """
+        # Set favourite and test
+        page = self.client.get("/board/1/set_as_favourite/")
+        self.assertEqual(page.status_code, 302)
+        self.assertEqual(self.client.session['favourite_board'], 1)
+        # Unset favourite and test
+        page = self.client.get("/board/1/unset_as_favourite/")
+        self.assertEqual(page.status_code, 302)
+        self.assertFalse(self.client.session.__contains__('favourite_board'))

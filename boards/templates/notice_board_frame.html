@@ -5,7 +5,9 @@
     <div class="level-left"></div>
     <div class="level-right">
         <div class="level-item">
-            <a href="{% url 'set_favourite_board' %}" class="button is-info">Store As Favourite Board</a>
+            <a href="{% url 'set_favourite_board' board_pk %}" class="button is-info">Store As Favourite Board</a>
+            <a href="{% url 'unset_favourite_board' board_pk %}" class="button is-info">Cancel As Favourite Board</a>
+            Current Favourite: {{ request.session.favourite_board }}
         </div>        
     </div>
 </div>
