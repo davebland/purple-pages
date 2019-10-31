@@ -16,3 +16,9 @@ class TestAccountViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'home.html')
+
+    def test_my_account_view(self):
+        """ Test that my_account view returns login page for a non authenticated user """
+        page = self.client.get("/account/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'registration/login.html')
