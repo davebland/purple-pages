@@ -3,8 +3,7 @@
 <form action="{% url 'login' %}" method="POST">
     {{ form }}
     {% csrf_token %}
-    {{ next }}
-    <input type="hidden" name="next" value="{% url 'my_account' %}">
+    <input type="hidden" name="next" value="{{ next }}">
     <input type="submit" value="Login">
 </form>
     
