@@ -24,14 +24,17 @@ class TestAccountViews(TestCase):
     def test_un_authenticated_account_views(self):
         """ Test that all account views return login page for a non authenticated users """
         my_account = self.client.get("/account/", follow=True)
-        my_ads = self.client.get("/account/my_ads", follow=True)      
+        my_ads = self.client.get("/account/my_ads", follow=True)
+        change_password = self.client.get("/account/password_change", follow=True)      
         self.assertTemplateUsed(my_account, 'registration/login.html')
         self.assertTemplateUsed(my_ads, 'registration/login.html')
+        self.assertTemplateUsed(change_password, 'registration/login.html')
 
     def test_authenticated_account_views(self):
         """ Test that all account views return correct page for authenticated users """
         #self.client.login(username='pptestuser', password='localtest')
         my_account = self.client.get("/account/", follow=True)
-        my_ads = self.client.get("/account/my_ads", follow=True)      
+        my_ads = self.client.get("/account/my_ads", follow=True)
+        change_password = self.client.get("/account/password_change", follow=True)      
         #self.assertTemplateUsed(my_account, 'my_account.html')
         #self.assertTemplateUsed(my_ads, 'my_ads.html')
