@@ -135,3 +135,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 LOGIN_REDIRECT_URL = 'my_account'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+
+# Email setup and SMTP Credentials
+
+DEFAULT_FROM_EMAIL = 'purplepages@daveb.me.uk'
+EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('AWS_SES_HOST_USER', 'nouser')
+EMAIL_HOST_PASSWORD = os.getenv('AWS_SES_HOST_PASSWORD', 'nopassword')
+EMAIL_TIMEOUT = 60
