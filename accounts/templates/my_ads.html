@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
 {% block main-content %}
-{{ user_ads }}
+{% for ad in user_ads %}
+{{ ad }}
+{% endfor %}
 {% endblock %}

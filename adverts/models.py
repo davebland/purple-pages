@@ -16,4 +16,5 @@ class Advert(models.Model):
         return self.title
 
     def to_html(self):
+        """ Rended the advert to a html string using the relevant template """
         return render_to_string('ad_template_1.html', {'advert':self})
