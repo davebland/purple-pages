@@ -1,0 +1,8 @@
+<!-- Edit frame for user adverts on My Ads page -->
+<div class="box">
+    {% for ad in adverts %}
+        <p>Boards:{{ ad.on_board }}</p>
+        <p>Title: {{ ad.title }}</p>
+        <p>{{ ad.to_html }}</p>
+    {% endfor %}
+</div>

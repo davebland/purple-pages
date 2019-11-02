@@ -23,14 +23,10 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'notice_boards.html')
 
     def test_get_ads(self):
-        """ Test get_ads and get_user_ads views return a tuple of strings """
+        """ Test get_ads view returns a tuple of strings """
         ads = get_ads(1)
-        user_ads = get_user_ads(4)
         self.assertEqual(type(ads), tuple)
-        self.assertEqual(type(user_ads), tuple)
         for ad in ads:
-            self.assertTrue(isinstance(ad, str))
-        for ad in user_ads:
             self.assertTrue(isinstance(ad, str))
 
     def test_get_active_board_list(self):

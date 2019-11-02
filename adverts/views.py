@@ -13,6 +13,5 @@ def get_ads(board_pk):
 
 def get_user_ads(uid):
     """ Return a tuple containing all adverts for specified user in html form """
-    user_ads = Advert.objects.filter(user=uid)
-    print(user_ads)
-    return tuple(user_ads)
+    
+    return render_to_string('advert_edit_frame.html', {'adverts':Advert.objects.filter(user=uid)})
