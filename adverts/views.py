@@ -10,3 +10,9 @@ def get_ads(board_pk):
         all_ads.append(render_to_string('ad_template_1.html', {'advert':ad}))
     all_ads = tuple(all_ads)
     return all_ads
+
+def get_user_ads(uid):
+    """ Return a tuple containing all adverts for specified user in html form """
+    user_ads = Advert.objects.filter(user=uid)
+    print(user_ads)
+    return tuple(user_ads)

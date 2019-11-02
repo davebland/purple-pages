@@ -48,6 +48,8 @@ Test driven development using Django inbuilt test suite (TestCase).
 
 ## Technical Challenges
 
+- 'No reverse match' for password reset token
+
 ## Deployment
 
 ## Content
