@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
+
 from .models import Advert
 
 def get_ads(board_pk):
@@ -17,6 +19,17 @@ def get_user_ads(uid):
         user_ads_html.append(render_to_string('advert_edit_frame.html', {'ad':ad}))
     return tuple(user_ads_html)
 
+@login_required
 def advert_add_edit(request, advert_id=None):
     """ Generate add/edit page """
-    return render(request, 'advert_add_edit.html', {'page_title':'Add or Edit Your Advert'})
+
+    def edit_advert(request, advert_id):
+        """ Get and advert and pass it to add_edit page in context """
+        # Get the object only if the authenticated user is that same as the adverts user
+        advert = get_object_or_404(Advert, pk=advert_id, user=request.user)
+        return render(request, 'advert_add_edit.html', {'page_title':'Edit Advert', 'advert':advert})
+
+    if advert_id:
+        return edit_advert(request, advert_id)
+    else:
+        return render(request, 'advert_add_edit.html', {'page_title':'New Advert'})
