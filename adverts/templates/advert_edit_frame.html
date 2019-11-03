@@ -12,5 +12,9 @@
     <div class="box">
         {{ ad.to_html }}
     </div>
-    <p>Boards:{{ ad.on_boards }}</p>
+    <p>Boards:
+        {% for board in ad.board_list %}
+            <span class="tag is-info">{{ board }}</span>
+        {% endfor %}
+    </p>
 </div>

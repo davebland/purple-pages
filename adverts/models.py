@@ -18,3 +18,8 @@ class Advert(models.Model):
     def to_html(self):
         """ Rended the advert to a html string using the relevant template """
         return render_to_string('ad_template_1.html', {'advert':self})
+
+    def board_list(self):
+        """ Return a query set of boards this Advert appears on """
+        board_list = self.on_boards.all()
+        return board_list
