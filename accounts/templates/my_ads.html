@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block main-content %}
+<div class="level">
+    <a href="{% url 'new_advert' %}" class="button is-primary is-large">New Advert</a>
+</div>
 {% for ad in user_ads %}
     {{ ad }}
 {% endfor %}
