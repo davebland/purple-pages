@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from adverts.views import get_ads, get_user_ads
+from adverts.models import Advert
 from boards.views import get_active_board_list
 
 class TestViews(TestCase):
@@ -23,11 +25,11 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'notice_boards.html')
 
     def test_get_ads(self):
-        """ Test get_ads view returns a tuple of strings """
+        """ Test get_ads view returns a tuple of advert objects """
         ads = get_ads(1)
         self.assertEqual(type(ads), tuple)
         for ad in ads:
-            self.assertTrue(isinstance(ad, str))
+            self.assertTrue(isinstance(ad, Advert))
 
     def test_get_active_board_list(self):
         """ Test get_active_board_list view returns a list of dictionaries """

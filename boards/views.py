@@ -32,7 +32,7 @@ def get_notice_board(board_pk):
     notice_board = render_to_string('notice_board.html',
         {
             'board_meta' : board_meta,
-            'ads' : board_ads
+            'adverts' : board_ads
         })
     return notice_board
 
