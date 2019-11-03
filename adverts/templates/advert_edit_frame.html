@@ -1,6 +1,16 @@
 <!-- Edit frame for user adverts on My Ads page -->
 <div class="box">
-    <p>Boards:{{ ad.on_board }}</p>
-    <p>Title: {{ ad.title }}</p>
-    <p>{{ ad.to_html }}</p>
+    <div class="level">
+        <div class="level-left">
+            <a href="#" class="button">Edit</a>
+        </div>
+        <div class="level-right">
+            <a href="#" class="button">Delete</a>
+            Toggle
+        </div>
+    </div>
+    <div class="box">
+        {{ ad.to_html }}
+    </div>
+    <p>Boards:{{ ad.on_boards }}</p>
 </div>
