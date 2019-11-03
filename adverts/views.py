@@ -24,11 +24,14 @@ def get_user_ads(uid):
 def advert_add_edit(request, advert_id=None):
     """ Generate add/edit page """
 
-    def save_advert(request):
+    def save_advert(request, advert_id):
         """ Create a new form instance with the post data and save if valid """
-        save_form = AdvertForm(request.POST)
-
-        if save_form.is_valid():
+        if advert_id:
+            save_form = AdvertForm(request.POST, instance=Advert.objects.get(pk=advert_id))
+        else:
+            save_form = AdvertForm(request.POST)
+        
+        if save_form.is_valid():           
             save_form.save()
             return redirect('my_ads')
         else:
@@ -43,7 +46,7 @@ def advert_add_edit(request, advert_id=None):
         return render(request, 'advert_add_edit.html', {'page_title':'Edit Advert', 'advert_form':advert_form})
 
     if request.method == "POST":
-        return save_advert(request)
+        return save_advert(request, advert_id)
     elif advert_id:
         return edit_advert(request, advert_id)
     else:

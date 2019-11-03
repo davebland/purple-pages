@@ -11,4 +11,4 @@ def my_account(request):
 @login_required
 def my_ads(request):
     """ Generate page showing all the ads for the authenticated user """
-    return render(request, 'my_ads.html', {'page_title':'My Adverts', 'user_ads':get_user_ads(4)})
+    return render(request, 'my_ads.html', {'page_title':'My Adverts', 'user_ads':get_user_ads(request.user)})

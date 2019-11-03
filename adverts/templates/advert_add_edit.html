@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% block main-content %}
     Add/Edit Template
-    <form action="{% url 'new_advert' %}" method="POST">
+    <form action="{{ request.path }}" method="POST">
         {{ advert_form }}
         {% csrf_token %}
         <input type="submit" class="button" value="Submit">
