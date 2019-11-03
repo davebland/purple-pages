@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from home.views import home, notice_boards
 from boards import urls as urls_boards
+from adverts import urls as urls_adverts
 from tests import urls as urls_test
 from accounts import urls as urls_accounts
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('boards/', notice_boards, name="boards"),
     path('board/', include(urls_boards)),
+    path('adverts/', include(urls_adverts)),
     path('test/', include(urls_test)),
     path('account/', include(urls_accounts)),
 ]

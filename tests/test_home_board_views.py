@@ -24,13 +24,6 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'base.html')
         self.assertTemplateUsed(page, 'notice_boards.html')
 
-    def test_get_ads(self):
-        """ Test get_ads view returns a tuple of advert objects """
-        ads = get_ads(1)
-        self.assertEqual(type(ads), tuple)
-        for ad in ads:
-            self.assertTrue(isinstance(ad, Advert))
-
     def test_get_active_board_list(self):
         """ Test get_active_board_list view returns a list of dictionaries """
         boards = get_active_board_list()

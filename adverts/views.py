@@ -16,3 +16,7 @@ def get_user_ads(uid):
     for ad in user_ads:
         user_ads_html.append(render_to_string('advert_edit_frame.html', {'ad':ad}))
     return tuple(user_ads_html)
+
+def advert_add_edit(request, advert_id=None):
+    """ Generate add/edit page """
+    return render(request, 'advert_add_edit.html', {'page_title':'Add or Edit Your Advert'})
