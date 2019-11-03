@@ -22,8 +22,13 @@
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div class="navbar-menu">               
-                <div class="navbar-end">
+            <div class="navbar-menu">   
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <span class="tag">{{ request.user }}</span>
+                    </div>                    
+                </div>                          
+                <div class="navbar-end">                    
                     <a href="{% url 'my_ads' %}" class="navbar-item">My Ads</a>                    
                     <div href="#" class="navbar-item has-dropdown is-hoverable">
                         <!-- Dropdown Account Menu -->

@@ -2,8 +2,10 @@
 {% extends 'base.html' %}
 {% block main-content %}
     Add/Edit Template
-    <form action="">
+    <form action="{% url 'new_advert' %}" method="POST">
         {{ advert_form }}
+        {% csrf_token %}
+        <input type="submit" class="button" value="Submit">
     </form>
     
 {% endblock %}
