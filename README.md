@@ -54,6 +54,8 @@ Test driven development using Django inbuilt test suite (TestCase).
 
 ## Content
 
+- Images from PixaBay.com under free licence
+
 ## Acknowledgements
 - Draw.io wireframing tool
 - Bulma.io official documentation
