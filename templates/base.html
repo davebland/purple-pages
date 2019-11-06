@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Purple Pages</title>
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">    		
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <!-- Purple Pages CSS -->
+    <link rel="stylesheet" href="{% static 'css/purple_pages_styles.css' %}">
+    <!-- Fonts -->    		
+    <link href="https://fonts.googleapis.com/css?family=Titan+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -15,7 +19,8 @@
         <nav class="navbar">
             <div class="navbar-brand">
                 <a href="{% url 'home' %}" class="navbar-item">                    
-                    <img src="{% static 'img/PurplePagesLogo300.png' %}" alt="Purple Pages Logo" class="">             
+                    <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo" class="">
+                    <span class="titan is-size-5">Purple Pages</span>
                 </a>
                 <a href="{% url 'boards' %}" class="navbar-item">Notice Boards</a>
                 <a class="navbar-burger">
