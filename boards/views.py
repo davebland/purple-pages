@@ -48,5 +48,16 @@ def set_favourite_board(request, board_pk, set_unset=False):
 
 def create_notice_board(request):
     """ Create a notice board from list of available postcode districts or display form to do so """
+    
+    if request.method == "POST":
+        # If for data posted, check and save
+        board_form = BoardForm(request.POST)
+        if board_form.is_valid():
+            board_form.save()
+            return redirect('boards')
+        else:
+            return render(request, 'create_notice_board.html', {'page_title':'Create Notice Board', 'board_form':board_form})
+    
+    # Or just create a blank form
     board_form = BoardForm()
     return render(request, 'create_notice_board.html', {'page_title':'Create Notice Board', 'board_form':board_form})
