@@ -49,3 +49,11 @@ class TestViews(TestCase):
         page = self.client.get("/board/1/unset_as_favourite/")
         self.assertEqual(page.status_code, 302)
         self.assertFalse(self.client.session.__contains__('favourite_board'))
+
+    def test_create_board_view(self):
+        """ Test create board url returns the create board template and only for logged in users """
+        create_board_page = self.client.get("/board/create_board", follow=True)
+        self.assertTemplateUsed(create_board_page, 'registration/login.html')
+        self.client.login(username='pptestuser', password='localtest3')
+        create_board_page = self.client.get("/board/create_board")
+        self.assertTemplateUsed(create_board_page, 'create_notice_board.html')

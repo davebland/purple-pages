@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.forms.models import model_to_dict
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 
 from .models import Board
 from adverts.views import get_ads
@@ -46,6 +47,7 @@ def set_favourite_board(request, board_pk, set_unset=False):
             del request.session['favourite_board']
     return redirect('display_single_board', board_pk = board_pk)
 
+@login_required
 def create_notice_board(request):
     """ Create a notice board from list of available postcode districts or display form to do so """
     
