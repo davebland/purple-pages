@@ -1,0 +1,9 @@
+<!-- Create Board Template -->
+{% extends 'base.html' %}
+{% block main-content %}
+    <form action="{{ request.path }}" method="POST">
+        {{ board_form }}
+        {% csrf_token %}
+        <input type="submit" class="button" value="Create">
+    </form>
+{% endblock %}

@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 
 from .models import Board
 from adverts.views import get_ads
+from .forms import BoardForm
 
 def get_active_board_list():
     """ Return a list containing properties of all active boards """
@@ -44,3 +45,8 @@ def set_favourite_board(request, board_pk, set_unset=False):
         if request.session.__contains__('favourite_board'):
             del request.session['favourite_board']
     return redirect('display_single_board', board_pk = board_pk)
+
+def create_notice_board(request):
+    """ Create a notice board from list of available postcode districts or display form to do so """
+    board_form = BoardForm()
+    return render(request, 'create_notice_board.html', {'page_title':'Create Notice Board', 'board_form':board_form})
