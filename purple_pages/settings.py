@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'adverts',
     'boards',
     'accounts',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [

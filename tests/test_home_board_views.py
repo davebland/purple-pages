@@ -55,5 +55,5 @@ class TestViews(TestCase):
         create_board_page = self.client.get("/board/create_board", follow=True)
         self.assertTemplateUsed(create_board_page, 'registration/login.html')
         self.client.login(username='pptestuser', password='localtest')
-        create_board_page = self.client.get("/board/create_board")
+        create_board_page = self.client.get("/board/create_board", follow=True)
         self.assertTemplateUsed(create_board_page, 'create_notice_board.html')

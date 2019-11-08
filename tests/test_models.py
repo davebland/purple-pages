@@ -1,9 +1,12 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 from datetime import date
 
 from adverts.models import Advert
 from boards.models import Board, PostCodeDistrict
+from subscriptions.models import Payment, Subscription
 
 class TestModels(TestCase):
     """ Tests for models """
@@ -31,3 +34,12 @@ class TestModels(TestCase):
         self.assertEqual(board.name, 'Test Town')
         board.save()
         self.assertEqual(board.dateActive, date.today())
+
+    def test_create_payment_and_subscription(self):
+        """ Create an payment and a linked subscription and test attributes are correct """
+        payment = Payment()
+        payment.save()
+        subscription = Subscription(user=User.objects.get(pk=2))
+        subscription.last_payment = payment
+        self.assertEqual(subscription.last_payment, payment)            
+        self.assertEqual(subscription.user, User.objects.get(pk=2))
