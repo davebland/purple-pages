@@ -9,7 +9,7 @@ class TestModels(TestCase):
     """ Tests for models """
 
     # Import some test data
-    fixtures = ['testdata.json']
+    fixtures = ['tests/testdata.json']
 
     def test_create_advert(self):
         """ Create an advert and test for correct title """

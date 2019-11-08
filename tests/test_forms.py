@@ -9,7 +9,7 @@ class TestForms(TestCase):
     """ Tests for forms """
 
     # Import some test data
-    fixtures = ['testdata.json']
+    fixtures = ['tests/testdata.json']
 
     def test_advertForm(self):
         """ Create an advert form, bind some data and check if valid """

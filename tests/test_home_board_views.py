@@ -8,7 +8,7 @@ class TestViews(TestCase):
     """ Tests for views """
 
     # Import some test data
-    fixtures = ['testdata.json']
+    fixtures = ['tests/testdata.json']
 
     def test_get_home_page(self):
         """ Get home page and test for successful response and correct template """ 

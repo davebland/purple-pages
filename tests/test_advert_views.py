@@ -8,7 +8,7 @@ class TestAdvertViews(TestCase):
     """ Tests for advert views """
 
     # Import some test data
-    fixtures = ['testdata.json', 'testuser.json']
+    fixtures = ['tests/testdata.json', 'tests/testuser.json']
 
     def test_get_ads(self):
         """ Test get_ads view returns a tuple of advert objects """
