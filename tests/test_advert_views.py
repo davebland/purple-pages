@@ -8,7 +8,7 @@ class TestAdvertViews(TestCase):
     """ Tests for advert views """
 
     # Import some test data
-    fixtures = ['tests/testdata.json', 'tests/testuser.json']
+    fixtures = ['tests/testdata.json']
 
     def test_get_ads(self):
         """ Test get_ads view returns a tuple of advert objects """
@@ -27,7 +27,7 @@ class TestAdvertViews(TestCase):
         self.assertTemplateUsed(existing_add, 'registration/login.html')
         
         # Check with authenticated user
-        self.client.login(username='pptestuser', password='localtest3')
+        self.client.login(username='pptestuser', password='localtest')
         new_add = self.client.get('/adverts/new', follow=True)
         self.assertTemplateUsed(new_add, 'advert_add_edit.html')
         existing_add = self.client.get('/adverts/1/edit', follow=True)

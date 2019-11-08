@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 class TestAccountViews(TestCase):
     """ Tests for account views """
 
+    # Import some test data
+    fixtures = ['tests/testdata.json']
+
     def test_login_view(self):
         """ Test that login view for un-authenticated user returns Http response with correct template """
         page = self.client.get("/account/login/")
@@ -29,8 +32,7 @@ class TestAccountViews(TestCase):
 
     def test_authenticated_account_views(self):
         """ Test that all account views return correct page for authenticated users """
-        # Setup and login a test user
-        User.objects.create_user('pptestuser', 'test@test.com', 'localtest')
+        # Login a test user
         self.client.login(username='pptestuser', password='localtest')
         # Get pages and confirm correct templates
         my_account = self.client.get("/account/", follow=True)

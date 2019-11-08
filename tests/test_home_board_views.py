@@ -54,6 +54,6 @@ class TestViews(TestCase):
         """ Test create board url returns the create board template and only for logged in users """
         create_board_page = self.client.get("/board/create_board", follow=True)
         self.assertTemplateUsed(create_board_page, 'registration/login.html')
-        self.client.login(username='pptestuser', password='localtest3')
+        self.client.login(username='pptestuser', password='localtest')
         create_board_page = self.client.get("/board/create_board")
         self.assertTemplateUsed(create_board_page, 'create_notice_board.html')

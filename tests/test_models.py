@@ -3,7 +3,7 @@ from django.test import TestCase
 from datetime import date
 
 from adverts.models import Advert
-from boards.models import Board
+from boards.models import Board, PostCodeDistrict
 
 class TestModels(TestCase):
     """ Tests for models """
@@ -23,9 +23,11 @@ class TestModels(TestCase):
         #self.assertTrue(isinstance(advert_html, str))
 
     def test_create_board(self):
-        """ Create a board and test for correct postCodeDistrict, name and dateActive (today) """
-        board = Board(postCodeDistrict="AB123", name="Test Town")
-        self.assertEqual(str(board), 'AB123')
+        """ Create a district and board then test for correct postCodeDistrict, name and dateActive (today) """
+        district = PostCodeDistrict(postcode="AAAA")
+        district.save()
+        board = Board(postCodeDistrict=district, name="Test Town")
+        self.assertEqual(str(board), 'AAAA')
         self.assertEqual(board.name, 'Test Town')
         board.save()
         self.assertEqual(board.dateActive, date.today())
