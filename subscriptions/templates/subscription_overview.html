@@ -4,40 +4,37 @@
 <div class="level">
     <div class="level-item has-text-centered">
         <div>
-            <p class="heading">Member Since</p>
-            <p class="title"></p>
-        </div>
-        </div>
-        <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">No of Ads</p>
-            <p class="title"></p>
-        </div>
-        </div>
-        <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Subscription Expiry</p>
-            <p class="title">{{ user_subscription.expiry_date }}</p>
-        </div>
-        </div>
-        <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Total Ad Impressions</p>
+            <p class="heading">Subscription Status</p>
             <p class="title"></p>
         </div>
     </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Expiry Date</p>
+            <p class="title">{{ user_subscription.expiry_date }}</p>
+        </div>       
+    </div>
 </div>
-<div class="level">
-    <table class="table">
-        <tbody>
-            {% for payment in user_subscription.payment_set.all %}
-            <tr>
-                <td>{{ payment.payment_date }}</td>
-                <td>{{ payment.stripe_ref }}</td>
-                <td>{{ payment.amount }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="level">    
+    <div class="level-item">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Payment Date</th>
+                    <th>Stripe Link</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in user_subscription.payment_set.all %}
+                <tr>
+                    <td>{{ payment.payment_date }}</td>
+                    <td>{{ payment.stripe_ref }}</td>
+                    <td>£{{ payment.amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

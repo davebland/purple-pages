@@ -1,4 +1,29 @@
 {% extends 'base.html' %}
 {% block main-content %}
-My Account Page Content
+<div class="level">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Member Since</p>
+            <p class="title">{{ request.user.date_joined }}</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">No of Ads</p>
+            <p class="title">{{ user_stats.no_of_ads }}</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Subscription Expiry</p>
+            <p class="title">{{ user_stats.subscription.expiry_date }}</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Total Ad Impressions</p>
+            <p class="title"></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
