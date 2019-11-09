@@ -1,4 +1,43 @@
 {% extends 'base.html' %}
 {% block main-content %}
-Subscription overview content
+{{ user_subscription }}
+<div class="level">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Member Since</p>
+            <p class="title"></p>
+        </div>
+        </div>
+        <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">No of Ads</p>
+            <p class="title"></p>
+        </div>
+        </div>
+        <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Subscription Expiry</p>
+            <p class="title">{{ user_subscription.expiry_date }}</p>
+        </div>
+        </div>
+        <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Total Ad Impressions</p>
+            <p class="title"></p>
+        </div>
+    </div>
+</div>
+<div class="level">
+    <table class="table">
+        <tbody>
+            {% for payment in user_subscription.payment_set.all %}
+            <tr>
+                <td>{{ payment.payment_date }}</td>
+                <td>{{ payment.stripe_ref }}</td>
+                <td>{{ payment.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
