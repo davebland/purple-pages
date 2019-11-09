@@ -21,6 +21,7 @@ from boards import urls as urls_boards
 from adverts import urls as urls_adverts
 from tests import urls as urls_test
 from accounts import urls as urls_accounts
+from subscriptions import urls as urls_subscriptions
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,5 @@ urlpatterns = [
     path('adverts/', include(urls_adverts)),
     path('test/', include(urls_test)),
     path('account/', include(urls_accounts)),
+    path('subscription/', include(urls_subscriptions),)
 ]
