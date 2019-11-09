@@ -28,6 +28,9 @@ The colour scheme of the site will be purple and is complementing colours to ref
 
 ## Features
 
+- Stripe payment intents to comply with EU SCA requirements.
+- Saved 'favorite' notice board either by user account or local cookie.
+
 ## Future Additions
 
 ## Technologies
@@ -61,5 +64,6 @@ Test driven development using Django inbuilt test suite (TestCase).
 - Bulma.io official documentation
 - jQuery official documentation
 - Python and Django official documentation
+- Strip APIs official documentation
 - HTML5 validator https://validator.w3.org/
 - CSS3 validator https://jigsaw.w3.org/css-validator/

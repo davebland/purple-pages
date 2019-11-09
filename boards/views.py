@@ -5,8 +5,10 @@ from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 
 from .models import Board
-from adverts.views import get_ads
 from .forms import BoardForm
+from adverts.views import get_ads
+from accounts.models import PPUser
+
 
 def get_active_board_list():
     """ Return a list containing properties of all active boards """
@@ -39,12 +41,23 @@ def get_notice_board(board_pk):
     return notice_board
 
 def set_favourite_board(request, board_pk, set_unset=False):
-    """ Set or unset favourite board pk in session and reload page """
-    if set_unset:
-        request.session['favourite_board'] = board_pk
-    else:
-        if request.session.__contains__('favourite_board'):
-            del request.session['favourite_board']
+    """ Set or unset favourite board pk in user profile or local cookie and reload page """
+    if request.user.is_authenticated:
+        # Set or unset favourite board in user profile
+        if set_unset:
+            # Set favourite in PPUser profile
+            pass
+        else:
+            # Unset favourite in PPUser profile
+            pass
+    else:        
+        # Set or unset favourite board in local cookie
+        if set_unset:
+            request.session['favourite_board'] = board_pk
+        else:
+            if request.session.__contains__('favourite_board'):
+                del request.session['favourite_board']
+
     return redirect('display_single_board', board_pk = board_pk)
 
 @login_required
