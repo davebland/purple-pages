@@ -46,10 +46,10 @@ def set_favourite_board(request, board_pk, set_unset=False):
         # Set or unset favourite board in user profile
         if set_unset:
             # Set favourite in PPUser profile
-            pass
+            request.user.ppuser.favourite_board = Board.objects.get(pk=board_pk)
         else:
             # Unset favourite in PPUser profile
-            pass
+            request.user.ppuser.favourite_board = None
     else:        
         # Set or unset favourite board in local cookie
         if set_unset:
