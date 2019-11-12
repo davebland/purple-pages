@@ -3,11 +3,11 @@ from django.http import Http404
 from django.forms.models import model_to_dict
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Board
 from .forms import BoardForm
 from adverts.views import get_ads
-from accounts.models import PPUser
 
 
 def get_active_board_list():
@@ -46,10 +46,12 @@ def set_favourite_board(request, board_pk, set_unset=False):
         # Set or unset favourite board in user profile
         if set_unset:
             # Set favourite in PPUser profile
-            request.user.ppuser.favourite_board = Board.objects.get(pk=board_pk)
+            request.user.ppuser.favourite_board = Board.objects.get(pk=board_pk)           
+            request.user.ppuser.save()
         else:
             # Unset favourite in PPUser profile
             request.user.ppuser.favourite_board = None
+            request.user.ppuser.save()
     else:        
         # Set or unset favourite board in local cookie
         if set_unset:

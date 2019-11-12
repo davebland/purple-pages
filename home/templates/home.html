@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block main-content %}
-    {{ favourite_notice_board }}
+    {% if favourite_notice_board %}
+        {{ favourite_notice_board }}
+    {% else %}
+        Welcome content for no favourite board
+    {% endif %}
 {% endblock %}
