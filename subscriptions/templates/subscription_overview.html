@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
 {% block main-content %}
-{{ user_subscription }}
 <div class="level">
     <div class="level-item has-text-centered">
         <div>
             <p class="heading">Subscription Status</p>
-            <p class="title"></p>
+            <p class="title">
+                {% if user_subscription %}
+                    {% if user_subscription.is_active %}
+                        Active
+                    {% else %}
+                        Expired
+                    {% endif %}
+                {% else %}
+                    No Subscription
+                {% endif %}
+            </p>
         </div>
     </div>
     <div class="level-item has-text-centered">
         <div>
             <p class="heading">Expiry Date</p>
-            <p class="title">{{ user_subscription.expiry_date }}</p>
+            <p class="title">
+                {% if user_subscription %}
+                {{ user_subscription.expiry_date }}
+                {% else %}
+                -
+                {% endif %}
+            </p>
         </div>       
     </div>
 </div>
 <div class="level">    
     <div class="level-item">
+        {% if user_subscription %}
         <table class="table">
             <thead>
                 <tr>
@@ -35,11 +51,18 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     </div>
 </div>
 <div class="level">
-    <div class="level-item">
-        <a href="" class="button is-large is-warning">Make A Payment</a>
+    <div class="level-item">        
+        <a href="" class="button is-large is-warning">
+            {% if user_subscription %}
+            Make A Payment
+            {% else %}
+            Subscribe Now!
+            {% endif %}
+        </a>
     </div>
 </div>
 {% endblock %}

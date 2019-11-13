@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from datetime import date
+
 class Subscription(models.Model):
     """ Data model for a user's subscription """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
@@ -8,6 +10,13 @@ class Subscription(models.Model):
 
     def __str__(self):
         return "Subscription for user {}".format(self.pk)
+
+    def is_active(self):
+        """ Return true if subscription is not expired """
+        if self.expiry_date >= date.today():
+            return True
+        else:
+            return False
 
 class Payment(models.Model):
     """ Data model for a record of payment """
