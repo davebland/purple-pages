@@ -9,7 +9,7 @@ def get_ads(board_pk):
     """ Return a tuple containing all adverts for specified board and update impression counter """
     all_ads = Advert.objects.filter(on_boards=board_pk)
     for ad in all_ads:
-        ad.add_impression
+        ad.add_impression()
     return tuple(all_ads)
 
 def get_user_ads(uid):

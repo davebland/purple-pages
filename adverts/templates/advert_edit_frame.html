@@ -12,9 +12,17 @@
     <div class="box">
         {{ ad.to_html }}
     </div>
-    <p>Boards:
-        {% for board in ad.board_list %}
-            <span class="tag is-info">{{ board }}</span>
-        {% endfor %}
-    </p>
+    <div class="level">
+        <div class="level-left">
+            <p>Boards:
+                {% for board in ad.board_list %}
+                    <span class="tag is-info">{{ board }}</span>
+                {% endfor %}
+            </p>
+        </div>
+        <div class="level-right">
+            <span class="tag is-info">Impressions: {{ ad.impression_counter }}</span>
+        </div>
+    </div>
+    
 </div>

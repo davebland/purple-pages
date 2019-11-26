@@ -27,7 +27,6 @@ class Advert(models.Model):
 
     def add_impression(self):
         """ Increase the impression counter by 1 for this advert """
-        self.impression_counter += 1
         try:
             self.impression_counter += 1
             self.save(update_fields=['impression_counter'])
