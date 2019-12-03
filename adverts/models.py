@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
+import os
+from django.conf import settings
+
 from boards.models import Board
 
 class Advert(models.Model):
@@ -32,3 +35,12 @@ class Advert(models.Model):
             self.save(update_fields=['impression_counter'])
         except:
             self.impression_counter = 0
+
+class AdvertTemplate(models.Model):
+    """ Data model for an advert template """
+    name = models.CharField(max_length=30)
+    template_file = models.FilePathField(path=os.path.join(settings.BASE_DIR, "adverts/templates"),match="ad_template_*")
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name

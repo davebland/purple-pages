@@ -3,8 +3,10 @@
 {% block main-content %}
     Add/Edit Template
     <form action="{{ request.path }}" method="POST">
-        {{ advert_form }}
-        {% csrf_token %}
+        <table class="table">
+            {{ advert_form.as_table }}
+            {% csrf_token %} 
+        </table>        
         <input type="submit" class="button" value="Submit">
     </form>
     
