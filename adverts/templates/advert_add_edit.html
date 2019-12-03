@@ -9,5 +9,19 @@
         </table>        
         <input type="submit" class="button" value="Submit">
     </form>
+
+    Preview Area
+    <div id="get-preview" class="button">Get Preview</div>
+    <div class="preview-area"></div>
     
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('#get-preview').click(function() {
+            $.post("{% url 'preview_advert' %}", function(preview) {
+                console.log(preview);
+            });            
+        });
+    </script>
 {% endblock %}

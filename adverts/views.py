@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 
@@ -55,3 +56,10 @@ def advert_add_edit(request, advert_id=None):
         # If a new advert create a blank form and pass this into template
         advert_form = AdvertForm(initial={'user': request.user})
         return render(request, 'advert_add_edit.html', {'page_title':'New Advert', 'advert_form':advert_form})
+
+@login_required
+def preview_advert(request):
+    """ Return html preview of an advert using POST data """
+    if request.method != "POST":
+        return HttpResponseBadRequest()
+    return HttpResponse("Advert Preview Here")
