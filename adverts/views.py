@@ -62,4 +62,4 @@ def preview_advert(request):
     """ Return html preview of an advert using POST data """
     if request.method != "POST":
         return HttpResponseBadRequest()
-    return HttpResponse("Advert Preview Here")
+    return HttpResponse("Advert Preview Here. Data: {}".format(request.POST))

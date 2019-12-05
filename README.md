@@ -52,6 +52,7 @@ Test driven development using Django inbuilt test suite (TestCase).
 ## Technical Challenges
 
 - 'No reverse match' for password reset token
+- Making ajax POST requests requires including csrf token
 
 ## Deployment
 
