@@ -10,7 +10,7 @@ from boards.models import Board
 class AdvertTemplate(models.Model):
     """ Data model for an advert template """
     name = models.CharField(max_length=30)
-    template_file = models.FilePathField(path=os.path.join(settings.BASE_DIR, "adverts/templates"),match="ad_template_*")
+    template_file = models.FilePathField(path=os.path.join(settings.BASE_DIR, "adverts", "templates"),match="ad_template_*")
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
