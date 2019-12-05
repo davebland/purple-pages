@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
+from relativefilepathfield.fields import RelativeFilePathField
+
 import os
 from django.conf import settings
 
@@ -10,7 +12,7 @@ from boards.models import Board
 class AdvertTemplate(models.Model):
     """ Data model for an advert template """
     name = models.CharField(max_length=30)
-    template_file = models.FilePathField(path=os.path.join(settings.BASE_DIR, "adverts", "templates"),match="ad_template_*")
+    template_file = RelativeFilePathField(path=os.path.join(settings.BASE_DIR, "adverts", "templates"),match="ad_template_*")
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
@@ -30,7 +32,7 @@ class Advert(models.Model):
         return self.title
 
     def to_html(self):
-        """ Rended the advert to a html string using the relevant template """
+        """ Render the advert to a html string using the relevant template """
         return render_to_string(self.template.template_file, {'advert':self})
 
     def board_list(self):

@@ -42,6 +42,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
     - jQuery
 - Python
     - Django
+    - Django RelativeFilePathField
 
 ## Testing
 
@@ -53,6 +54,7 @@ Test driven development using Django inbuilt test suite (TestCase).
 
 - 'No reverse match' for password reset token
 - Making ajax POST requests requires including csrf token
+- Storing relative file paths for template files rather than absolute (Alex Hayes package)
 
 ## Deployment
 
