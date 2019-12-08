@@ -32,3 +32,10 @@ class TestAdvertViews(TestCase):
         self.assertTemplateUsed(new_add, 'advert_add_edit.html')
         existing_add = self.client.get('/adverts/1/edit', follow=True)
         self.assertTemplateUsed(existing_add, 'advert_add_edit.html')
+
+    def test_preview_advert(self):
+        """ Send a post request for advert preview and check for http response contains the posted values """
+        self.client.login(username='pptestuser', password='localtest')
+        post_request = self.client.post('/adverts/preview/', {'title':'testvalue'})   
+        self.assertEqual(post_request.status_code, 200)
+        self.assertTrue("testvalue" in str(post_request.content))
