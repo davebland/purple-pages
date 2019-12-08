@@ -20,13 +20,12 @@
         $('#get-preview').click(function() {
             // Get CSRF token from DOM
             let csrfToken = $("[name=csrfmiddlewaretoken]").val();
-            // Build up the POST request data
-            let postData = {
-                'title':'testtitle',
-                'field2':'test2',
-                'field3':'test3',
-                'csrfmiddlewaretoken':csrfToken,
-            }
+            // Build up the POST request data from the form elements
+            let postData = {}
+            $('form input, textarea, select').each(function(inputElement) {
+                postData[this.name] = this.value
+            })
+            console.log(postData)
             // Make ajax request for advert preview
             $.post("{% url 'preview_advert' %}", postData , function(preview) {
                 $('#preview-area').html(preview);             

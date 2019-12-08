@@ -63,5 +63,11 @@ def preview_advert(request):
     if request.method != "POST":
         return HttpResponseBadRequest()
     # Create and return an advert using the posted data
-    advert_to_preview = Advert(title=request.POST['title'])
-    return HttpResponse(advert_to_preview.to_html())
+    posted_data_into_form = AdvertForm(request.POST)
+    if posted_data_into_form.is_valid():           
+        preview_advert = posted_data_into_form.save(commit=False)
+    else:
+        preview_advert = Advert(title="CAN'T GENERATE PREVIEW", textContent=posted_data_into_form.errors)
+            
+    print(preview_advert)
+    return HttpResponse(preview_advert.to_html())
