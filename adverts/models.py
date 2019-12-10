@@ -28,6 +28,7 @@ class Advert(models.Model):
     strapline = models.CharField(max_length=30, blank=True)
     textContent = models.TextField(blank=True)
     image = models.ImageField(upload_to=IMAGE_UPLOAD_PATH, blank=True)
+    link_text = models.CharField(max_length=30, blank=True)
     link_url = models.URLField(blank=True)
     
     # Advert meta

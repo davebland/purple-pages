@@ -1,5 +1,8 @@
 <!-- Advert Template 1 -->
 <article class="box has-background-primary">
     <h2 class="title is-2">{{ advert.title }}</h2>
+    <h3 class="subtitle">{{ advert.strapline }}</h3>
     <p>{{ advert.textContent }}</p>
+    <img src="{% if advert.image %}{{ advert.image.url }}{% endif %}" alt="Ad Image Here">
+    <a class="button is-outlined" target="_blank" href="{{ advert.link_url }}">{{ advert.link_text }}</a>
 </article>
