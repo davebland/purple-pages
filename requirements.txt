@@ -1,6 +1,7 @@
 asgiref==3.2.3
 Django==3.0
 django-relativefilepathfield==1.0.3
+Pillow==6.2.1
 python-dotenv==0.10.3
 pytz==2019.3
 sqlparse==0.3.0

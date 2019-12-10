@@ -20,13 +20,24 @@ class AdvertTemplate(models.Model):
 
 class Advert(models.Model):
     """ Data model for adverts """
+
+    IMAGE_UPLOAD_PATH = "images/adverts/"
+
+    # Advert content attributes
     title = models.CharField(max_length=30)
-    textContent = models.TextField(default="")
-    impression_counter = models.IntegerField(default=0)
-    template = models.ForeignKey(AdvertTemplate, on_delete=models.PROTECT, default=1)
+    strapline = models.CharField(max_length=30, blank=True)
+    textContent = models.TextField(blank=True)
+    image = models.ImageField(upload_to=IMAGE_UPLOAD_PATH, blank=True)
+    link_url = models.URLField(blank=True)
     
+    # Advert meta
+    created_date = models.DateField(auto_now_add=True)
+    modified_date = models.DateField(auto_now=True)
+    impression_counter = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     on_boards = models.ManyToManyField(Board)
+    template = models.ForeignKey(AdvertTemplate, on_delete=models.PROTECT, default=1)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

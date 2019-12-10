@@ -33,6 +33,8 @@ The colour scheme of the site will be purple and is complementing colours to ref
 
 ## Future Additions
 
+- Advert catagories
+
 ## Technologies
 
 - HTML5
@@ -43,6 +45,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 - Python
     - Django
     - Django RelativeFilePathField
+    - Pillow
 
 ## Testing
 
