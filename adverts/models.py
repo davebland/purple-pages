@@ -21,7 +21,7 @@ class AdvertTemplate(models.Model):
 class Advert(models.Model):
     """ Data model for adverts """
 
-    IMAGE_UPLOAD_PATH = "images/adverts/"
+    IMAGE_UPLOAD_PATH = "adverts/"
 
     # Advert content attributes
     title = models.CharField(max_length=30)

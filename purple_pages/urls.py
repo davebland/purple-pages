@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from home.views import home, notice_boards
 from boards import urls as urls_boards
@@ -32,4 +34,4 @@ urlpatterns = [
     path('test/', include(urls_test)),
     path('account/', include(urls_accounts)),
     path('subscription/', include(urls_subscriptions),)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Serve media files for dev only
