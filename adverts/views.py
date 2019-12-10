@@ -69,5 +69,4 @@ def preview_advert(request):
     else:
         preview_advert = Advert(title="CAN'T GENERATE PREVIEW", textContent=posted_data_into_form.errors)
             
-    print(preview_advert)
     return HttpResponse(preview_advert.to_html())

@@ -5,5 +5,5 @@ from .models import Advert
 class AdvertForm(ModelForm):
     class Meta:
         model = Advert
-        fields = ['title', 'textContent', 'on_boards', 'user']
+        exclude = ['impression_counter']
         widgets = {'user':HiddenInput()}
