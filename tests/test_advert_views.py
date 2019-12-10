@@ -36,6 +36,6 @@ class TestAdvertViews(TestCase):
     def test_preview_advert(self):
         """ Send a post request for advert preview and check for http response contains the posted values """
         self.client.login(username='pptestuser', password='localtest')
-        post_request = self.client.post('/adverts/preview/', {'title': "test title", 'textContent': "test content", 'on_boards': "1", 'user': "1"}) 
-        self.assertEqual(post_request.status_code, 200)
+        post_request = self.client.post('/adverts/preview/', {'title': "test title", 'textContent': "test content", 'on_boards': 1, 'user': 1, 'template':1}) 
+        self.assertEqual(post_request.status_code, 200)       
         self.assertTrue("test title" in str(post_request.content))
