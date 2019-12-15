@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Advert Template 1 -->
 <article class="box has-background-primary">
     <h2 class="title is-2">{{ advert.title }}</h2>
@@ -5,6 +6,8 @@
     <p>{{ advert.textContent }}</p>
     {% if advert.image %}
         <img src="{{ advert.image.url }}" alt="Ad Image Here">
+    {% else %}
+        <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
     {% endif %}
     <a class="button is-outlined" target="_blank" href="{{ advert.link_url }}">{{ advert.link_text }}</a>
 </article>

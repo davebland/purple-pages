@@ -34,6 +34,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 ## Future Additions
 
 - Advert catagories
+- Live preview of advert images
 
 ## Technologies
 

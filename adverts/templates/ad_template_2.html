@@ -1,5 +1,11 @@
+{% load static %}
 <!-- Advert Template 2 -->
 <article class="box has-background-primary">
     <h2 class="title is-1">{{ advert.title }}</h2>
-    <p>{{ advert.textContent }}</p>
+    <p>{{ advert.textContent }}</p>c
+    {% if advert.image %}
+        <img src="{{ advert.image.url }}" alt="Ad Image Here">
+    {% else %}
+        <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
+    {% endif %}
 </article>
