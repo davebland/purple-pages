@@ -20,7 +20,7 @@ Initially the notice boards will be segregated into UK postcode districts. Distr
 
 I wanted the design of the site to be ‘clean’ and minimal with the notice boards themselves taking cues from a physical notice board found in town/village centres, local shops etc. E.g. lots of individual ads or various sizes pinned to the board in a loose grid format.
 
-I have decided to use Bulma CSS framework to build the front-end templates as I like the clean look of the styles and also particularly the ‘tiles’ component which lends itself well to a notice board type look.
+I have decided to use Bulma CSS framework to build the front-end templates as I like the clean look of the styles and also particularly the 'columns' and ‘box’ components which lends themselves well to a notice board type look.
 
 The colour scheme of the site will be purple and is complementing colours to reflect the application’s name.
 

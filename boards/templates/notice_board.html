@@ -1,15 +1,17 @@
 <!-- Notice Board Template -->
-{{ board_meta.postCodeDistrict }} - {{ board_meta.name }}
-<div class="box">
+<div id="notice-board" class="box">
+    <div class="level">
+        <div class="level-left">
+            <h3 class="is-size-4 is-uppercase has-text-white titan">{{ board_meta.postCodeDistrict }} - {{ board_meta.name }}</h3>            
+        </div>       
+    </div>
     <!-- All Adverts for Notice Board -->
-    <div class="tile is-ancester">
-        <div class="tile is-parent is-vertical">            
-            {% for ad in adverts %}
-            <!-- Loop through ads and create tile for each -->
-            <div class="tile is-6 is-child">
-                {{ ad.to_html }}  
-            </div>                                           
-            {% endfor %}
-        </div>
+    <div class="columns is-multiline">            
+        {% for ad in adverts %}            
+        <!-- Loop through ads and create column for each -->
+        <div class="column">
+            {{ ad.to_html }}  
+        </div>                                           
+        {% endfor %}
     </div>
 </div>
