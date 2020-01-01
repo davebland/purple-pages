@@ -1,15 +1,9 @@
-/** BACKGROUNDS **/
-
-#notice-board {
-    background-color: purple;
-    border: 10px solid brown;
-}
-
-.advert {
-}
-
 /** FONTS **/
 
 .titan {
     font-family: 'Titan One', cursive;
+}
+
+.advert {
+    
 }
