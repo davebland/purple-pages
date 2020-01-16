@@ -2,7 +2,7 @@
 
 ## An online notice board for your local community
 
-[![Build Status](https://travis-ci.org/davebland/purple-pages.svg?branch=master)](https://travis-ci.org/davebland/purple-pages)
+[![Build Status](https://travis-ci.com/davebland/purple-pages.svg?token=s1SKguoR23tDFhPT9z49&branch=master)](https://travis-ci.com/davebland/purple-pages)
 
 A full stack framework milestone project for Code Institute.
 
