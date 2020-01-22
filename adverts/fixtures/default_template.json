@@ -1,0 +1,1 @@
+[{"model": "adverts.adverttemplate", "pk": 1, "fields": {"name": "default_template", "template_file": "ad_template_1.html", "active": false}}]

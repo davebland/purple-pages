@@ -43,14 +43,15 @@ class Advert(models.Model):
     def __str__(self):
         return self.title
 
-    def render(self):
-        """ Render the advert to a html string using the relevant template """
-        return render_to_string(self.template.template_file, {'advert':self})
-
     def increase_view_count(self):
         """ Increase the view counter by 1 for this advert """
         try:
-            self.impression_counter += 1
+            self.view_counter += 1
             self.save(update_fields=['view_counter'])
         except:
             raise Exception("Unable to increase view count for advert {}".format(self.pk))
+
+    def render(self):
+        """ Render the advert to a html string using the relevant template and increase view count """
+        self.increase_view_count()
+        return render_to_string(self.template.template_file, {'advert':self})
