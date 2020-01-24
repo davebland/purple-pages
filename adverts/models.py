@@ -6,8 +6,11 @@ from relativefilepathfield.fields import RelativeFilePathField
 import os
 from django.conf import settings
 
+from boards.models import Board
+
 class AdvertTemplate(models.Model):
     """ Data model for an advert template """
+
     name = models.CharField(max_length=30)
     template_file = RelativeFilePathField(path=os.path.join(settings.BASE_DIR, "adverts", "templates"),match="ad_template_*")
     active = models.BooleanField(default=False)
@@ -37,7 +40,7 @@ class Advert(models.Model):
     active = models.BooleanField(default=True)
 
     #pp_user = models.ForeignKey(User, on_delete=models.PROTECT)
-    #on_boards = models.ManyToManyField(Board)
+    boards = models.ManyToManyField(Board)
     template = models.ForeignKey(AdvertTemplate, on_delete=models.PROTECT, default=1)
     
     def __str__(self):

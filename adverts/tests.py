@@ -15,14 +15,14 @@ class TestAdvertModels(TestCase):
         # Setup a test advert
         advert = Advert(title='Test Ad')
         advert.save()
-        self.assertEqual(advert.title, 'Test Ad')
+        self.assertEqual(str(advert), 'Test Ad')
         self.assertEqual(advert.created_date, date.today())
         self.assertEqual(advert.modified_date, date.today())
 
     def test_template_name_default(self):
         """ Test the default template for correct title and default template file """
         template = AdvertTemplate.objects.get(pk=1)
-        self.assertEqual(template.name, 'default_template')
+        self.assertEqual(str(template), 'default_template')
         self.assertEqual(template.template_file, "ad_template_1.html")
 
     def test_render_advert(self):
