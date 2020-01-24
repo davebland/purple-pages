@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'adverts',
     'boards',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'purple_pages.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.PPUser'
 
 
 # Database

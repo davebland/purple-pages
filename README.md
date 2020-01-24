@@ -30,6 +30,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 
 - Stripe payment intents to comply with EU SCA requirements.
 - Saved 'favorite' notice board either by user account or local cookie.
+- PPUser extents django user
 
 ## Future Additions
 
