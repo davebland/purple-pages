@@ -9,7 +9,7 @@ class PPUser(AbstractUser):
     """ Data model for a Purple Pages User (extends django User) """
 
     favourite_board = models.ForeignKey(Board, on_delete=models.SET_NULL, null=True, blank=True)
-    subscription_expiry = models.DateField(blank=True)
+    subscription_expiry = models.DateField(null=True, blank=True)
 
     def subscription_status(self):
         """ Return subscription status as text """

@@ -3,6 +3,7 @@ from django.test import TestCase
 from datetime import date
 
 from adverts.models import Advert, AdvertTemplate
+from accounts.models import PPUser
 
 class TestAdvertModels(TestCase):
     """ Tests for advert models """
@@ -12,8 +13,11 @@ class TestAdvertModels(TestCase):
 
     def test_advert_title_dates(self):
         """ Test the created advert for correct title, created and modified dates """
+        # Create a test user
+        test_user = PPUser()
+        test_user.save()
         # Setup a test advert
-        advert = Advert(title='Test Ad')
+        advert = Advert(title='Test Ad', ppuser=test_user)
         advert.save()
         self.assertEqual(str(advert), 'Test Ad')
         self.assertEqual(advert.created_date, date.today())
@@ -27,8 +31,11 @@ class TestAdvertModels(TestCase):
 
     def test_render_advert(self):
         """ Test that advert render method produces a string and increases view count """
+        # Create a test user
+        test_user = PPUser()
+        test_user.save()
         # Setup a test advert
-        advert = Advert(title='Test Ad')
+        advert = Advert(title='Test Ad', ppuser=test_user)
         advert.save()
         view_count_before = advert.view_counter
         rendered_advert = advert.render()

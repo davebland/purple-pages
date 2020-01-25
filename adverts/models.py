@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 
 from boards.models import Board
+from accounts.models import PPUser
 
 class AdvertTemplate(models.Model):
     """ Data model for an advert template """
@@ -32,6 +33,7 @@ class Advert(models.Model):
     image_width = models.IntegerField(default=0)
     link_url = models.URLField(blank=True)
     link_text = models.CharField(max_length=30, blank=True)
+    background_color_class = models.CharField(max_length=15, default="white")
     
     # Advert meta
     created_date = models.DateField(auto_now_add=True)
@@ -39,7 +41,7 @@ class Advert(models.Model):
     view_counter = models.IntegerField(default=0)
     active = models.BooleanField(default=True)
 
-    #pp_user = models.ForeignKey(User, on_delete=models.PROTECT)
+    ppuser = models.ForeignKey(PPUser, on_delete=models.PROTECT)
     boards = models.ManyToManyField(Board)
     template = models.ForeignKey(AdvertTemplate, on_delete=models.PROTECT, default=1)
     
