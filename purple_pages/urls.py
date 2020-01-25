@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 #from subscriptions import urls as urls_subscriptions
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     #path('', home, name="home"),
     #path('boards/', notice_boards, name="boards"),
     #path('board/', include(urls_boards)),

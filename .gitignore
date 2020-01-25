@@ -4,3 +4,4 @@ venv/
 __pycache__/
 *.pyc
 images/adverts/
+local_creds.txt
