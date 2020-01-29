@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-#from home.views import home, notice_boards
+from home.views import home, search 
 #from boards import urls as urls_boards
 #from adverts import urls as urls_adverts
 #from tests import urls as urls_test
@@ -27,8 +27,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', home, name="home"),
-    #path('boards/', notice_boards, name="boards"),
+    path('', home, name="home"),
+    path('search/', search, name="search"),
     #path('board/', include(urls_boards)),
     #path('adverts/', include(urls_adverts)),
     #path('test/', include(urls_test)),

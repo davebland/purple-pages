@@ -1,9 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from boards.views import get_active_board_list, get_notice_board
 
 def home(request):
-    """ Generate Application Home Page """
+    """ Generate Purple Pages Home Page """
     # If favourite_board in user or session return that board rather than default content
     
     if request.user.is_authenticated and request.user.ppuser.favourite_board:
@@ -15,6 +16,6 @@ def home(request):
     
     return render(request, 'home.html', {'page_title':"Welcome To Purple Pages", 'favourite_notice_board': favourite_notice_board })
 
-def notice_boards(request):
-    """ Generate Notice Boards Page """
-    return render(request, 'notice_boards.html', {'page_title':"Find Your Local Notice Board", 'active_board_list': get_active_board_list() })
+def search(request):
+    """ Generate a blank search page or return results """
+    return HttpResponse("Search Page for query")

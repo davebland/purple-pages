@@ -9,6 +9,9 @@ from .models import Board
 from .forms import BoardForm
 from adverts.views import get_ads
 
+def notice_boards(request):
+    """ Generate Notice Boards Page """
+    return render(request, 'notice_boards.html', {'page_title':"Find Your Local Notice Board", 'active_board_list': get_active_board_list() })
 
 def get_active_board_list():
     """ Return a list containing properties of all active boards """
