@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Purple Pages</title>
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <!-- Purple Pages CSS -->
     <link rel="stylesheet" href="{% static 'css/purple_pages_styles.css' %}">
     <!-- Fonts -->    		
     <link href="https://fonts.googleapis.com/css?family=Titan+One&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
     <header>
@@ -22,7 +23,7 @@
                     <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo" class="">
                     <span class="titan is-size-5">Purple Pages</span>
                 </a>
-                <a href="{% url 'boards' %}" class="navbar-item">Notice Boards</a>
+                <a href="" class="navbar-item">Notice Boards</a>
                 <a class="navbar-burger">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -36,33 +37,28 @@
                     </div>                    
                 </div>                          
                 <div class="navbar-end">                    
-                    <a href="{% url 'my_ads' %}" class="navbar-item">My Ads</a>                    
+                    <a href="" class="navbar-item">My Ads</a>                    
                     <div href="#" class="navbar-item has-dropdown is-hoverable">
                         <!-- Dropdown Account Menu -->
-                        <a href="{% url 'my_account' %}" class="navbar-link">My Account</a>
+                        <a href="" class="navbar-link">My Account</a>
                         <div class="navbar-dropdown">
-                            <a href="{% url 'my_account' %}" class="navbar-item">Overview</a>
-                            <a href="{% url 'subscription_overview' %}" class="navbar-item">Subscription</a>
-                            <a href="{% url 'password_change' %}" class="navbar-item">Change Password</a>
+                            <a href="" class="navbar-item">Overview</a>
+                            <a href="" class="navbar-item">Subscription</a>
+                            <a href="" class="navbar-item">Change Password</a>
                         </div>
                     </div>
                     {% if user.is_authenticated %}
                     <div class="navbar-item">
-                        <form action="{% url 'logout' %}"><input type="submit" value="Logout"></form>
+                        <form action=""><input type="submit" value="Logout"></form>
                     </div>                        
                     {% else %}
-                        <a href="{% url 'login' %}" class="navbar-item">Login</a>
+                        <a href="" class="navbar-item">Login</a>
                     {% endif %} 
                 </div>
             </div>
         </nav>
         <hr class="navbar-divider">
     </header>
-    <section class="section">
-        <div class="container">
-            <h1 class="title is-1 has-text-centered">{{ page_title }}</h1>
-        </div>
-    </section>
     <section class="section">
         <div class="container">
             {% block main-content %}

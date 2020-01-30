@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.db.models import Q
 
 from boards.views import get_active_board_list, get_notice_board
+
+from adverts.models import Advert
 
 def home(request):
     """ Generate Purple Pages Home Page """
@@ -18,4 +21,11 @@ def home(request):
 
 def search(request):
     """ Generate a blank search page or return results """
-    return HttpResponse("Search Page for query")
+    if 'search_string' in request.GET:
+        adverts = Advert.objects.filter(Q(title__icontains=request.GET['search_string']) |
+                    Q(strapline__icontains=request.GET['search_string']) |
+                        Q(text_content__icontains=request.GET['search_string']) |
+                            Q(link_url__icontains=request.GET['search_string']))
+    else:
+        adverts = None
+    return render(request, 'search.html', {'adverts':adverts})

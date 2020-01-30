@@ -16,4 +16,4 @@ class Board(models.Model):
     post_code = models.OneToOneField(PostCodeDistrict, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.postCodeDistrict.postcode
+        return self.post_code.post_code
