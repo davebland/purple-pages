@@ -36,7 +36,19 @@
                         <span class="tag">{{ request.user }}</span>
                     </div>                    
                 </div>                          
-                <div class="navbar-end">                    
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <form class="" action="{% url 'search' %}">
+                            <div class="field has-addons">
+                                <div class="control">           
+                                    <input class="input" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
+                                </div>
+                                <div class="control">
+                                    <button class="button is-primary"><span class="icon"><i class="fas fa-search"></i></span></button>
+                                </div>
+                            </div>        
+                        </form>
+                    </div>                    
                     <a href="" class="navbar-item">My Ads</a>                    
                     <div href="#" class="navbar-item has-dropdown is-hoverable">
                         <!-- Dropdown Account Menu -->

@@ -21,11 +21,11 @@ def home(request):
 
 def search(request):
     """ Generate a blank search page or return results """
+    adverts = None
     if 'search_string' in request.GET:
-        adverts = Advert.objects.filter(Q(title__icontains=request.GET['search_string']) |
-                    Q(strapline__icontains=request.GET['search_string']) |
-                        Q(text_content__icontains=request.GET['search_string']) |
-                            Q(link_url__icontains=request.GET['search_string']))
-    else:
-        adverts = None
+        if request.GET['search_string'] != "":
+            adverts = Advert.objects.filter(Q(title__icontains=request.GET['search_string']) |
+                        Q(strapline__icontains=request.GET['search_string']) |
+                            Q(text_content__icontains=request.GET['search_string']) |
+                                Q(link_url__icontains=request.GET['search_string']))
     return render(request, 'search.html', {'adverts':adverts})
