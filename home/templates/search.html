@@ -31,11 +31,7 @@
             {% endfor %}
         </div>
         {% else %}
-            {% if 'search_string' in request.GET %}
-            <p class="has-text-grey">No results found</p>
-            {% else %}
-            <p class="has-text-grey">Enter a search term above...</p>
-            {% endif %}        
+        <p class="has-text-grey">No results found</p>
         {% endif %}
     </div>
 </div>                  

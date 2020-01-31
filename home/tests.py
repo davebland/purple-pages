@@ -5,7 +5,7 @@ class HomeViews(TestCase):
 
     def test_home_template(self):
         """ Test that the home page returns the home template """        
-        page = self.client.get("")
+        page = self.client.get("/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'home.html')
 
