@@ -1,0 +1,40 @@
+<!-- Single Notice Board Template -->
+{% extends 'base.html' %}
+{% block main-content %}
+<div class="level">
+    <!-- Set/unset as favourite controls -->
+    <div class="level-right">
+        <div class="level-item">
+            <div class="buttons has-addons">
+                session:{{ request.session.favourite_board }}
+                user: {{ request.user.favourite_board }}
+                {% if request.session.favourite_board == notice_board or request.user.favourite_board == notice_board %}
+                <!-- Icon for board is set as favourite -->
+                <a href="" class="button is-info">UnSet</a>
+                {% else %}
+                <!-- Icon for board is not favourite -->
+                <a href="" class="button is-info">Set</a>
+                {% endif %}
+            </div>
+            Current Favourite: {{ request.session.favourite_board }}
+        </div>        
+    </div>
+</div>
+<!-- Notice Board -->
+<div id="notice-board" class="card">
+    <div class="card-header">
+        <h3 class="card-header-title is-size-4 is-uppercase titan">{{ notice_board.post_code }} - {{ notice_board.name }}</h3>
+    </div>
+    <div class="card-content">
+        <!-- All adverts for this notice board -->
+        <div class="columns is-multiline">            
+            {% for ad in adverts %}            
+            <!-- Loop through ads and create column for each -->
+            <div class="column is-half-tablet is-one-third-desktop">
+                {{ ad.render }}  
+            </div>                                           
+            {% endfor %}
+        </div>
+    </div>                  
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.forms.models import model_to_dict
 from django.template.loader import render_to_string
@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from .models import Board
+from adverts.models import Advert
+
 from .forms import BoardForm
 from adverts.views import get_ads
 
@@ -14,9 +16,10 @@ def notice_boards(request):
     return render(request, 'notice_boards.html', {'active_boards': Board.objects.all()})
 
 def display_single_board(request, board_pk):
-    """ Render a single notice board page for the requested board """
-    notice_board = get_notice_board(board_pk)
-    return render(request, 'notice_board_frame.html', {'page_title':"Notice Board", 'notice_board':notice_board, 'board_pk':board_pk})
+    """ Render a single notice board page """
+    notice_board = get_object_or_404(Board, pk=board_pk)
+    adverts = Advert.objects.filter(boards=notice_board)
+    return render(request, 'single_notice_board.html', {'notice_board':notice_board, 'adverts':adverts})
 
 def get_notice_board(board_pk):
     """ Generate html for requested notice board with all its adverts """
