@@ -11,15 +11,7 @@ from adverts.views import get_ads
 
 def notice_boards(request):
     """ Generate Notice Boards Page """
-    return render(request, 'notice_boards.html', {'page_title':"Find Your Local Notice Board", 'active_board_list': get_active_board_list() })
-
-def get_active_board_list():
-    """ Return a list containing properties of all active boards """
-    active_board_list = []
-    for board in Board.objects.all():
-        # Add each board to the list as a dictionary of its properties      
-        active_board_list.append(model_to_dict(board))    
-    return active_board_list
+    return render(request, 'notice_boards.html', {'active_boards': Board.objects.all()})
 
 def display_single_board(request, board_pk):
     """ Render a single notice board page for the requested board """

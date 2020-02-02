@@ -21,3 +21,14 @@ class TestBoardModels(TestCase):
         board.save()
         self.assertEqual(board.name, 'Test Board')
         self.assertEqual(board.date_active, date.today())
+
+class TestBoardViews(TestCase):
+    """ Tests for board views """
+
+    def test_notice_boards(self):
+        """ Test that board root returns notice boards template """
+        page = self.client.get("/boards/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "notice_boards.html")
+
+    
