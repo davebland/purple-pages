@@ -2,21 +2,23 @@
 {% extends 'base.html' %}
 {% block main-content %}
 <div class="level">
+    <div class="level-left"></div>
     <!-- Set/unset as favourite controls -->
     <div class="level-right">
         <div class="level-item">
-            <div class="buttons has-addons">
-                session:{{ request.session.favourite_board }}
-                user: {{ request.user.favourite_board }}
-                {% if request.session.favourite_board == notice_board or request.user.favourite_board == notice_board %}
-                <!-- Icon for board is set as favourite -->
-                <a href="" class="button is-info">UnSet</a>
-                {% else %}
-                <!-- Icon for board is not favourite -->
-                <a href="" class="button is-info">Set</a>
-                {% endif %}
-            </div>
-            Current Favourite: {{ request.session.favourite_board }}
+            {% if request.session.favourite_board == notice_board.pk or request.user.favourite_board == notice_board %}
+            <!-- Icon for board is set as favourite -->
+            <a href="{% url 'unset_favourite_board' notice_board.pk %}" class="button is-primary">
+                <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
+                <span class="has-text-white">Remove as Favourite</span>
+            </a>
+            {% else %}
+            <!-- Icon for board is not favourite -->
+            <a href="{% url 'set_favourite_board' notice_board.pk %}" class="button">
+                <span class="icon is-large"><i class="far fa-bookmark"></i></span>
+                <span class="has-text-grey">Set as Favourite</span>
+            </a>
+            {% endif %}                              
         </div>        
     </div>
 </div>

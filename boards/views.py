@@ -21,35 +21,16 @@ def display_single_board(request, board_pk):
     adverts = Advert.objects.filter(boards=notice_board)
     return render(request, 'single_notice_board.html', {'notice_board':notice_board, 'adverts':adverts})
 
-def get_notice_board(board_pk):
-    """ Generate html for requested notice board with all its adverts """
-    # Get the details of the board or raise a 404 if it doesn't exist
-    try:
-        board_meta = Board.objects.get(pk=board_pk)
-    except:
-        raise Http404("Notice board not found")
-    # Get the adverts for this board
-    board_ads = get_ads(board_pk)
-    # Generate the notice board html
-    notice_board = render_to_string('notice_board.html',
-        {
-            'board_meta' : board_meta,
-            'adverts' : board_ads
-        })
-    return notice_board
-
 def set_favourite_board(request, board_pk, set_unset=False):
-    """ Set or unset favourite board pk in user profile or local cookie and reload page """
+    """ Set or unset favourite board in user profile or local cookie and reload page """
     if request.user.is_authenticated:
         # Set or unset favourite board in user profile
         if set_unset:
-            # Set favourite in PPUser profile
-            request.user.ppuser.favourite_board = Board.objects.get(pk=board_pk)           
-            request.user.ppuser.save()
+            request.user.favourite_board = Board.objects.get(pk=board_pk)           
+            request.user.save()
         else:
-            # Unset favourite in PPUser profile
-            request.user.ppuser.favourite_board = None
-            request.user.ppuser.save()
+            request.user.favourite_board = None
+            request.user.save()
     else:        
         # Set or unset favourite board in local cookie
         if set_unset:

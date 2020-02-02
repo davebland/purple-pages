@@ -3,6 +3,7 @@ from django.test import TestCase
 from datetime import date
 
 from boards.models import PostCodeDistrict, Board
+from accounts.models import PPUser
 
 class TestBoardModels(TestCase):
     """ Tests for board models """
@@ -41,3 +42,26 @@ class TestBoardViews(TestCase):
         self.assertTemplateUsed(page, 'single_notice_board.html')
         page = self.client.get("/boards/2/")
         self.assertEqual(page.status_code, 404)
+
+    def test_set_unset_favourite_board_session(self):
+        """ Test set_favourite_board sets/unsets favourite_board in session """
+        # Set favourite and test
+        page = self.client.get("/boards/1/set_as_favourite/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertEqual(self.client.session['favourite_board'], 1)
+        # Unset favourite and test
+        page = self.client.get("/boards/1/unset_as_favourite/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertFalse(self.client.session.__contains__('favourite_board'))
+
+    def test_set_unset_favourite_board_user(self):
+        """ Test set_favourite_board sets/unsets favourite_board in user profile """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Test setting favourite board
+        get = self.client.get("/boards/1/set_as_favourite/", follow=True)
+        self.assertEqual(get.context["user"].favourite_board, Board.objects.get(pk=1))
+        # Test un-setting favourite board
+        get = self.client.get("/boards/1/unset_as_favourite/", follow=True)
+        self.assertEqual(get.context["user"].favourite_board, None)

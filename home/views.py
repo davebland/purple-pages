@@ -14,7 +14,7 @@ def home(request):
         favourite_notice_board = request.user.favourite_board
     elif 'favourite_board' in request.session:
         try:
-            favourite_notice_board = Boards.objects.get(pk=request.session['favourite_board'])
+            favourite_notice_board = Board.objects.get(pk=request.session['favourite_board'])
         except:
             pass
     # If there is a favourite notice board get ads for that board
