@@ -1,5 +1,15 @@
 <!-- Create Board Template -->
 {% extends 'base.html' %}
+{% block message-area %}
+{% if messages %}
+<div class="notification is-primary">
+    <button class="delete"></button>
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
 {% block main-content %}
     <form action="{{ request.path }}" method="POST">
         {{ board_form }}

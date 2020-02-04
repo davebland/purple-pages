@@ -1,15 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404
-from django.forms.models import model_to_dict
-from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib import messages
 
 from .models import Board
 from adverts.models import Advert
 
 from .forms import BoardForm
-from adverts.views import get_ads
 
 def notice_boards(request):
     """ Generate Notice Boards Page """
@@ -50,10 +46,12 @@ def create_notice_board(request):
         board_form = BoardForm(request.POST)
         if board_form.is_valid():
             board_form.save()
-            return redirect('boards')
+            messages.success(request, 'New notice board {} details updated.'.format(board_form))
+            return redirect('notice_boards')
         else:
-            return render(request, 'create_notice_board.html', {'page_title':'Create Notice Board', 'board_form':board_form})
+            return render(request, 'create_notice_board.html', {'board_form':board_form})
     
     # Or just create a blank form
     board_form = BoardForm()
-    return render(request, 'create_notice_board.html', {'page_title':'Create Notice Board', 'board_form':board_form})
+    messages.info(request, 'Start a new board')
+    return render(request, 'create_notice_board.html', {'board_form':board_form})
