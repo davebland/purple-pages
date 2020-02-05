@@ -2,17 +2,17 @@
 {% extends 'base.html' %}
 {% block message-area %}
 {% if messages %}
-<div class="notification is-primary">
+{% for message in messages %}
+<div class="notification {% if message.tags %}is-{{message.tags}}{% endif %}">
     <button class="delete"></button>
-    {% for message in messages %}
-    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-    {% endfor %}
+    <p>{{ message }}</p>
 </div>
+{% endfor %}
 {% endif %}
 {% endblock %}
 {% block main-content %}
-    <form action="{{ request.path }}" method="POST">
-        {{ board_form }}
+    <form action="{{ request.path }}" method="POST" class="form">
+        {% include "bulma_form_template.html" with form=board_form %}
         {% csrf_token %}
         <input type="submit" class="button" value="Create">
     </form>

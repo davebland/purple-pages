@@ -1,0 +1,10 @@
+<!-- Render form with bulma styling -->
+{% for field in form %}
+    <div class="field">
+        {{ field.errors }}
+        <label for="{{ field.id_for_label}}" class="label">{{ field.label }}</label>
+        <div class="control">
+            {{ field }}
+        </div>
+    </div>
+{% endfor %}

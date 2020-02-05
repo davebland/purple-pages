@@ -46,7 +46,7 @@ def create_notice_board(request):
         board_form = BoardForm(request.POST)
         if board_form.is_valid():
             board_form.save()
-            messages.success(request, 'New notice board {} details updated.'.format(board_form))
+            messages.success(request, 'New notice board <strong>{}</strong> created.'.format(board_form))
             return redirect('notice_boards')
         else:
             return render(request, 'create_notice_board.html', {'board_form':board_form})

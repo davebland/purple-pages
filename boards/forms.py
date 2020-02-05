@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ModelChoiceField
+from django.forms import ModelForm, ModelChoiceField, TextInput, Select
 
 from .models import Board, PostCodeDistrict
 
@@ -11,3 +11,6 @@ class BoardForm(ModelForm):
     class Meta:
         model = Board
         fields = ['postCodeDistrict', 'name']
+        widgets = {
+            'name' : TextInput(attrs={'class':'input'}),
+        }
