@@ -4,7 +4,13 @@
         {{ field.errors }}
         <label for="{{ field.id_for_label}}" class="label">{{ field.label }}</label>
         <div class="control">
+            {% if field.field.widget.attrs.element == 'select' %}
+            <div class="select">
+                {{ field }}
+            </div>
+            {% else %}
             {{ field }}
+            {% endif %}
         </div>
     </div>
 {% endfor %}

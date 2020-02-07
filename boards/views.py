@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Board
+from .models import Board, PostCodeDistrict
 from adverts.models import Advert
 
 from .forms import BoardForm
@@ -53,5 +53,4 @@ def create_notice_board(request):
     
     # Or just create a blank form
     board_form = BoardForm()
-    messages.info(request, 'Start a new board')
     return render(request, 'create_notice_board.html', {'board_form':board_form})
