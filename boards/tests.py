@@ -3,6 +3,7 @@ from django.test import TestCase
 from datetime import date
 
 from boards.models import PostCodeDistrict, Board
+from boards.forms import BoardForm
 from accounts.models import PPUser
 
 class TestBoardModels(TestCase):
@@ -43,6 +44,19 @@ class TestBoardViews(TestCase):
         page = self.client.get("/boards/2/")
         self.assertEqual(page.status_code, 404)
 
+    def test_create_notice_board(self):
+        """ Test create notice board view returns correct template on get or post """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Test get and post to view
+        page = self.client.get("/boards/create_board/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'create_notice_board.html')
+        page = self.client.post("/boards/create_board/", {})
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'create_notice_board.html')
+
     def test_set_unset_favourite_board_session(self):
         """ Test set_favourite_board sets/unsets favourite_board in session """
         # Set favourite and test
@@ -65,3 +79,16 @@ class TestBoardViews(TestCase):
         # Test un-setting favourite board
         get = self.client.get("/boards/1/unset_as_favourite/", follow=True)
         self.assertEqual(get.context["user"].favourite_board, None)
+
+class TestBoardForms(TestCase):
+    """ Tests for board forms """
+
+    # Import default district data
+    fixtures = ['boards/fixtures/default_postcode.json']
+
+    def test_board_form(self):
+        """ Test creating and saving a board form """
+        form = BoardForm({'name':'testboard', 'post_code':PostCodeDistrict.objects.get(pk=1)})
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.save(),Board.objects.get(pk=1))
+

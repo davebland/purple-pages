@@ -46,11 +46,13 @@ def create_notice_board(request):
         board_form = BoardForm(request.POST)
         if board_form.is_valid():
             board_form.save()
-            messages.success(request, 'New notice board <strong>{}</strong> created.'.format(board_form))
+            messages.success(request, 'New notice board {} created.'.format(board_form['name'].value()))
             return redirect('notice_boards')
         else:
             return render(request, 'create_notice_board.html', {'board_form':board_form})
     
-    # Or just create a blank form
+    # Or just create a blank form and warn the user if no board can be created
     board_form = BoardForm()
+    if not board_form.fields['post_code'].queryset.exists():
+        messages.warning(request, 'Notice boards for all areas already exist!')
     return render(request, 'create_notice_board.html', {'board_form':board_form})

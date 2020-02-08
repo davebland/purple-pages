@@ -1,15 +1,5 @@
 <!-- Create Board Template -->
 {% extends 'base.html' %}
-{% block message-area %}
-{% if messages %}
-{% for message in messages %}
-<div class="notification {% if message.tags %}is-{{message.tags}}{% endif %}">
-    <button class="delete"></button>
-    <p>{{ message }}</p>
-</div>
-{% endfor %}
-{% endif %}
-{% endblock %}
 {% block main-content %}
     <form action="{{ request.path }}" method="POST" class="form">
         {% include "bulma_form_template.html" with form=board_form %}

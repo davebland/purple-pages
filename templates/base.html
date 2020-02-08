@@ -73,8 +73,16 @@
     </header>
     <section class="section">
         <div class="container">
-            {% block message-area %}
-            {% endblock %}
+            <!-- Message Area -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="notification {% if message.tags %}is-{{message.tags}}{% endif %}">
+                        <button class="delete"></button>
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!-- Main Page Content -->
             {% block main-content %}
             {% endblock %}
         </div>

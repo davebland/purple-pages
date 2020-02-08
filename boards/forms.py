@@ -10,12 +10,11 @@ class BoardForm(ModelForm):
 
     class Meta:
         model = Board
-        fields = ['name']
+        fields = ['name','post_code']
         widgets = {
             'name' : TextInput(attrs={'class':'input'}),
         }
 
     # Set additional attributes of post_code
-    post_code.name = 'post_code'
     post_code.label = 'Postcode District'
     post_code.widget.attrs['element'] = 'select'
