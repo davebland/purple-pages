@@ -3,9 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.db.models import Sum
 
-from adverts.views import get_user_ads
 from adverts.models import Advert
-from subscriptions.models import Subscription
 
 @login_required
 def my_account(request):

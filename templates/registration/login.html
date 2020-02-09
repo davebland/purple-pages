@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% block main-content %}
+<div class="columns is-centered">
+    <div class="column is-three-quarters-tablet is-half-desktop">
+        <div class="box">
+            <p>Login to Purple Pages</p>
+            <form action="{% url 'login' %}" method="POST" class="form">
+                {% include "bulma_form_template.html" %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% csrf_token %}
+                <div class="field is-grouped is-grouped-right">            
+                    <div class="control">
+                        <button class="button is-info">Login</button>
+                    </div>
+                </div>                             
+            </form>
+        </div>        
+    </div>  
+</div>
+
 <form action="{% url 'login' %}" method="POST">
     {{ form }}
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}">
     <input type="submit" value="Login">
 </form>
-<a href="{% url 'password_reset' %}" class="button">Reset Password</a>
+<a href="" class="button">Reset Password</a>
     
 {% endblock %}
