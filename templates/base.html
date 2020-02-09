@@ -61,10 +61,10 @@
                     </div>
                     {% if user.is_authenticated %}
                     <div class="navbar-item">
-                        <form action=""><input type="submit" value="Logout"></form>
+                        <form action="{% url 'logout' %}"><input type="submit" value="Logout"></form>
                     </div>                        
                     {% else %}
-                        <a href="" class="navbar-item">Login</a>
+                        <a href="{% url 'login' %}" class="navbar-item">Login</a>
                     {% endif %} 
                 </div>
             </div>

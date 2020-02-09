@@ -12,18 +12,12 @@
                     <div class="control">
                         <button class="button is-info">Login</button>
                     </div>
+                    <div class="control">
+                        <a href="" class="button is-info">Forgotten Password?</a>
+                    </div>
                 </div>                             
             </form>
         </div>        
     </div>  
 </div>
-
-<form action="{% url 'login' %}" method="POST">
-    {{ form }}
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}">
-    <input type="submit" value="Login">
-</form>
-<a href="" class="button">Reset Password</a>
-    
 {% endblock %}

@@ -1,8 +1,10 @@
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm 
 
 class PPAuthenticationForm(AuthenticationForm):
-    pass
-    #def __init__(self, *args, **kwargs):
-    #fields['username'].widget.attrs['element'] = 'select'
+
     # Add bulma classes to form input fields
+    def __init__(self, *args, **kwargs):
+        super(PPAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'input'
+        self.fields['password'].widget.attrs['class'] = 'input'
     
