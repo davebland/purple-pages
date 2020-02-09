@@ -1,9 +1,23 @@
 <!-- Create Board Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-    <form action="{{ request.path }}" method="POST" class="form">
-        {% include "bulma_form_template.html" with form=board_form %}
-        {% csrf_token %}
-        <input type="submit" class="button" value="Create">
-    </form>
+<div class="columns is-centered">
+    <div class="column is-three-quarters-tablet is-half-desktop">
+        <div class="box">
+            <p>Complete the form below to create new notice board.</p>
+            <form action="{{ request.path }}" method="POST" class="form">
+                {% include "bulma_form_template.html" with form=board_form %}
+                {% csrf_token %}
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button class="button is-primary">Create</button>
+                    </div>
+                    <div class="control">
+                        <a href="{% url 'notice_boards' %}" class="button is-danger is-light">Cancel</a>
+                    </div>
+                </div>                             
+            </form>
+        </div>        
+    </div>  
+</div>
 {% endblock %}

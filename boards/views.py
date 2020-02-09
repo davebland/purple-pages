@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Board, PostCodeDistrict
+from .models import Board
 from adverts.models import Advert
 
 from .forms import BoardForm
@@ -46,7 +46,7 @@ def create_notice_board(request):
         board_form = BoardForm(request.POST)
         if board_form.is_valid():
             board_form.save()
-            messages.success(request, 'New notice board {} created.'.format(board_form['name'].value()))
+            messages.success(request, "New notice board '{}' created.".format(board_form['name'].value()))
             return redirect('notice_boards')
         else:
             return render(request, 'create_notice_board.html', {'board_form':board_form})
