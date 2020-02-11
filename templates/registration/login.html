@@ -2,8 +2,8 @@
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
-        <div class="box">
-            <p>Login to Purple Pages</p>
+        <div class="box content">
+            <h2>Login to Purple Pages</h2>
             <form action="{% url 'login' %}" method="POST" class="form">
                 {% include "bulma_form_template.html" %}
                 <input type="hidden" name="next" value="{{ next }}">
@@ -13,7 +13,7 @@
                         <button class="button is-info">Login</button>
                     </div>
                     <div class="control">
-                        <a href="" class="button is-info">Forgotten Password?</a>
+                        <a href="{% url 'password_reset' %}" class="button is-info">Forgotten Password?</a>
                     </div>
                 </div>                             
             </form>

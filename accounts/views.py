@@ -7,7 +7,7 @@ from adverts.models import Advert
 
 @login_required
 def my_account(request):
-    """ Generate user account overview page """
+    """ Generate user account overview page 
     # Collect some object to use in stats
     try:
         user_subscription = Subscription.objects.get(user=request.user)
@@ -27,8 +27,8 @@ def my_account(request):
         'subscription' : user_subscription,
         'no_of_ads' : user_ads,
         'total_add_impressions' : total_add_impressions,
-    }
-    return render(request, 'my_account.html', {'page_title':'Account Overview', 'user_stats':user_stats})
+    } """
+    return render(request, 'my_account.html', {'user_stats':123})
 
 @login_required
 def my_ads(request):
