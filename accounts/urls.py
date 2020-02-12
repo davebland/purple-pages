@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.contrib.auth import urls as auth_urls
 from django.contrib.auth import views as auth_views
 
-from .forms import PPAuthenticationForm, PPPasswordResetForm
+from .forms import PPAuthenticationForm, PPPasswordResetForm, PPSetPasswordForm
 from .views import my_account, my_ads
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
     #path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(extra_context={'page_title':'Password Changed!'})),
     path('password_reset/', auth_views.PasswordResetView.as_view(form_class=PPPasswordResetForm), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(form_class=PPSetPasswordForm), name='password_reset_confirm'),
     #path('reset/done/', auth_views.PasswordResetCompleteView.as_view(extra_context={'page_title':'Password Reset!'})),
     #path('', include(auth_urls)),
 ]

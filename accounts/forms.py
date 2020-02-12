@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
 
 class PPAuthenticationForm(AuthenticationForm):
     # Add bulma classes to form input fields
@@ -12,3 +12,10 @@ class PPPasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super(PPPasswordResetForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['class'] = 'input'
+
+class PPSetPasswordForm(SetPasswordForm):
+    # Add bulma classes to form input fields
+    def __init__(self, *args, **kwargs):
+        super(PPSetPasswordForm, self).__init__(*args, **kwargs)
+        self.fields['new_password1'].widget.attrs['class'] = 'input'
+        self.fields['new_password2'].widget.attrs['class'] = 'input'

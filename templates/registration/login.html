@@ -8,13 +8,18 @@
                 {% include "bulma_form_template.html" %}
                 <input type="hidden" name="next" value="{{ next }}">
                 {% csrf_token %}
-                <div class="field is-grouped is-grouped-right">            
-                    <div class="control">
-                        <button class="button is-info">Login</button>
+                <hr>
+                <div class="field level">
+                    <div class="level-left">
+                        <div class="control level-item">
+                            <a href="{% url 'password_reset' %}" class="button is-warning">Forgotten Password?</a>
+                        </div>
                     </div>
-                    <div class="control">
-                        <a href="{% url 'password_reset' %}" class="button is-info">Forgotten Password?</a>
-                    </div>
+                    <div class="level-right">
+                        <div class="control level-item">
+                            <button class="button is-link">Login</button>
+                        </div>      
+                    </div>                                                   
                 </div>                             
             </form>
         </div>        
