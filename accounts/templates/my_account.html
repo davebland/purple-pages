@@ -1,29 +1,52 @@
 {% extends 'base.html' %}
 {% block main-content %}
-<div class="level">
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Member Since</p>
-            <p class="title">{{ request.user.date_joined }}</p>
+<!-- User Profile Area -->
+<div class="columns is-centered">
+    <div class="column is-narrow">
+        <figure class="image is-128x128 has-background-grey">
+            <img src="" alt="" class="">
+        </figure>        
+    </div>
+    <div class="column is-narrow">
+        <div class="has-text-centered">
+            <div>
+                <p class="heading">Member Since</p>
+                <p class="title">{{ request.user.date_joined }}</p>
+            </div>
+        </div>
+        <div class="has-text-centered">
+            <div>
+                <p class="heading">No of Ads</p>
+                <p class="title">{{ user_stats.no_of_ads }}</p>
+            </div>
+        </div>
+        <div class="has-text-centered">
+            <div>
+                <p class="heading">Subscription Expiry</p>
+                <p class="title">{{ user_stats.subscription.expiry_date }}</p>
+            </div>
+        </div>
+        <div class="has-text-centered">
+            <div>
+                <p class="heading">Total Ad Impressions</p>
+                <p class="title">{{ user_stats.total_add_impressions }}</p>
+            </div>
         </div>
     </div>
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">No of Ads</p>
-            <p class="title">{{ user_stats.no_of_ads }}</p>
-        </div>
+</div>
+<!-- Profile Links Area -->
+<div class="columns is-centered">
+    <div class="column is-narrow">
+        <a href="" class="button is-primary">My Ads</a>
     </div>
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Subscription Expiry</p>
-            <p class="title">{{ user_stats.subscription.expiry_date }}</p>
-        </div>
+    <div class="column is-narrow">
+        <a href="" class="button is-primary">My Ads</a>
     </div>
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Total Ad Impressions</p>
-            <p class="title">{{ user_stats.total_add_impressions }}</p>
-        </div>
+    <div class="column is-narrow">
+        <a href="" class="button is-primary">My Ads</a>
+    </div>
+    <div class="column is-narrow">
+        <a href="" class="button is-primary">My Ads</a>
     </div>
 </div>
 {% endblock %}
