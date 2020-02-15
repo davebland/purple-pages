@@ -1,9 +1,37 @@
 {% extends 'base.html' %}
 {% block main-content %}
-<div class="level">
-    <a href="{% url 'new_advert' %}" class="button is-primary is-large">New Advert</a>
+<!-- Users Own Notice Board -->
+<div id="notice-board" class="card">
+    <div class="card-header">
+        <h3 class="card-header-title is-size-4 is-uppercase titan">My Ads</h3>
+    </div>
+    <div class="card-content">
+        <!-- All adverts for this notice board -->
+        {% if adverts %}
+        <div class="columns is-multiline">            
+            {% for ad in adverts %}            
+            <!-- Loop through ads and create column for each -->
+            <div class="column is-half-tablet is-one-third-desktop">
+                {{ ad.render }}  
+            </div>                                           
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="has-text-centered">
+            <a href="" class="button is-primary">No Ads Yet - Get Started!</a>
+        </div>         
+        {% endif %}
+    </div>                  
 </div>
-{% for ad in user_ads %}
-    {{ ad }}
-{% endfor %}
+<hr>
+<!-- Create Ad CTA -->
+<div class="hero is-info">
+    <div class="hero-body">
+        <div class="is-pulled-right">
+            <a href="" class="button is-large is-primary is-pulled-right">Create Advert</a>   
+        </div>                                
+        <h2 class="title">Create an advert today</h2>
+        <h3 class="subtitle">Get started!</h3>              
+    </div>
+</div>
 {% endblock %}

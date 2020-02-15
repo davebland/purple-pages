@@ -42,3 +42,13 @@ class TestAccountViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'my_account.html')
         self.assertIsInstance(page.context['user_stats'], dict)
+
+    def test_account_view(self):
+        """ Test My Ads view returns correct template """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Get page and test
+        page = self.client.get("/account/my_ads/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'my_ads.html')        

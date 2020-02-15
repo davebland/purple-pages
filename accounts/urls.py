@@ -8,7 +8,7 @@ from .views import my_account, my_ads
 
 urlpatterns = [
     path('', my_account, name="my_account"),
-    #path('my_ads/', my_ads, name="my_ads"),
+    path('my_ads/', my_ads, name="my_ads"),
     path('login/', auth_views.LoginView.as_view(authentication_form=PPAuthenticationForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('password_change/', auth_views.PasswordChangeView.as_view(form_class=PPPasswordChangeForm), name='password_change'),
