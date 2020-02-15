@@ -28,3 +28,20 @@ class TestAccountsModels(TestCase):
         self.assertEqual(payment.amount, 5)
         self.assertEqual(payment.user, PPUser.objects.get(pk=1))
         self.assertEqual(str(payment), "Payment of £5 for user 1")
+
+class TestAccountViews(TestCase):
+    """ Tests for account views """
+
+    # Import a test board and postcode district
+    #fixtures = ['boards/fixtures/test_board.json', 'boards/fixtures/default_postcode.json']
+
+    def test_account_view(self):
+        """ Test My Account view returns correct template and user_stats object """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Get page and test
+        page = self.client.get("/account/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'my_account.html')
+        self.assertIsInstance(page.context['user_stats'], dict)
