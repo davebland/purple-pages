@@ -5,37 +5,42 @@
         <!-- User Profile Area -->
         <div class="columns is-vcentered">
             <div class="column has-text-centered">
-                <figure class="image container 
-                is-128x128 has-background-grey">
+                <figure class="image container is-128x128 has-background-grey">
                     <img src="" alt="" class="">
                     <figcaption class="heading">{{ request.user }}</figcaption>
                 </figure>        
             </div>
             <div class="column">
-                <div class="has-text-centered">
-                    <div>
+                <div class="card has-text-centered">                    
+                    <div class="card-content">
                         <p class="heading">Subscription Status</p>
-                        <p class="title">{{ user_stats.subscription }}</p>
+                        {% if user_stats.subscription == 0 %}
+                        <p class="title has-text-warning">No Subscription</p>
+                        {% elif user_stats.subscription == 1 %}
+                        <p class="title has-text-success">Active</p>
+                        {% else %}
+                        <p class="title has-text-danger">Expired</p>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="has-text-centered">
-                    <div>
+                <div class="card has-text-centered">                    
+                    <div class="card-content">
                         <p class="heading">Member Since</p>
                         <p class="title">{{ user_stats.date_joined }}</p>
                     </div>
                 </div>
-                <div class="has-text-centered">
-                    <div>
-                        <p class="heading">No of Ads</p>
-                        <p class="title">{{ user_stats.no_of_ads }}</p>
-                    </div>
+                <div class="card has-text-centered">
+                    <div class="columns is-vcentered is-gapless card-content">
+                        <div class="column">
+                            <p class="heading">No. of Ads</p>
+                            <p class="title">{{ user_stats.no_of_ads }}</p>
+                        </div>
+                        <div class="column">
+                            <p class="heading">Total Ad Views</p>
+                            <p class="title">{{ user_stats.total_add_views }}</p>
+                        </div>
+                    </div>                    
                 </div>                
-                <div class="has-text-centered">
-                    <div>
-                        <p class="heading">Total Ad Impressions</p>
-                        <p class="title">{{ user_stats.total_add_views }}</p>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- Profile Links Area -->
@@ -55,6 +60,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}

@@ -12,14 +12,14 @@ class PPUser(AbstractUser):
     subscription_expiry = models.DateField(null=True, blank=True)
 
     def subscription_status(self):
-        """ Return subscription status as text """
+        """ Return subscription status as integer (0 None, 1 Active, 2 Expired) """
         if self.subscription_expiry:
             if self.subscription_expiry >= date.today():
-                return "Active"
+                return 1
             else:
-                return "Expired"
+                return 2
         else:
-            return "No Subscription"
+            return 0
 
 class Payment(models.Model):
     """ Data model for a record of payment """

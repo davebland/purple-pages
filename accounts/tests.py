@@ -11,13 +11,13 @@ class TestAccountsModels(TestCase):
         """ Create a user and test subscription status """
         user = PPUser()
         user.save()
-        self.assertEqual(user.subscription_status(), 'No Subscription')
+        self.assertEqual(user.subscription_status(), 0)
         user.subscription_expiry = date.today()
         user.save()
-        self.assertEqual(user.subscription_status(), 'Active')
+        self.assertEqual(user.subscription_status(), 1)
         user.subscription_expiry = date.today() - timedelta(days=1)
         user.save()
-        self.assertEqual(user.subscription_status(), 'Expired')
+        self.assertEqual(user.subscription_status(), 2)
 
     def test_payment_object(self):
         """ Create a user and payment object then check attributes """
@@ -31,9 +31,6 @@ class TestAccountsModels(TestCase):
 
 class TestAccountViews(TestCase):
     """ Tests for account views """
-
-    # Import a test board and postcode district
-    #fixtures = ['boards/fixtures/test_board.json', 'boards/fixtures/default_postcode.json']
 
     def test_account_view(self):
         """ Test My Account view returns correct template and user_stats object """

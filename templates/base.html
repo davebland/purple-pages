@@ -52,9 +52,9 @@
                     <a href="" class="navbar-item">My Ads</a>                    
                     <div href="#" class="navbar-item has-dropdown is-hoverable">
                         <!-- Dropdown Account Menu -->
-                        <a href="" class="navbar-link">My Account</a>
+                        <a href="{% url 'my_account' %}" class="navbar-link">My Account</a>
                         <div class="navbar-dropdown">
-                            <a href="" class="navbar-item">Overview</a>
+                            <a href="{% url 'my_account' %}" class="navbar-item">Overview</a>
                             <a href="" class="navbar-item">Subscription</a>
                             <a href="{% url 'password_change' %}" class="navbar-item">Change Password</a>
                         </div>
