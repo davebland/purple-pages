@@ -1,14 +1,31 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-    Add/Edit Template
-    <form action="{{ request.path }}" method="POST">
-        <table class="table">
-            {{ advert_form.as_table }}
-            {% csrf_token %} 
-        </table>        
-        <input type="submit" class="button" value="Submit">
-    </form>
+<div class="columns is-centered">
+    <div class="column is-three-quarters-tablet is-half-desktop">
+        <div class="box">
+            <p>Complete the form below to create new advert.</p>
+            <form action="{{ request.path }}" method="POST" class="form">
+                {% include "bulma_form_template.html" with form=advert_form %}
+                {% csrf_token %}
+                <hr>
+                <div class="field level">
+                    <div class="level-left">
+                        <div class="control level-item">
+                            <a href="{% url 'my_ads' %}" class="button is-warning">Cancel</a>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="control level-item">
+                            <button class="button is-link">Create</button>
+                        </div>      
+                    </div>                                                   
+                </div>                             
+            </form>
+        </div>        
+    </div>  
+</div>
+
 
     Preview Area
     <div id="get-preview" class="button">Get Preview</div>
