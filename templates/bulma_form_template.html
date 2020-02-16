@@ -14,6 +14,11 @@
             <div class="select">
                 {{ field }}
             </div>
+            {% elif field.field.widget.attrs.element == 'select-multiple' %}
+            <!-- Special case select multiple elements -->
+            <div class="select is-multiple">
+                {{ field }}
+            </div>
             {% elif field.field.widget.attrs.element == 'upload' %}
             <!-- Special case file upload elements -->
             <div class="file has-name is-boxed">
@@ -31,7 +36,15 @@
                     Select an image to upload
                     </span>
                 </label>
-            </div>
+            </div>          
+            {% elif field.field.widget.attrs.element == 'radio' %}
+                <!-- Special case radio elements -->
+                {% for radio in field %}
+                <label for="{{ radio.id_for_label }}" class="radio">
+                    {{ radio.choice_label }}
+                    {{ radio.tag }}
+                </label>
+                {% endfor %}
             {% else %}
             {{ field }}
             {% endif %}

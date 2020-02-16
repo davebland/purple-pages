@@ -1,7 +1,7 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-<div class="columns is-centered">
+<div class="columns is-centered is-multiline">
     <div class="column is-three-quarters-tablet is-half-desktop">
         <div class="box">
             <p>Complete the form below to create new advert.</p>
@@ -23,13 +23,15 @@
                 </div>                             
             </form>
         </div>        
-    </div>  
+    </div>
+    <div class="column is-three-quarters-tablet is-half-desktop">
+        <div class="box">
+            Preview Area
+            <div id="get-preview" class="button">Get Preview</div>
+            <div id="preview-area"></div>  
+        </div>          
+    </div>
 </div>
-
-
-    Preview Area
-    <div id="get-preview" class="button">Get Preview</div>
-    <div id="preview-area"></div>    
 {% endblock %}
 
 {% block scripts %}
