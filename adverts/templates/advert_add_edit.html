@@ -1,37 +1,143 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-<div class="columns is-centered is-multiline">
+<form action="{{ request.path }}" method="POST" class="form">
+    <div class="columns is-centered is-multiline">
+    <!-- Advert Content Elements-->
     <div class="column is-three-quarters-tablet is-half-desktop">
         <div class="box">
-            <p>Complete the form below to create new advert.</p>
-            <form action="{{ request.path }}" method="POST" class="form">
-                {% include "bulma_form_template.html" with form=advert_form %}
-                {% csrf_token %}
-                <hr>
-                <div class="field level">
-                    <div class="level-left">
-                        <div class="control level-item">
-                            <a href="{% url 'my_ads' %}" class="button is-warning">Cancel</a>
-                        </div>
-                    </div>
-                    <div class="level-right">
-                        <div class="control level-item">
-                            <button class="button is-link">Create</button>
-                        </div>      
-                    </div>                                                   
-                </div>                             
-            </form>
+            <p>Add some content to your advert</p>            
+            {% if form.non_field_errors %}
+            <div class="notification is-danger no-list">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="field">
+                {% if advert_form.title.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.title.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.title.id_for_label}}" class="label">{{ advert_form.title.label }}</label>
+                <div class="control">
+                    {{ advert_form.title }}
+                </div>
+            </div>
+            <div class="field">
+                {% if advert_form.strapline.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.strapline.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.strapline.id_for_label}}" class="label">{{ advert_form.strapline.label }}</label>
+                <div class="control">
+                    {{ advert_form.strapline }}
+                </div>
+            </div>
+            <div class="field">
+                {% if advert_form.text_content.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.text_content.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.strapline.id_for_label}}" class="label">{{ advert_form.text_content.label }}</label>
+                <div class="control">
+                    {{ advert_form.text_content }}
+                </div>
+            </div>
+            <div class="field">
+                {% if advert_form.image.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.image.errors }}</div>
+                {% endif %}
+                <div class="file has-name is-boxed">
+                    <label class="file-label">
+                        {{ advert_form.image }}
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name">
+                        Select an image to upload
+                        </span>
+                    </label>
+                </div>    
+            </div>
+            <div class="field">
+                {% if advert_form.link_url.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.link_url.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.link_url.id_for_label}}" class="label">{{ advert_form.link_url.label }}</label>
+                <div class="control">
+                    {{ advert_form.link_url }}
+                </div>
+            </div>
+            <div class="field">
+                {% if advert_form.link_text.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.link_text.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.link_text.id_for_label}}" class="label">{{ advert_form.link_text.label }}</label>
+                <div class="control">
+                    {{ advert_form.link_text }}
+                </div>
+            </div>                                        
         </div>        
     </div>
     <div class="column is-three-quarters-tablet is-half-desktop">
+        <!-- Advert Styling Elements-->
         <div class="box">
-            Preview Area
+            <p>Style your advert and add to some boards.</p>            
+            <div class="field">
+                {% if advert_form.background_color_class.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.background_color_class.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.background_color_class.id_for_label}}" class="label">{{ advert_form.background_color_class.label }}</label>
+                {% for radio in advert_form.background_color_class %}
+                <label for="{{ radio.id_for_label }}" class="radio">
+                    {{ radio.choice_label }}
+                    {{ radio.tag }}
+                </label>
+                {% endfor %}               
+            </div>
+            <div class="field">
+                {% if advert_form.boards.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.boards.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.boards.id_for_label}}" class="label">{{ advert_form.boards.label }}</label>
+                <div class="select is-multiple">
+                    {{ advert_form.boards }}
+                </div>
+            </div>
+            <div class="field">
+                {% if advert_form.template.errors %}
+                <div class="notification is-warning no-list">{{ advert_form.template.errors }}</div>
+                {% endif %}
+                <label for="{{ advert_form.template.id_for_label}}" class="label">{{ advert_form.template.label }}</label>              
+                {% for radio in advert_form.template %}
+                <label for="{{ radio.id_for_label }}" class="radio">
+                    {{ radio.choice_label }}
+                    {{ radio.tag }}
+                </label>
+                {% endfor %}
+            </div>                                       
+        </div> 
+        <!-- Advert Preview -->
+        <div class="box">
             <div id="get-preview" class="button">Get Preview</div>
-            <div id="preview-area"></div>  
-        </div>          
+            <div id="preview-area"></div>            
+            <hr>
+            {% csrf_token %}           
+            <div class="field level">
+                <div class="level-left">
+                    <div class="control level-item">
+                        <a href="{% url 'my_ads' %}" class="button is-warning">Cancel</a>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="control level-item">
+                        <button class="button is-link">Create</button>
+                    </div>      
+                </div>                                                   
+            </div>                                         
+        </div>        
     </div>
-</div>
+    </div>
+</form>
 {% endblock %}
 
 {% block scripts %}
