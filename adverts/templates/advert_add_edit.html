@@ -1,7 +1,7 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-<form action="{{ request.path }}" method="POST" class="form">
+<form id="advert-add-edit-form" action="{{ request.path }}" method="POST" class="form">
     <div class="columns is-centered is-multiline">
     <!-- Advert Content Elements-->
     <div class="column is-three-quarters-tablet is-half-desktop">
@@ -32,77 +32,64 @@
                 {% if advert_form.text_content.errors %}
                 <div class="notification is-warning no-list">{{ advert_form.text_content.errors }}</div>
                 {% endif %}
-                <label for="{{ advert_form.strapline.id_for_label}}" class="label">{{ advert_form.text_content.label }}</label>
+                <label for="{{ advert_form.text_content.id_for_label}}" class="label">{{ advert_form.text_content.label }}</label>
                 <div class="control">
                     {{ advert_form.text_content }}
                 </div>
             </div>
-            <div class="field">
-                {% if advert_form.image.errors %}
-                <div class="notification is-warning no-list">{{ advert_form.image.errors }}</div>
-                {% endif %}
-                <div class="file has-name is-boxed">
-                    <label class="file-label">
-                        {{ advert_form.image }}
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Choose a file…
-                            </span>
-                        </span>
-                        <span class="file-name">
-                        Select an image to upload
-                        </span>
-                    </label>
-                </div>    
-            </div>
-            <div class="field">
-                {% if advert_form.link_url.errors %}
-                <div class="notification is-warning no-list">{{ advert_form.link_url.errors }}</div>
-                {% endif %}
-                <label for="{{ advert_form.link_url.id_for_label}}" class="label">{{ advert_form.link_url.label }}</label>
-                <div class="control">
-                    {{ advert_form.link_url }}
+            <div class="columns is-vcentered">
+                <div class="column is-narrow-tablet">
+                    <div class="field">
+                        {% if advert_form.image.errors %}
+                        <div class="notification is-warning no-list">{{ advert_form.image.errors }}</div>
+                        {% endif %}
+                        <label for="{{ advert_form.image.id_for_label}}" class="label">{{ advert_form.image.label }}</label>
+                        <div class="file has-name is-boxed">
+                            <label class="file-label">
+                                {{ advert_form.image }}
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                        Choose a file…
+                                    </span>
+                                </span>
+                                <span class="file-name">
+                                Select an image to upload
+                                </span>
+                            </label>
+                        </div>    
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        {% if advert_form.link_url.errors %}
+                        <div class="notification is-warning no-list">{{ advert_form.link_url.errors }}</div>
+                        {% endif %}
+                        <label for="{{ advert_form.link_url.id_for_label}}" class="label">{{ advert_form.link_url.label }}</label>
+                        <div class="control">
+                            {{ advert_form.link_url }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        {% if advert_form.link_text.errors %}
+                        <div class="notification is-warning no-list">{{ advert_form.link_text.errors }}</div>
+                        {% endif %}
+                        <label for="{{ advert_form.link_text.id_for_label}}" class="label">{{ advert_form.link_text.label }}</label>
+                        <div class="control">
+                            {{ advert_form.link_text }}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                {% if advert_form.link_text.errors %}
-                <div class="notification is-warning no-list">{{ advert_form.link_text.errors }}</div>
-                {% endif %}
-                <label for="{{ advert_form.link_text.id_for_label}}" class="label">{{ advert_form.link_text.label }}</label>
-                <div class="control">
-                    {{ advert_form.link_text }}
-                </div>
-            </div>                                        
         </div>        
     </div>
     <div class="column is-three-quarters-tablet is-half-desktop">
         <!-- Advert Styling Elements-->
         <div class="box">
-            <p>Style your advert and add to some boards.</p>            
-            <div class="field">
-                {% if advert_form.background_color_class.errors %}
-                <div class="notification is-warning no-list">{{ advert_form.background_color_class.errors }}</div>
-                {% endif %}
-                <label for="{{ advert_form.background_color_class.id_for_label}}" class="label">{{ advert_form.background_color_class.label }}</label>
-                {% for radio in advert_form.background_color_class %}
-                <label for="{{ radio.id_for_label }}" class="radio">
-                    {{ radio.choice_label }}
-                    {{ radio.tag }}
-                </label>
-                {% endfor %}               
-            </div>
-            <div class="field">
-                {% if advert_form.boards.errors %}
-                <div class="notification is-warning no-list">{{ advert_form.boards.errors }}</div>
-                {% endif %}
-                <label for="{{ advert_form.boards.id_for_label}}" class="label">{{ advert_form.boards.label }}</label>
-                <div class="select is-multiple">
-                    {{ advert_form.boards }}
-                </div>
-            </div>
+            <p>Style your advert and add to some boards.</p>
+            
             <div class="field">
                 {% if advert_form.template.errors %}
                 <div class="notification is-warning no-list">{{ advert_form.template.errors }}</div>
@@ -114,12 +101,39 @@
                     {{ radio.tag }}
                 </label>
                 {% endfor %}
+            </div>            
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        {% if advert_form.background_color_class.errors %}
+                        <div class="notification is-warning no-list">{{ advert_form.background_color_class.errors }}</div>
+                        {% endif %}
+                        <label for="{{ advert_form.background_color_class.id_for_label}}" class="label">{{ advert_form.background_color_class.label }}</label>
+                        {% for radio in advert_form.background_color_class %}
+                        <label for="{{ radio.id_for_label }}" class="radio has-background-{{radio.choice_label}} colour-swatch">                   
+                            {{ radio.tag }}
+                        </label>
+                        {% endfor %}               
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        {% if advert_form.boards.errors %}
+                        <div class="notification is-warning no-list">{{ advert_form.boards.errors }}</div>
+                        {% endif %}
+                        <label for="{{ advert_form.boards.id_for_label}}" class="label">{{ advert_form.boards.label }}</label>
+                        <div class="select is-multiple">
+                            {{ advert_form.boards }}
+                        </div>
+                    </div>
+                </div>
             </div>                                       
         </div> 
         <!-- Advert Preview -->
         <div class="box">
-            <div id="get-preview" class="button">Get Preview</div>
-            <div id="preview-area"></div>            
+            <div id="advert-preview-area-errors" class="notification is-warning no-list"></div>
+            <div id="advert-get-preview" class="button">Get Preview</div>
+            <div id="advert-preview-area">Something</div>            
             <hr>
             {% csrf_token %}           
             <div class="field level">
@@ -142,20 +156,15 @@
 
 {% block scripts %}
     <script>
-        $('#get-preview').click(function() {
-            // Get CSRF token from DOM
-            let csrfToken = $("[name=csrfmiddlewaretoken]").val();
-            // Build up the POST request data from the form elements
-            let postData = {}
-            $('form input, textarea, select').each(function(inputElement) {
-                postData[this.name] = this.value
-            })
-            // Add address of existing image if there is one
-            postData['image'] = $('[type=file]').siblings('a').attr('href')
-            console.log(postData)
-            // Make ajax request for advert preview
-            $.post("{% url 'preview_advert' %}", postData , function(preview) {
-                $('#preview-area').html(preview);             
+        $('#advert-get-preview').click(function() {
+            // Make ajax request for advert preview with form data
+            $.post("{% url 'preview_advert' %}", $("#advert-add-edit-form").serialize())           
+            .done(function(response) {
+                $('#advert-preview-area-errors').hide(ANIMATION_DURATION)
+                $('#advert-preview-area').html(response).show(ANIMATION_DURATION);
+            }).fail(function(response) {
+                $('#advert-preview-area').hide(ANIMATION_DURATION);
+                $('#advert-preview-area-errors').text("Could not generate preview, missing or incorrect field(s): " + response.responseText).show(ANIMATION_DURATION);
             });            
         });
     </script>

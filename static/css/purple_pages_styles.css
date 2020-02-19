@@ -14,3 +14,19 @@
         min-height: 400px;
     }
 }
+
+/** FORMS **/
+
+.colour-swatch {
+    height: 50px;
+    width: 50px;
+    border: 1px solid grey;
+    border-radius: 10%;
+    padding: 5px;
+    margin: 10px;
+}
+
+#advert-preview-area,
+#advert-preview-area-errors {
+    display: none;
+}

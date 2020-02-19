@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from relativefilepathfield.fields import RelativeFilePathField
 
 import os
+import warnings
 from django.conf import settings
 
 from boards.models import Board
@@ -54,7 +55,7 @@ class Advert(models.Model):
             self.view_counter += 1
             self.save(update_fields=['view_counter'])
         except:
-            raise Exception("Unable to increase view count for advert {}".format(self.pk))
+            warnings.warn("Unable to increase view count for advert {}".format(self.pk))
 
     def render(self):
         """ Render the advert to a html string using the relevant template and increase view count """
