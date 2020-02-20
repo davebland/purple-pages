@@ -42,3 +42,42 @@ class TestAdvertModels(TestCase):
         view_count_after = advert.view_counter
         self.assertTrue(isinstance(rendered_advert, str))
         self.assertEqual(view_count_after, view_count_before + 1)
+
+class TestAdvertViews(TestCase):
+    """ Tests advert views """
+
+    # Import some test data
+    fixtures = ['accounts/fixtures/test_user.json',
+                'adverts/fixtures/default_template.json',
+                'adverts/fixtures/test_advert.json',
+                'boards/fixtures/test_board.json',
+                'boards/fixtures/default_postcode.json']
+
+    def test_advert_add_edit_view(self):
+        """ Test add edit view returns correct template """
+        # Create user and login
+        user = PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Create an advert for this user and save
+        ad = Advert(title="test ad", ppuser=user)
+        ad.save()
+        # Get page and test
+        page = self.client.get("/adverts/new/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'advert_add_edit.html')
+        #page = self.client.get("/adverts/{}/edit/".format(ad.pk), follow=True)
+        #self.assertEqual(page.status_code, 201)
+        #self.assertTemplateUsed(page, 'somerubbush.html')
+
+    def test_advert_preview_view(self):
+        """ Test Preview returns successful if valid form data is supplied """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Make post request with invalid data
+        page = self.client.post("/adverts/preview/", {'sadsad':'asdsasd'})
+        self.assertEqual(page.status_code, 400)
+        # Make post request with valid data
+        page = self.client.post("/adverts/preview/", {'title':'test','template':1,'background_color_class':'warning','boards':1})
+        self.assertEqual(page.status_code, 200)
+          
