@@ -47,9 +47,7 @@ class TestAdvertViews(TestCase):
     """ Tests advert views """
 
     # Import some test data
-    fixtures = ['accounts/fixtures/test_user.json',
-                'adverts/fixtures/default_template.json',
-                'adverts/fixtures/test_advert.json',
+    fixtures = ['adverts/fixtures/default_template.json',                
                 'boards/fixtures/test_board.json',
                 'boards/fixtures/default_postcode.json']
 
@@ -64,10 +62,10 @@ class TestAdvertViews(TestCase):
         # Get page and test
         page = self.client.get("/adverts/new/", follow=True)
         self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'advert_add_edit.html')       
+        page = self.client.get("/adverts/{}/edit/".format(ad.pk), follow=True)
+        self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'advert_add_edit.html')
-        #page = self.client.get("/adverts/{}/edit/".format(ad.pk), follow=True)
-        #self.assertEqual(page.status_code, 201)
-        #self.assertTemplateUsed(page, 'somerubbush.html')
 
     def test_advert_preview_view(self):
         """ Test Preview returns successful if valid form data is supplied """

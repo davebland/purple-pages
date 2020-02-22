@@ -1,7 +1,7 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
 {% block main-content %}
-<form id="advert-add-edit-form" action="{{ request.path }}" method="POST" class="form">
+<form id="advert-add-edit-form" enctype="multipart/form-data" action="{{ request.path }}" method="POST" class="form">
     <div class="columns is-centered is-multiline">
     <!-- Advert Content Elements-->
     <div class="column is-three-quarters-tablet is-half-desktop">

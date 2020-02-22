@@ -19,7 +19,7 @@ class AdvertForm(ModelForm):
 
     class Meta:
         model = Advert
-        exclude = ['view_counter','image_height','image_width','active','ppuser']
+        exclude = ['view_counter','image_height','image_width','active']
         widgets = {
             'title' : TextInput(attrs={'class':'input'}),
             'strapline' : TextInput(attrs={'class':'input'}),
