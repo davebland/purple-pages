@@ -12,7 +12,38 @@
             {% for ad in adverts %}            
             <!-- Loop through ads and create column for each -->
             <div class="column is-half-tablet is-one-third-desktop">
-                {{ ad.render }}  
+                <div class="card">
+                    <!-- Ad header controls -->
+                    <div class="card-header">
+                        <div class="card-header-title">
+                            <a href="{% url 'edit_advert' ad.pk %}" class="button is-warning">Edit</a>
+                        </div>
+                        <div class="card-header-icon">
+                            <a href="#" class="delete is-large has-background-danger"></a>
+                            <!-- Active/Inactive Switch -->
+                            <form class="form">
+                                <div class="field">
+                                    <input id="switchColorSuccess" type="checkbox" name="switchColorSuccess" class="switch is-success" checked="checked">                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Advert -->
+                    <div class="card-content">
+                        {{ ad.render }} 
+                    </div>                    
+                    <!-- Ad footer controls -->
+                    <div class="card-footer">
+                        {% for board in ad.boards.all %}
+                        <div class="card-footer-item">
+                            <span class="tag is-info">{{ board }}</span>
+                        </div>
+                        {% endfor %}
+                        <div class="card-footer-item">
+                            <span class="tag is-primary">Views: {{ ad.view_counter }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>                                           
             {% endfor %}
         </div>

@@ -13,13 +13,13 @@ def advert_add_edit(request, advert_id=None):
 
     def save_advert(request, advert_id):
         """ Create a new form instance with the post data and save if valid """
+        # Add current user to the POST data
+        post_data = request.POST.copy()            
+        post_data['ppuser'] = request.user
         if advert_id:
             # An existing advert to update the existing instance
-            save_form = AdvertForm(request.POST, request.FILES, instance=Advert.objects.get(pk=advert_id))
-        else: 
-            # A new advert therefore add the current user to the POST data
-            post_data = request.POST.copy()            
-            post_data['ppuser'] = request.user
+            save_form = AdvertForm(post_data, request.FILES, instance=Advert.objects.get(pk=advert_id))
+        else:             
             save_form = AdvertForm(post_data, request.FILES)            
         
         if save_form.is_valid():         
@@ -27,6 +27,7 @@ def advert_add_edit(request, advert_id=None):
             messages.success(request, 'Advert {} created/updated successfully'.format(save_form.cleaned_data['title']))
             return redirect('my_ads')
         else:
+            messages.warning(request, "Sorry, couldn't save form, please correct the errors. {}".format(save_form.errors))
             return render(request, 'advert_add_edit.html', {'advert_form':save_form})
 
     def edit_advert(request, advert_id):

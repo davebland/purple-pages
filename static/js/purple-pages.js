@@ -7,6 +7,6 @@ $('.navbar-burger').click(function() {
 })
 
 // Hide notifications when clicked
-$('.delete').click(function() {
+$('.notification .delete').click(function() {
     $(this).parent().hide(ANIMATION_DURATION);
 })
