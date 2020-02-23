@@ -60,3 +60,10 @@ def preview_advert(request):
         return HttpResponse(preview_advert.render())
     else:
         return HttpResponseBadRequest(posted_data_into_form.errors)
+
+@login_required
+def delete_advert(request, advert_id):
+    """ Delete the specified advert from db is the user owns it """
+    get_object_or_404(Advert, pk=advert_id, ppuser=request.user).delete()
+    messages.info(request, "Advert deleted")
+    return redirect('my_ads')

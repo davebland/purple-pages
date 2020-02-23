@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main-content %}
 <!-- Users Own Notice Board -->
 <div id="notice-board" class="card">
@@ -19,11 +20,12 @@
                             <a href="{% url 'edit_advert' ad.pk %}" class="button is-warning">Edit</a>
                         </div>
                         <div class="card-header-icon">
-                            <a href="#" class="delete is-large has-background-danger"></a>
+                            <a href="#" class="delete is-large has-background-danger advert-delete-button" data-advertpk="{{ ad.pk }}"></a>
                             <!-- Active/Inactive Switch -->
                             <form class="form">
                                 <div class="field">
-                                    <input id="switchColorSuccess" type="checkbox" name="switchColorSuccess" class="switch is-success" checked="checked">                                    
+                                    <label for="advet_active_switch" class="label">Active</label>
+                                    <input id="advert_active_switch" type="checkbox" name="advert_active_switch" class="switch is-success" checked="checked">                                    
                                 </div>
                             </form>
                         </div>
@@ -65,4 +67,34 @@
         <h3 class="subtitle">Get started!</h3>              
     </div>
 </div>
+<!-- Advert Delete Modal -->
+<div id="advert-delete-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div class="box has-text-centered">
+            <p class="title has-text-danger">Definitely delete advert?</p>
+            <p class="subtitle">This cannot be undone.</p>      
+            <div class="level">
+                <div class="level-left">
+                    <div class="control level-item">
+                        <button id="advert-delete-modal-cancel" class="button is-warning">Cancel</button>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="control level-item">
+                        <a id="advert-delete-link" href="" class="button is-danger">Delete</a>
+                    </div>      
+                </div>                                                   
+            </div>
+        </div>       
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    // In template setup    
+    let advertDeleteUrl = "{% url 'delete_advert' 9999 %}"
+</script>
+<script src="{% static 'js/my-ads.js' %}"></script>
 {% endblock %}

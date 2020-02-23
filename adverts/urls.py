@@ -2,10 +2,11 @@
 
 from django.urls import path
 
-from .views import advert_add_edit, preview_advert
+from .views import advert_add_edit, preview_advert, delete_advert
 
 urlpatterns = [
     path('new/', advert_add_edit, name='new_advert'),
     path('<int:advert_id>/edit/', advert_add_edit, name='edit_advert'),
     path('preview/', preview_advert, name='preview_advert'),
+    path('<int:advert_id>/delete/', delete_advert, name='delete_advert'),
 ]

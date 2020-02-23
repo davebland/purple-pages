@@ -50,7 +50,9 @@ class TestAdvertViews(TestCase):
     # Import some test data
     fixtures = ['adverts/fixtures/default_template.json',                
                 'boards/fixtures/test_board.json',
-                'boards/fixtures/default_postcode.json']
+                'boards/fixtures/default_postcode.json',
+                'accounts/fixtures/test_user.json',
+                'adverts/fixtures/test_advert.json']
 
     def test_advert_add_edit_view(self):
         """ Test add edit view returns correct template """
@@ -79,6 +81,24 @@ class TestAdvertViews(TestCase):
         # Make post request with valid data
         page = self.client.post("/adverts/preview/", {'title':'test','template':1,'background_color_class':'warning','boards':1})
         self.assertEqual(page.status_code, 200)
+
+    def test_advert_delete_view(self):
+        """ Test the delete advert view actually deletes advert"""
+        # Create user and login
+        user = PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Create an advert for this user and save
+        ad = Advert(title="test ad", ppuser=user)
+        ad.save()
+        # Test deleting an advert that isn't owned by user fails
+        delete = self.client.get("/adverts/1/delete/")
+        self.assertEqual(delete.status_code, 404)
+        self.assertTrue(Advert.objects.get(pk=1))
+        # Test deleting an advert owned by user succeeds
+        self.assertTrue(Advert.objects.get(pk=2))
+        delete = self.client.get("/adverts/2/delete/", follow=True)
+        self.assertEqual(delete.status_code, 200)       
+        #self.assertRaises(TypeError, Advert.objects.get(pk=2))
 
 class TestAdvertForms(TestCase):
     """ Tests for advert forms """
