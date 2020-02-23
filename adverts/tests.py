@@ -3,6 +3,7 @@ from django.test import TestCase
 from datetime import date
 
 from adverts.models import Advert, AdvertTemplate
+from adverts.forms import AdvertForm
 from accounts.models import PPUser
 
 class TestAdvertModels(TestCase):
@@ -78,4 +79,19 @@ class TestAdvertViews(TestCase):
         # Make post request with valid data
         page = self.client.post("/adverts/preview/", {'title':'test','template':1,'background_color_class':'warning','boards':1})
         self.assertEqual(page.status_code, 200)
+
+class TestAdvertForms(TestCase):
+    """ Tests for advert forms """
+
+    # Import default district data
+    fixtures = ['adverts/fixtures/default_template.json',
+                'boards/fixtures/default_postcode.json',
+                'boards/fixtures/test_board.json',
+                'accounts/fixtures/test_user.json']
+
+    def test_advert_form(self):
+        """ Test creating and saving an advert form """
+        form = AdvertForm({'title':'test ad', 'background_color_class':'white','boards':[1], 'template':1, 'ppuser':1})              
+        self.assertTrue(form.is_valid())        
+        self.assertEqual(form.save(),Advert.objects.get(pk=1))
           
