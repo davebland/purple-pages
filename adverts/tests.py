@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.exceptions import ObjectDoesNotExist
 
 from datetime import date
 
@@ -97,8 +98,8 @@ class TestAdvertViews(TestCase):
         # Test deleting an advert owned by user succeeds
         self.assertTrue(Advert.objects.get(pk=2))
         delete = self.client.get("/adverts/2/delete/", follow=True)
-        self.assertEqual(delete.status_code, 200)       
-        #self.assertRaises(TypeError, Advert.objects.get(pk=2))
+        self.assertEqual(delete.status_code, 200)              
+        #self.assertRaises(TypeError, Advert.objects.get(), pk=2)
 
 class TestAdvertForms(TestCase):
     """ Tests for advert forms """

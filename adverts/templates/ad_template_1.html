@@ -1,19 +1,23 @@
 {% load static %}
 <!-- Advert Template 1 -->
-<article class="columns box has-background-primary advert content">
-    <div class="column is-two-thirds">
-        <h2>{{ advert.title }}</h2>
-        <h3>{{ advert.strapline }}</h3>
-        <p>{{ advert.textContent }}</p>
-    </div>
-    <div class="column is-one-third">
-        <div class="image is-square">
-            {% if advert.image %}
-                <img src="{{ advert.image.url }}" alt="Ad Image Here">
-            {% else %}
-                <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
-            {% endif %}
+<article class="box has-background-{{advert.background_color_class}} advert content">
+    <div class="columns is-vcentered">
+        <div class="column is-two-thirds has-text-centered">
+            <h2 class="title">{{ advert.title }}</h2>
+            <p class="subtitle">{{ advert.strapline }}</p>
+            <p class="advert-text-content">{{ advert.text_content }}</p>
         </div>
-        <a class="button is-outlined" target="_blank" href="{{ advert.link_url }}">{{ advert.link_text }}</a>
+        <div class="column is-one-third">            
+            <figure class="image is-square">
+                {% if advert.image %}
+                    <img src="{{ advert.image.url }}" alt="Ad Image Here">
+                {% else %}
+                    <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
+                {% endif %}
+            </figure>
+            <div class="is-clipped">
+                <a class="button is-link" target="_blank" href="{{ advert.link_url }}">{{ advert.link_text }}</a>
+            </div>        
+        </div>
     </div>
 </article>

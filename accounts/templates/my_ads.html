@@ -12,7 +12,7 @@
         <div class="columns is-multiline">            
             {% for ad in adverts %}            
             <!-- Loop through ads and create column for each -->
-            <div class="column is-half-tablet is-one-third-desktop">
+            <div class="column is-half-tablet is-one-third-widescreen">
                 <div class="card">
                     <!-- Ad header controls -->
                     <div class="card-header">
@@ -20,14 +20,7 @@
                             <a href="{% url 'edit_advert' ad.pk %}" class="button is-warning">Edit</a>
                         </div>
                         <div class="card-header-icon">
-                            <a href="#" class="delete is-large has-background-danger advert-delete-button" data-advertpk="{{ ad.pk }}"></a>
-                            <!-- Active/Inactive Switch -->
-                            <form class="form">
-                                <div class="field">
-                                    <label for="advet_active_switch" class="label">Active</label>
-                                    <input id="advert_active_switch" type="checkbox" name="advert_active_switch" class="switch is-success" checked="checked">                                    
-                                </div>
-                            </form>
+                            <a href="#" class="delete is-large has-background-danger advert-delete-button" data-advertpk="{{ ad.pk }}"></a>                            
                         </div>
                     </div>
                     <!-- Advert -->
