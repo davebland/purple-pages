@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.contrib import messages
 
 from adverts.models import Advert
+from .forms import PPUserCreationForm
 
 @login_required
 def my_account(request):
@@ -32,3 +34,19 @@ def my_ads(request):
     """ Generate page showing all the ads for the authenticated user """
     user_ads = Advert.objects.filter(ppuser=request.user)
     return render(request, 'my_ads.html', {'adverts':user_ads})
+
+def user_registration(request):
+    """ Generate a form to register a user and handle that form submission """
+    if request.method == "POST":
+        # Bind a form and check if valid
+        registration_form = PPUserCreationForm(request.POST)
+        if registration_form.is_valid():
+            # Add user and log them in
+            new_user = registration_form.save()
+            login(request, new_user)
+            messages.success(request, "Registration successfull, welcome to Purple Pages")
+            return redirect('my_account')
+        else:
+            return render(request, 'registration.html', {'registration_form':registration_form})
+        
+    return render(request, 'registration.html', {'registration_form':PPUserCreationForm()})

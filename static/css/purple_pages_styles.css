@@ -34,7 +34,7 @@
 /** ADVERTS **/
 
 .advert {
-    max-height: 300px;
+    
 }
 
 .advert a {
@@ -42,7 +42,7 @@
 }
 
 .advert-text-content {
-    
+    max-height: 300px;
 }
 
 

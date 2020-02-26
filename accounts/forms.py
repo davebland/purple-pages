@@ -1,4 +1,7 @@
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserCreationForm
+from django.forms import EmailInput
+
+from .models import PPUser
 
 class PPAuthenticationForm(AuthenticationForm):
     # Add bulma classes to form input fields
@@ -27,3 +30,16 @@ class PPPasswordChangeForm(PasswordChangeForm):
         self.fields['old_password'].widget.attrs['class'] = 'input'
         self.fields['new_password1'].widget.attrs['class'] = 'input'
         self.fields['new_password2'].widget.attrs['class'] = 'input'
+
+class PPUserCreationForm(UserCreationForm):
+    # Add bulma classes to form input fields
+    def __init__(self, *args, **kwargs):
+        super(PPUserCreationForm, self).__init__(*args, **kwargs)        
+        self.fields['password1'].widget.attrs['class'] = 'input'
+        self.fields['password2'].widget.attrs['class'] = 'input'
+    # Override user model and enforce email for username
+    class Meta(UserCreationForm.Meta):
+        model = PPUser
+        widgets = {
+            'username' : EmailInput(attrs={'class':'input'})            
+        }
