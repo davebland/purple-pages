@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from datetime import date
+
 from .models import Board
 from adverts.models import Advert
 
@@ -14,7 +16,8 @@ def notice_boards(request):
 def display_single_board(request, board_pk):
     """ Render a single notice board page """
     notice_board = get_object_or_404(Board, pk=board_pk)
-    adverts = Advert.objects.filter(boards=notice_board)
+    # Return only adverts where the owner has an active subscription
+    adverts = Advert.objects.filter(boards=notice_board).filter(ppuser__subscription_expiry__gte = date.today())
     return render(request, 'single_notice_board.html', {'notice_board':notice_board, 'adverts':adverts})
 
 def set_favourite_board(request, board_pk, set_unset=False):
