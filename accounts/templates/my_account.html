@@ -7,7 +7,7 @@
             <div class="column has-text-centered">
                 <figure class="image container is-128x128 has-background-grey">
                     <img src="" alt="" class="">
-                    <figcaption class="heading">{{ request.user }}</figcaption>
+                    <figcaption class="heading">{{ request.user.get_short_name }}</figcaption>
                 </figure>        
             </div>
             <div class="column">

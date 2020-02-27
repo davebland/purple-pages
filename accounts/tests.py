@@ -2,7 +2,8 @@ from django.test import TestCase
 
 from datetime import date, timedelta
 
-from accounts.models import PPUser, Payment
+from .models import PPUser, Payment
+from .forms import PPUserCreationForm
 
 class TestAccountsModels(TestCase):
     """ Tests for accounts models """
@@ -51,4 +52,19 @@ class TestAccountViews(TestCase):
         # Get page and test
         page = self.client.get("/account/my_ads/", follow=True)
         self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, 'my_ads.html')        
+        self.assertTemplateUsed(page, 'my_ads.html')
+
+    def test_registration_view(self):
+        """ Test Registration view returns correct template """
+        page = self.client.get("/account/registration/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'registration.html')
+
+class TestAccountForms(TestCase):
+    """ Tests for account forms """    
+
+    def test_PPUserCreationForm(self):
+        """ Test creating and saving a new user form """
+        form = PPUserCreationForm({'username':'testuser', 'password1':'test password', 'password2':'test password'})
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.save(),PPUser.objects.get(pk=1))

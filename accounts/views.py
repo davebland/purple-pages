@@ -38,13 +38,13 @@ def my_ads(request):
 def user_registration(request):
     """ Generate a form to register a user and handle that form submission """
     if request.method == "POST":
-        # Bind a form and check if valid
+        # Bind a form and check if valid        
         registration_form = PPUserCreationForm(request.POST)
         if registration_form.is_valid():
             # Add user and log them in
             new_user = registration_form.save()
             login(request, new_user)
-            messages.success(request, "Registration successfull, welcome to Purple Pages")
+            messages.success(request, "Registration successful, welcome to Purple Pages <strong>{}<strong>.".format(new_user.get_short_name()))
             return redirect('my_account')
         else:
             return render(request, 'registration.html', {'registration_form':registration_form})

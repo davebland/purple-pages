@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserCreationForm
-from django.forms import EmailInput
+from django.forms import EmailInput, TextInput
 
 from .models import PPUser
 
@@ -40,6 +40,8 @@ class PPUserCreationForm(UserCreationForm):
     # Override user model and enforce email for username
     class Meta(UserCreationForm.Meta):
         model = PPUser
+        fields = ['username','first_name']
         widgets = {
-            'username' : EmailInput(attrs={'class':'input'})            
+            'username' : EmailInput(attrs={'class':'input'}),
+            'first_name' : TextInput(attrs={'class':'input'})           
         }
