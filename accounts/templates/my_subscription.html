@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block main-content %}
+<div class="columns is-centered">
+    <div class="column is-three-quarters-tablet is-half-desktop">
+        <!-- Suscription Status Area -->        
+        <div class="card has-text-centered">                    
+            <div class="card-content">
+                <p class="heading">Subscription Status</p>
+                {% if user_stats.subscription == 0 %}
+                <p class="title has-text-warning">No Subscription</p>
+                {% elif user_stats.subscription == 1 %}
+                <p class="title has-text-success">Active</p>
+                {% else %}
+                <p class="title has-text-danger">Expired</p>
+                {% endif %}
+            </div>
+        </div>                                                                   
+        <!-- Payment Links Area -->
+        <div class="level">
+            <div class="level-item">
+                <button class="button is-link">Make A Payment</button>
+            </div>
+        </div>        
+        <!-- Payment Record Area -->
+        <div class="level">
+            <table class="level-item table">
+                <thead>
+                    <tr>
+                        <th>Column1</th>
+                        <th>Column2</th>
+                        <th>Column3</th>
+                        <th>Column4</th>
+                    </tr>
+                </thead>    
+            </table>
+        </div>        
+    </div>
+</div>
+{% endblock %}

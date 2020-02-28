@@ -6,6 +6,7 @@ from django.contrib import messages
 
 from adverts.models import Advert
 from .forms import PPUserCreationForm
+from .stripe import stripe_payment_intent
 
 @login_required
 def my_account(request):
@@ -52,3 +53,15 @@ def user_registration(request):
             return render(request, 'registration.html', {'registration_form':registration_form})
         
     return render(request, 'registration.html', {'registration_form':PPUserCreationForm()})
+
+@login_required
+def my_subscription(request):
+    """ Generate users subscription page """
+    return render(request, 'my_subscription.html')
+
+@login_required
+def create_subscription_payment(request, subscription_period=60):
+    """ Create and a return a payment intent """
+    # Convert subscription period to a cost and return a payment intent for that cost
+    subscription_cost = subscription_period # *multiplier if not 1p per day
+    return stripe_payment_intent(payment_amount=subscription_cost)
