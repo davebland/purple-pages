@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
@@ -29,7 +30,7 @@
         </div>
         <hr>                                                                    
         <!-- Payment Request Area -->
-        <form action="" class="form">
+        <form id="subscription-form" action="" class="form">
             <div class="columns is-vcentered">
                 <div class="column is-two-thirds">                                             
                     <div class="control has-text-centered">
@@ -49,12 +50,33 @@
                 </div>
                 <div class="column">                    
                     <div class="control has-text-centered">
-                        <button class="button is-link is-light">Subscribe</button>
+                        <button id="subscribe-button" class="button is-link is-light">Subscribe</button>
                     </div>                                                 
                 </div>
             </div>      
         </form>
-        
+        <!-- Make Payment Area -->
+        <form id="stripe-payment-form" action="" class="form">
+            <div id="stripe-card-element" class="field">
+                <!-- Stripe input elements -->
+            </div>            
+            <div id="stripe-card-errors" class="field notification is-danger">
+                <!-- Stripe errors -->
+            </div>
+            <div class="field level">
+                <div class="level-left">
+                    <div class="control level-item">
+                        <button id="stripe-cancel" class="button is-warning">Cancel</a>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="control level-item">
+                        <button id="stripe-submit" class="button is-primary">Make Payment</button>
+                    </div>      
+                </div>                                                   
+            </div>
+            
+        </form>
         <hr>
         <!-- Payment Record Area -->
         <div class="level">
@@ -72,3 +94,8 @@
     </div>
 </div>
 {% endblock %}
+{% block scripts %}
+<!-- Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'js/stripe.js' %}"></script>
+{% endblock %} 
