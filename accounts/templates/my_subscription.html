@@ -5,22 +5,57 @@
         <!-- Suscription Status Area -->        
         <div class="card has-text-centered">                    
             <div class="card-content">
-                <p class="heading">Subscription Status</p>
-                {% if user_stats.subscription == 0 %}
-                <p class="title has-text-warning">No Subscription</p>
-                {% elif user_stats.subscription == 1 %}
-                <p class="title has-text-success">Active</p>
-                {% else %}
-                <p class="title has-text-danger">Expired</p>
-                {% endif %}
+                <div class="columns">
+                    <div class="column">
+                        <h2 class="heading">Subscription Status</h2>
+                        {% if request.user.subscription_status == 0 %}
+                        <p class="title has-text-warning">No Subscription</p>
+                        {% elif request.user.subscription_status == 1 %}
+                        <p class="title has-text-success">Active</p>
+                        {% else %}
+                        <p class="title has-text-danger">Expired</p>
+                        {% endif %}
+                    </div>
+                    <div class="column">
+                        <p class="heading">Subscription Expires</p>
+                        {% if request.user.subscription_expiry %}
+                        <p class="title">{{ request.user.subscription_expiry }}</p>                
+                        {% else %}
+                        <p class="title">-</p>
+                        {% endif %}
+                    </div>
+                </div>                
             </div>
-        </div>                                                                   
-        <!-- Payment Links Area -->
-        <div class="level">
-            <div class="level-item">
-                <button class="button is-link">Make A Payment</button>
-            </div>
-        </div>        
+        </div>
+        <hr>                                                                    
+        <!-- Payment Request Area -->
+        <form action="" class="form">
+            <div class="columns is-vcentered">
+                <div class="column is-two-thirds">                                             
+                    <div class="control has-text-centered">
+                        <label class="radio">
+                            <input type="radio" name="answer">
+                            100 Days
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="answer">
+                            200 Days
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="answer">
+                            300 Days
+                        </label>
+                    </div>                    
+                </div>
+                <div class="column">                    
+                    <div class="control has-text-centered">
+                        <button class="button is-link is-light">Subscribe</button>
+                    </div>                                                 
+                </div>
+            </div>      
+        </form>
+        
+        <hr>
         <!-- Payment Record Area -->
         <div class="level">
             <table class="level-item table">

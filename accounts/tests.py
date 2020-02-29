@@ -60,6 +60,16 @@ class TestAccountViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'registration.html')
 
+    def test_subscription_view(self):
+        """ Test subscription view returns correct template """
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # Get page and test
+        page = self.client.get("/account/subscription/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, 'my_subscription.html')
+
 class TestAccountForms(TestCase):
     """ Tests for account forms """    
 
