@@ -45,4 +45,10 @@
     max-height: 300px;
 }
 
+/* SUBSCRIPTIONS */
 
+#stripe-connection-error,
+#stripe-payment-form,
+#stripe-card-errors {
+    display: none;
+}

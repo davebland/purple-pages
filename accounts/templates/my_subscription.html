@@ -53,13 +53,18 @@
                 </div>
                 <div class="column">                    
                     <div class="control has-text-centered">
-                        <button class="button is-link is-light">Subscribe</button>
+                        <button id="subscribe-button" class="button is-link is-light">Subscribe</button>
                     </div>                                                 
                 </div>
                 {% csrf_token %}
             </div>      
         </form>
+        <hr>
         <!-- Make Payment Area -->
+        <div id="stripe-connection-error" class="notification is-danger">            
+            <a href="{% url 'my_subscription' %}" class="delete">Reset</a>
+            <p>Sorry, there was an error connecting to the payment service. Please try again later.</p>
+        </div>
         <form id="stripe-payment-form" action="" class="form">
             <div id="stripe-card-element" class="field">
                 <!-- Stripe input elements -->
@@ -70,7 +75,7 @@
             <div class="field level">
                 <div class="level-left">
                     <div class="control level-item">
-                        <button id="stripe-cancel" class="button is-warning">Cancel</a>
+                        <a href="{% url 'my_subscription' %}" class="button is-warning">Cancel</a>
                     </div>
                 </div>
                 <div class="level-right">
