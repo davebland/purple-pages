@@ -35,22 +35,25 @@
                 <div class="column is-two-thirds">                                             
                     <div class="control has-text-centered">
                         <label class="radio">
-                            <input type="radio" name="answer">
+                            <input type="radio" name="subscription-period" value="100" required>
                             100 Days
                         </label>
                         <label class="radio">
-                            <input type="radio" name="answer">
+                            <input type="radio" name="subscription-period" value="200" required>
                             200 Days
                         </label>
                         <label class="radio">
-                            <input type="radio" name="answer">
+                            <input type="radio" name="subscription-period" value="300" required>
                             300 Days
                         </label>
-                    </div>                    
+                    </div>
+                    <div class="control">
+                        <input type="hidden" class="input" name="payment-request-url" value="{% url 'create_payment' %}">
+                    </div>                   
                 </div>
                 <div class="column">                    
                     <div class="control has-text-centered">
-                        <button id="subscribe-button" class="button is-link is-light">Subscribe</button>
+                        <button class="button is-link is-light">Subscribe</button>
                     </div>                                                 
                 </div>
             </div>      
