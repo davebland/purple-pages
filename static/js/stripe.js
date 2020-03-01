@@ -2,8 +2,16 @@
 
 function requestPayment(subscriptionFormData) {
     // Request payment intent and setup a payment form
-    console.log(subscriptionFormData.payment-request-url.value)
-    $.post(subscriptionFormData[1]['value'], subscriptionFormData[0].serialize())
+    $.post(subscriptionFormData[0].value, subscriptionFormData)
+    .done(function(response) {
+        // Create and display stripe payment elements
+        console.log(response)
+        console.log(response)
+    })
+    .fail(function(error) {
+        // Unable to request payment error
+        console.log(error.status)
+    })
 }
 
 
@@ -18,7 +26,7 @@ $('#subscription-form').submit(function(subscriptionForm) {
     subscriptionForm.preventDefault();
     $('#subscription-form :input').prop('disabled', true)
     // Request payment intent with form data   
-    requestPayment(subscriptionForm)
+    requestPayment(subscriptionFormData)
     
     // Generate and display the payment form
     let stripeStyle = {

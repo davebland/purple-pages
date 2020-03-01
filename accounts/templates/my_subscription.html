@@ -30,9 +30,12 @@
         </div>
         <hr>                                                                    
         <!-- Payment Request Area -->
-        <form id="subscription-form" action="" class="form">
+        <form id="subscription-form" action="" method="POST" class="form">
             <div class="columns is-vcentered">
-                <div class="column is-two-thirds">                                             
+                <div class="column is-two-thirds">
+                    <div class="control">
+                        <input type="hidden" class="input" name="payment-request-url" value="{% url 'create_payment' %}">
+                    </div>                                            
                     <div class="control has-text-centered">
                         <label class="radio">
                             <input type="radio" name="subscription-period" value="100" required>
@@ -46,16 +49,14 @@
                             <input type="radio" name="subscription-period" value="300" required>
                             300 Days
                         </label>
-                    </div>
-                    <div class="control">
-                        <input type="hidden" class="input" name="payment-request-url" value="{% url 'create_payment' %}">
-                    </div>                   
+                    </div>                                       
                 </div>
                 <div class="column">                    
                     <div class="control has-text-centered">
                         <button class="button is-link is-light">Subscribe</button>
                     </div>                                                 
                 </div>
+                {% csrf_token %}
             </div>      
         </form>
         <!-- Make Payment Area -->
