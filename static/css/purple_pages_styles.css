@@ -49,6 +49,8 @@
 
 #stripe-connection-error,
 #stripe-payment-form,
-#stripe-card-errors {
+#stripe-card-errors,
+#payment-control-buttons button,
+#stripe-payment-success {
     display: none;
 }

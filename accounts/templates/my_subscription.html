@@ -72,20 +72,24 @@
             <div id="stripe-card-errors" class="field notification is-danger">
                 <!-- Stripe errors -->
             </div>
-            <div class="field level">
-                <div class="level-left">
-                    <div class="control level-item">
-                        <a href="{% url 'my_subscription' %}" class="button is-warning">Cancel</a>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <div class="control level-item">
-                        <button id="stripe-submit" class="button is-primary">Make Payment</button>
-                    </div>      
-                </div>                                                   
-            </div>
-            
         </form>
+        <div id="payment-control-buttons" class="level">
+            <div class="level-left">
+                <div class="control level-item">
+                    <a href="{% url 'my_subscription' %}">
+                        <button id="payment-cancel-button" class="button is-warning">Cancel</button>
+                    </a>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="control level-item">
+                    <button id="stripe-submit" type="submit" form="stripe-payment-form" class="button is-primary">Make Payment</button>
+                </div>      
+            </div>                                                   
+        </div>
+        <div id="stripe-payment-success" class="field notification is-success has-text-centered">
+            Payment sent successfully, thank you. Your subscription will be updated and the payment record will appear in the table below as soon as it is processed. Reloading this page in 10s.
+        </div>            
         <hr>
         <!-- Payment Record Area -->
         <div class="level">

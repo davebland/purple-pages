@@ -64,4 +64,4 @@ def create_subscription_payment(request, subscription_period=60):
     """ Create and a return a payment intent """
     # Convert subscription period to a cost and return a payment intent for that cost
     subscription_cost = subscription_period # *multiplier if not 1p per day
-    return stripe_payment_intent(payment_amount=subscription_cost)
+    return stripe_payment_intent(payment_amount=subscription_cost, ppusername=request.user.username)
