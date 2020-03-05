@@ -2,8 +2,7 @@ language: python
 python:
     - 3.8.1
 env:
-  - DJANGO_SECRET=testkey
-  - ENVIRONMENT=development
+  - DJANGO_SECRET=testkey ENVIRONMENT=development
 install: "pip install -r requirements.txt"
 script:
     - python manage.py test

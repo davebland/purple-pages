@@ -34,7 +34,7 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["purple-pages.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1","purple-pages.herokuapp.com"]
 
 
 # Application definition
@@ -139,6 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "public")
 
 # Media files (user uploads)
 
