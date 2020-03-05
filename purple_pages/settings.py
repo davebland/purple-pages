@@ -34,7 +34,7 @@ if os.getenv('ENVIRONMENT') == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = [purple-pages.herokuapp.com]
+ALLOWED_HOSTS = ["purple-pages.herokuapp.com"]
 
 
 # Application definition
