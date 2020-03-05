@@ -1,1 +1,2 @@
-web: gunicorn purple_pages.wsgi DISABLE_COLLECTSTATIC=1
+heroku config:set DISABLE_COLLECTSTATIC=1
+web: gunicorn purple_pages.wsgi
