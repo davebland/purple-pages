@@ -98,7 +98,7 @@ if os.getenv('ENVIRONMENT') == 'development':
     }
 else:
     # Connect to heroku postgres database
-    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'), conn_max_age=600)
+    DATABASES = {'default': dj_database_url.parse(os.getenv('DATABASE_URL'), conn_max_age=600)}
 
 
 # Password validation
