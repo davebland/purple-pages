@@ -98,7 +98,7 @@ def create_subscription_payment(request):
 @csrf_exempt
 def confirm_subscription_payment(request):
     """ Catch a webhook from Stripe and record a successful subscription payment """
-    if request.method == "POST": and request.is_secure():  
+    if request.method == "POST" and request.is_secure():  
         # Accept webhook only if secure POST
         try:
             stripe_confirm_payment(request.POST)
