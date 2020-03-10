@@ -98,11 +98,11 @@ def create_subscription_payment(request):
 @csrf_exempt
 def confirm_subscription_payment(request):
     """ Catch a webhook from Stripe and record a successful subscription payment """
-    if request.method == "POST": # and request.is_secure() and request.get_host() == "stripe.com":  
-        # Accept webhook only if secure POST from stripe
+    if request.method == "POST": and request.is_secure():  
+        # Accept webhook only if secure POST
         try:
             stripe_confirm_payment(request.POST)
-            return HttpResponse("Payment confirmation recieved by Purple Pages successfully. From host {}".format(request.get_host()))
+            return HttpResponse("Payment confirmation recieved by Purple Pages successfully.")
         except:
             HttpResponseBadRequest()       
     else:
