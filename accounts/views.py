@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.http import HttpResponseBadRequest
 
 import warnings
 
@@ -75,8 +76,20 @@ def my_subscription(request):
     return render(request, 'my_subscription.html')
 
 @login_required
-def create_subscription_payment(request, subscription_period=60):
+def create_subscription_payment(request):
     """ Create and a return a payment intent """
-    # Convert subscription period to a cost and return a payment intent for that cost
-    subscription_cost = subscription_period # *multiplier if not 1p per day
-    return stripe_payment_intent(payment_amount=subscription_cost, ppusername=request.user.username)
+    if request.method == "POST":
+        # Convert subscription period to a cost and return a payment intent for that cost
+        try:            
+            subscription_period = int(request.POST['subscription-period'])
+        except:
+            subscription_period = 0
+        subscription_details = {
+            'period' : subscription_period,
+            'payment_amount' : subscription_period, # *multiplier if not 1p per day
+            'pp_username' : request.user.username
+        }            
+        return stripe_payment_intent(subscription_details=subscription_details)
+    else:
+        # Not post therefore invalid
+        return HttpResponseBadRequest()

@@ -6,13 +6,23 @@ import stripe
 # Setup api
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY','')
 
-def stripe_payment_intent(payment_amount: int, ppusername):
+def stripe_payment_intent(subscription_details: dict):
+    """ Create a payment intent and return as JSON """
     try:
         payment_intent = stripe.PaymentIntent.create(
-            amount=payment_amount, 
+            amount=subscription_details['payment_amount'], 
             currency='gbp',
-            metadata={'ppuser':ppusername},
+            metadata={
+                'period':subscription_details['period'],
+                'ppuser':subscription_details['pp_username']
+            }
         )
-        return JsonResponse({'stripePublicKey': os.getenv('STRIPE_PUBLIC_KEY',''), 'stripeClientSecret': payment_intent.client_secret})
-    except:        
+        return JsonResponse({
+            'stripePublicKey': os.getenv('STRIPE_PUBLIC_KEY',''),
+            'stripeClientSecret': payment_intent.client_secret,
+            'subscriptionPeriod': subscription_details['period'],
+            'paymentAmount': subscription_details['payment_amount']
+        })
+    except:
+        # Create payment failed, return no detail for security        
         return HttpResponseBadRequest()

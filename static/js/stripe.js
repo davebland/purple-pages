@@ -11,8 +11,10 @@ $('#subscription-form').submit(function(subscriptionForm) {
     // Request payment intent and setup payment form
     $.post(subscriptionFormData[0].value, subscriptionFormData)
     .done(function(paymentIntentData) {
-        // Create and display stripe payment elements
-        console.log(paymentIntentData)
+        // Display subscription payment info
+        let paymentAmount = (paymentIntentData.paymentAmount / 100).toFixed(2);
+        $('#stripe-payment-information').text(`Make a payment of £${paymentAmount} to subscribe for ${paymentIntentData.subscriptionPeriod} days.`);
+        // Create and display stripe payment elements     
         let stripe = Stripe(paymentIntentData.stripePublicKey);
         let stripeElements = stripe.elements();
         let stripeStyle = {
