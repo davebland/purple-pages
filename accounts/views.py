@@ -3,6 +3,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.contrib import messages
+from django.core.mail import send_mail
+
+import warnings
 
 from adverts.models import Advert
 from .forms import PPUserCreationForm
@@ -47,7 +50,19 @@ def user_registration(request):
             # Add user and log them in
             new_user = registration_form.save()
             login(request, new_user)
-            messages.success(request, "Registration successful, welcome to Purple Pages <strong>{}<strong>.".format(new_user.get_short_name()))
+            # Send new user email to admin
+            try:
+                send_mail(
+                    'Purple Pages New User Notification',
+                    'A new user was created - {}'.format(new_user.username),
+                    'purplepages@daveb.me.uk',
+                    ['purplepages@daveb.me.uk'],
+                    fail_silently=True,
+                )
+            except:
+                warnings.warn("Unable to send new user email to admin for {}".format(new_user.username))
+            # Return to login page
+            messages.success(request, "Registration successful, welcome to Purple Pages {}.".format(new_user.get_short_name()))
             return redirect('my_account')
         else:
             return render(request, 'registration.html', {'registration_form':registration_form})
