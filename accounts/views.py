@@ -4,13 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
 
 import warnings
 
 from adverts.models import Advert
 from .forms import PPUserCreationForm
-from .stripe import stripe_payment_intent
+from .stripe import stripe_payment_intent, stripe_confirm_payment
 
 @login_required
 def my_account(request):
@@ -92,4 +93,17 @@ def create_subscription_payment(request):
         return stripe_payment_intent(subscription_details=subscription_details)
     else:
         # Not post therefore invalid
+        return HttpResponseBadRequest()
+
+@csrf_exempt
+def confirm_subscription_payment(request):
+    """ Catch a webhook from Stripe and record a successful subscription payment """
+    if request.method == "POST": # and request.is_secure() and request.get_host() == "stripe.com":  
+        # Accept webhook only if secure POST from stripe
+        try:
+            stripe_confirm_payment(request.POST)
+            return HttpResponse("Payment confirmation recieved by Purple Pages successfully. From host {}".format(request.get_host()))
+        except:
+            HttpResponseBadRequest()       
+    else:
         return HttpResponseBadRequest()

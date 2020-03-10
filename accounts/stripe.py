@@ -26,3 +26,9 @@ def stripe_payment_intent(subscription_details: dict):
     except:
         # Create payment failed, return no detail for security        
         return HttpResponseBadRequest()
+
+def stripe_confirm_payment(payment_confirmation):
+    """ Handle successfull payment intent from Stripe """
+    # Parse the POST data into JSON
+    print(payment_confirmation)
+    pass

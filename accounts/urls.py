@@ -4,13 +4,14 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from .forms import PPAuthenticationForm, PPPasswordResetForm, PPSetPasswordForm, PPPasswordChangeForm
-from .views import my_account, my_ads, user_registration, create_subscription_payment, my_subscription
+from .views import my_account, my_ads, user_registration, create_subscription_payment, confirm_subscription_payment, my_subscription
 
 urlpatterns = [
     path('', my_account, name="my_account"),
     path('my_ads/', my_ads, name="my_ads"),
     path('subscription/', my_subscription, name="my_subscription"),
     path('create_payment/', create_subscription_payment, name="create_payment"),
+    path('confirm_payment/', confirm_subscription_payment, name="confirm_payment"),
     path('registration/', user_registration, name="user_registration"),
     path('login/', auth_views.LoginView.as_view(authentication_form=PPAuthenticationForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

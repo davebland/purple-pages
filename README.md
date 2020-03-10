@@ -32,6 +32,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 - Saved 'favorite' notice board either by user account or local cookie.
 - PPUser extents django user
 - Notifications
+- Handle paymentintent success webhook from Stripe
 
 ## Future Additions
 
@@ -53,6 +54,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 ## Testing
 
 Test driven development using Django inbuilt test suite (TestCase).
+Postman for webhook.
 
 ### User Story Testing
 
