@@ -31,4 +31,4 @@ class Payment(models.Model):
     user = models.ForeignKey(PPUser, on_delete=models.PROTECT)
 
     def __str__(self):
-        return "Payment of £{} for user {}".format(self.amount, self.user.pk)
+        return "Payment of £{:.2f} for {}".format(self.amount/100, self.user.username)
