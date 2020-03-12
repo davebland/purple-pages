@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 from datetime import date, timedelta
+import json
 
 from .models import PPUser, Payment
 from .forms import PPUserCreationForm
@@ -24,11 +25,11 @@ class TestAccountsModels(TestCase):
         """ Create a user and payment object then check attributes """
         user = PPUser()
         user.save()
-        payment = Payment(amount=5, user=user)
+        payment = Payment(amount=500, user=user)
         payment.save()
-        self.assertEqual(payment.amount, 5)
+        self.assertEqual(payment.amount, 500)
         self.assertEqual(payment.user, PPUser.objects.get(pk=1))
-        self.assertEqual(str(payment), "Payment of £5 for user 1")
+        self.assertEqual(str(payment), "Payment of £5.00 for ")
 
 class TestAccountViews(TestCase):
     """ Tests for account views """
@@ -69,6 +70,17 @@ class TestAccountViews(TestCase):
         page = self.client.get("/account/subscription/", follow=True)
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'my_subscription.html')
+
+    def test_create_subscription_view(self):
+        """ Test Create Subscription view returns a valid JSON response """
+        page = self.client.get("/account/create_payment/", follow=True)
+        self.assertEqual(page.status_code, 200)
+        #self.assertEqual(, {})
+
+    def test_stripe_webhook_view(self):
+        """ Test Stripe webhook handler returns 400 when not presented with stripe payment intent """
+        endpoint = self.client.post("/account/confirm_payment/", follow=True)
+        self.assertEqual(endpoint.status_code, 400)
 
 class TestAccountForms(TestCase):
     """ Tests for account forms """    
