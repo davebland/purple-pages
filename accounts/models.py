@@ -32,3 +32,7 @@ class Payment(models.Model):
 
     def __str__(self):
         return "Payment of £{:.2f} for {}".format(self.amount/100, self.user.username)
+
+    def payment_in_pounds(self):
+        """ Return the payment amount in GPB format """
+        return "£{:.2f}".format(self.amount/100)

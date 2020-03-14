@@ -39,6 +39,8 @@ def stripe_confirm_payment(payment_confirmation_data):
         stripe_paymentintent_success = stripe.Event.construct_from(
             json.loads(payment_confirmation_data), stripe.api_key
         )        
+        if stripe_paymentintent_success.type != 'payment_intent.succeeded':            
+            raise Exception() # If not a successful payment intent do not process
         # Create a payment object with stripe data and save
         ppuser = PPUser.objects.get(username=stripe_paymentintent_success.data.object.metadata.ppuser)
         stripe_payment = Payment(
@@ -48,12 +50,12 @@ def stripe_confirm_payment(payment_confirmation_data):
         )
         stripe_payment.save()
         # Update the users subscription date (add to a future date or set from today)
-        subscription_period = int(stripe_paymentintent_success.data.object.metadata.period)
-        if ppuser.subscription_expiry > date.today():
-            ppuser.subscription_expiry += timedelta(days=subscription_period)
-        else:
+        subscription_period = int(stripe_paymentintent_success.data.object.metadata.period)       
+        if (ppuser.subscription_expiry is None) or (ppuser.subscription_expiry < date.today()):
             new_subscription_end_date = date.today() + timedelta(days=subscription_period)
             ppuser.subscription_expiry = new_subscription_end_date
+        else:
+            ppuser.subscription_expiry += timedelta(days=subscription_period)        
         ppuser.save(update_fields=['subscription_expiry'])
     except:
         return HttpResponseBadRequest()

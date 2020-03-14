@@ -20,7 +20,7 @@
                     <div class="column">
                         <p class="heading">Subscription Expires</p>
                         {% if request.user.subscription_expiry %}
-                        <p class="title">{{ request.user.subscription_expiry }}</p>                
+                        <p class="title">{{ request.user.subscription_expiry|date:"j M Y" }}</p>                
                         {% else %}
                         <p class="title">-</p>
                         {% endif %}
@@ -97,21 +97,26 @@
         <!-- Payment Record Area -->
         <div class="level">
             <div class="level-item">
-                <table class="table">
+                <table class="table is-bordered is-hoverable">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Amount (GBP)</th>
-                            <th>Payment Reference</th>                            
+                            <th class="has-text-centered">Date</th>
+                            <th class="has-text-centered">Amount (GBP)</th>
+                            <th class="has-text-centered">Payment Reference</th>                            
                         </tr>
                     </thead>
                     <tbody>
                         {% if payments %}
                             {% for payment in payments %}
                             <tr>
-                                <th>{{ payment.payment_date }}</th>
-                                <td>{{ payment.amount }}</td>
-                                <td>{{ payment.stripe_ref }}</td>
+                                <th class="has-text-centered">{{ payment.payment_date|date:"j M Y" }}</th>
+                                <td class="has-text-centered">{{ payment.payment_in_pounds }}</td>
+                                <td class="has-text-centered">
+                                    <span class="tag is-primary is-medium">{{ payment.pk }}</span>
+                                    <a href="mailto:pppayments@daveb.me.uk?subject=Purple Pages Payment Query&body=Query payment {{ payment.pk }} for {{ request.user }}." class="icon has-text-info is-large">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         {% else %}
