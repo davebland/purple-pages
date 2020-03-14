@@ -76,7 +76,7 @@ def user_registration(request):
 def my_subscription(request):
     """ Generate users subscription page """
     # Collect all payment for this user and pass in context
-    payments =  Payment.objects.filter(user=request.user)
+    payments =  Payment.objects.filter(user=request.user).order_by('-payment_date')
     if payments.exists():
         return render(request, 'my_subscription.html', {'payments':payments})
     else:

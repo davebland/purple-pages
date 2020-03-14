@@ -3,6 +3,7 @@ from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 import os
 import stripe
 import json
+from datetime import date, timedelta
 
 from .models import Payment
 from accounts.models import PPUser
@@ -46,6 +47,14 @@ def stripe_confirm_payment(payment_confirmation_data):
             user = ppuser,
         )
         stripe_payment.save()
+        # Update the users subscription date (add to a future date or set from today)
+        subscription_period = stripe_paymentintent_success.data.object.metadata.period
+        if ppuser.subscription_expiry > date.today():
+            ppuser.subscription_expiry += timedelta(days=subscription_period)
+        else:
+            new_subscription_end_date = date.today() + timedelta(days=subscription_period)
+            ppuser.subscription_expiry = new_subscription_end_date
+        ppuser.save(update_fields=['subscription_expiry'])
     except:
         return HttpResponseBadRequest()
     return HttpResponse("Confirmation for payment {} recieved by Purple Pages successfully.".format(stripe_paymentintent_success.data.object.id))
