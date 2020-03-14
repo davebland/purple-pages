@@ -12,6 +12,7 @@ import warnings
 from adverts.models import Advert
 from .forms import PPUserCreationForm
 from .stripe import stripe_payment_intent, stripe_confirm_payment
+from accounts.models import Payment
 
 @login_required
 def my_account(request):
@@ -74,7 +75,12 @@ def user_registration(request):
 @login_required
 def my_subscription(request):
     """ Generate users subscription page """
-    return render(request, 'my_subscription.html')
+    # Collect all payment for this user and pass in context
+    payments =  Payment.objects.filter(user=request.user)
+    if payments.exists():
+        return render(request, 'my_subscription.html', {'payments':payments})
+    else:
+        return render(request, 'my_subscription.html')
 
 @login_required
 def create_subscription_payment(request):

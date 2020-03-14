@@ -96,16 +96,32 @@
         <hr>
         <!-- Payment Record Area -->
         <div class="level">
-            <table class="level-item table">
-                <thead>
-                    <tr>
-                        <th>Column1</th>
-                        <th>Column2</th>
-                        <th>Column3</th>
-                        <th>Column4</th>
-                    </tr>
-                </thead>    
-            </table>
+            <div class="level-item">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount (GBP)</th>
+                            <th>Payment Reference</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if payments %}
+                            {% for payment in payments %}
+                            <tr>
+                                <th>{{ payment.payment_date }}</th>
+                                <td>{{ payment.amount }}</td>
+                                <td>{{ payment.stripe_ref }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td>No payments yet...</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>    
+                </table>
+            </div>
         </div>        
     </div>
 </div>
