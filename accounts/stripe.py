@@ -48,7 +48,7 @@ def stripe_confirm_payment(payment_confirmation_data):
         )
         stripe_payment.save()
         # Update the users subscription date (add to a future date or set from today)
-        subscription_period = stripe_paymentintent_success.data.object.metadata.period
+        subscription_period = int(stripe_paymentintent_success.data.object.metadata.period)
         if ppuser.subscription_expiry > date.today():
             ppuser.subscription_expiry += timedelta(days=subscription_period)
         else:
