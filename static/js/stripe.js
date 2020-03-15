@@ -13,14 +13,18 @@ $('#subscription-form').submit(function(subscriptionForm) {
     .done(function(paymentIntentData) {
         // Display subscription payment info
         let paymentAmount = (paymentIntentData.paymentAmount / 100).toFixed(2);
-        $('#stripe-payment-information').text(`Make a payment of £${paymentAmount} to subscribe for ${paymentIntentData.subscriptionPeriod} days.`);
+        $('#stripe-payment-information').text(`Make a payment of £${paymentAmount} to subscribe to Purple Pages for ${paymentIntentData.subscriptionPeriod} days`);
         // Create and display stripe payment elements     
         let stripe = Stripe(paymentIntentData.stripePublicKey);
         let stripeElements = stripe.elements();
         let stripeStyle = {
+            base: {               
+                color: '#363636',
+            }
         };
         let stripePaymentElements = stripeElements.create("card", {style:stripeStyle});
         stripePaymentElements.mount("#stripe-card-element");
+        $('#stripe-payment-information').show(ANIMATION_DURATION);
         $('#stripe-payment-form').show(ANIMATION_DURATION);
         $('#payment-control-buttons button').show(ANIMATION_DURATION);
 

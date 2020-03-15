@@ -3,6 +3,7 @@
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
+        <h1 class="title has-text-centered">My Subscription</h1>
         <!-- Suscription Status Area -->        
         <div class="card has-text-centered">                    
             <div class="card-content">
@@ -30,6 +31,10 @@
         </div>
         <hr>                                                                    
         <!-- Payment Request Area -->
+        <div class="notification is-info has-text-centered">                       
+           <p class="subtitle">Start or extend your subscription for just 1p per day!</p>
+           <p>Select the number of days <i class="fas fa-arrow-down"></i></p>
+        </div>
         <form id="subscription-form" action="" method="POST" class="form">
             <div class="columns is-vcentered">
                 <div class="column is-two-thirds">
@@ -58,21 +63,20 @@
                 </div>
                 {% csrf_token %}
             </div>      
-        </form>
-        <hr>
+        </form>        
         <!-- Make Payment Area -->
         <div id="stripe-connection-error" class="notification is-danger">            
             <a href="{% url 'my_subscription' %}" class="delete">Reset</a>
             <p>Sorry, there was an error connecting to the payment service. Please try again later.</p>
         </div>
-        <p id="stripe-payment-information" class="title has-text-centered">                       
+        <p id="stripe-payment-information" class="notification is-info has-text-centered">                       
             <!-- Payment information area -->
         </p>
-        <form id="stripe-payment-form" action="" class="form">
+        <form id="stripe-payment-form" class="form">
             <div id="stripe-card-element" class="field">
                 <!-- Stripe input elements -->
             </div>            
-            <div id="stripe-card-errors" class="field notification is-danger">
+            <div id="stripe-card-errors" class="notification is-danger">
                 <!-- Stripe errors -->
             </div>
         </form>
@@ -95,8 +99,9 @@
         </div>            
         <hr>
         <!-- Payment Record Area -->
-        <div class="level">
-            <div class="level-item">
+        <h3 class="subtitle has-text-centered"><span class="has-text-info"><i class="fas fa-credit-card"></i></span> My Payments</h3>
+        <div class="level">            
+            <div class="level-item">                
                 <table class="table is-bordered is-hoverable">
                     <thead>
                         <tr>
@@ -121,7 +126,7 @@
                             {% endfor %}
                         {% else %}
                         <tr>
-                            <td>No payments yet...</td>
+                            <td colspan="3">No subscription payments yet...</td>
                         </tr>
                         {% endif %}
                     </tbody>    
