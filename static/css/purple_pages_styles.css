@@ -52,6 +52,14 @@
     margin-bottom: 1rem;
 }
 
+.pp-full-width {
+    width: 100%;
+}
+
+.pp-full-width select {
+    width: 90%;
+}
+
 /* SUBSCRIPTIONS */
 
 #stripe-connection-error,
