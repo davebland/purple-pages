@@ -1,5 +1,30 @@
 {% load static %}
-<!-- Advert Template 3 -->
-<article class="box has-background-primary advert">
-{{ advert.pk }} {{ advert.title }}
+<!-- Advert Template 2 -->
+<article class="box has-background-{{advert.background_color_class}} advert">    
+    {% if advert.link_url %}  
+    <div class="columns is-vcentered">
+        <div class="column">
+            <h2 class="title has-text-grey-darker has-text-centered">{{ advert.title }}</h2>
+            <p class="subtitle has-text-grey-dark has-text-centered">{{ advert.strapline }}</p>
+        </div>        
+        <div class="column is-narrow">            
+            <a class="button is-link" target="_blank" href="{{ advert.link_url }}">                        
+                <span>
+                    {% if advert.link_text %}
+                    {{ advert.link_text }}
+                    {% else %}
+                    Find Out More
+                    {% endif %}
+                </span>
+                <span class="icon is-small"><i class="fas fa-external-link-alt"></i></span>
+            </a>            
+        </div>                        
+    </div>
+    {% else %}
+    <h2 class="title has-text-grey-darker has-text-centered">{{ advert.title }}</h2>
+    <p class="subtitle has-text-grey-dark has-text-centered">{{ advert.strapline }}</p>
+    {% endif %}                                                         
+    <div>
+        <pre class="advert-text-content is-paddingless has-text-grey-dark is-clipped">{{ advert.text_content }}</pre>
+    </div>
 </article>

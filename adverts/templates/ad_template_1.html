@@ -1,23 +1,36 @@
 {% load static %}
 <!-- Advert Template 1 -->
-<article class="box has-background-{{advert.background_color_class}} advert content">
+<article class="box has-background-{{advert.background_color_class}} advert">
     <div class="columns is-vcentered">
         <div class="column is-two-thirds has-text-centered">
-            <h2 class="title">{{ advert.title }}</h2>
-            <p class="subtitle">{{ advert.strapline }}</p>
-            <p class="advert-text-content">{{ advert.text_content }}</p>
+            <h2 class="title has-text-grey-darker">{{ advert.title }}</h2>
+            <p class="subtitle has-text-grey-dark">{{ advert.strapline }}</p>            
         </div>
         <div class="column is-one-third">            
             <figure class="image is-square">
                 {% if advert.image %}
                     <img src="{{ advert.image.url }}" alt="Ad Image Here">
                 {% else %}
-                    <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
+                    <img src="{% static 'img/ad_image_placeholder_square.jpg' %}" alt="Ad Image Here">
                 {% endif %}
-            </figure>
-            <div class="is-clipped">
-                <a class="button is-link" target="_blank" href="{{ advert.link_url }}">{{ advert.link_text }}</a>
-            </div>        
+            </figure>                   
         </div>
     </div>
+    <div>
+        <pre class="advert-text-content is-paddingless has-text-grey-dark is-clipped pp-bottom-margin">{{ advert.text_content }}</pre>
+    </div>
+    {% if advert.link_url %}    
+    <div class="has-text-centered">        
+        <a class="button is-link" target="_blank" href="{{ advert.link_url }}">                        
+            <span>
+                {% if advert.link_text %}
+                {{ advert.link_text }}
+                {% else %}
+                Find Out More
+                {% endif %}
+            </span>
+            <span class="icon is-small"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+    </div>
+    {% endif %}
 </article>

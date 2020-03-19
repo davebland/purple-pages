@@ -1,11 +1,39 @@
 {% load static %}
 <!-- Advert Template 2 -->
-<article class="box has-background-primary advert">
-    <h2 class="title is-1">{{ advert.title }}</h2>
-    <p>{{ advert.textContent }}</p>c
-    {% if advert.image %}
-        <img src="{{ advert.image.url }}" alt="Ad Image Here">
+<article class="box has-background-{{advert.background_color_class}} advert">
+    <div class="has-text-centered pp-bottom-margin">
+        <figure class="image is-3by1">
+            {% if advert.image %}
+                <img src="{{ advert.image.url }}" alt="Ad Image Here">
+            {% else %}
+                <img src="{% static 'img/ad_image_placeholder_rectangle.jpg' %}" alt="Ad Image Here">
+            {% endif %}
+        </figure>         
+    </div>
+    {% if advert.link_url %}  
+    <div class="columns is-vcentered">
+        <div class="column">
+            <h2 class="title has-text-grey-darker has-text-centered">{{ advert.title }}</h2>
+            <p class="subtitle has-text-grey-dark has-text-centered">{{ advert.strapline }}</p>
+        </div>        
+        <div class="column is-narrow">            
+            <a class="button is-link" target="_blank" href="{{ advert.link_url }}">                        
+                <span>
+                    {% if advert.link_text %}
+                    {{ advert.link_text }}
+                    {% else %}
+                    Find Out More
+                    {% endif %}
+                </span>
+                <span class="icon is-small"><i class="fas fa-external-link-alt"></i></span>
+            </a>            
+        </div>                        
+    </div>
     {% else %}
-        <img src="{% static 'img/ad_image_placeholder.jpg' %}" alt="Ad Image Here">
-    {% endif %}
+    <h2 class="title has-text-grey-darker has-text-centered">{{ advert.title }}</h2>
+    <p class="subtitle has-text-grey-dark has-text-centered">{{ advert.strapline }}</p>
+    {% endif %}                                                         
+    <div>
+        <pre class="advert-text-content is-paddingless has-text-grey-dark is-clipped">{{ advert.text_content }}</pre>
+    </div>
 </article>
