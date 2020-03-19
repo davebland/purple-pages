@@ -1,5 +1,6 @@
 <!-- Add or Edit Advert Template -->
 {% extends 'base.html' %}
+{% load static %}
 {% block main-content %}
 <form id="advert-add-edit-form" enctype="multipart/form-data" action="{{ request.path }}" method="POST" class="form">
     <div class="columns is-centered is-multiline">
@@ -7,7 +8,7 @@
     <div class="column is-three-quarters-tablet is-half-desktop">
         <div class="box">
             <p>Add some content to your advert</p>            
-            {% if form.non_field_errors %}
+            {% if advert_form.non_field_errors %}
             <div class="notification is-danger no-list">{{ form.non_field_errors }}</div>
             {% endif %}
             <div class="field">
@@ -55,8 +56,8 @@
                                         Choose a file…
                                     </span>
                                 </span>
-                                <span class="file-name">
-                                Select an image to upload
+                                <span id="id_filename" class="file-name has-text-centered">
+                                
                                 </span>
                             </label>
                         </div>    
@@ -146,7 +147,13 @@
                 </div>
                 <div class="level-right">
                     <div class="control level-item">
-                        <button class="button is-link">Create</button>
+                        <button class="button is-link">
+                            {% if advert_form.title.value %}
+                            Save Changes
+                            {% else %}
+                            Create Advert
+                            {% endif %}
+                        </button>
                     </div>      
                 </div>                                                   
             </div>                                         
@@ -157,17 +164,19 @@
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        $('#advert-get-preview').click(function() {
-            // Make ajax request for advert preview with form data
-            $.post("{% url 'preview_advert' %}", $("#advert-add-edit-form").serialize())           
-            .done(function(response) {
-                $('#advert-preview-area-errors').hide(ANIMATION_DURATION)
-                $('#advert-preview-area').html(response).show(ANIMATION_DURATION);
-            }).fail(function(response) {
-                $('#advert-preview-area').hide(ANIMATION_DURATION);
-                $('#advert-preview-area-errors').text("Could not generate preview, missing or incorrect field(s): " + response.responseText).show(ANIMATION_DURATION);
-            });            
-        });
-    </script>
+<script>
+    // In template setup
+    $('#advert-get-preview').click(function() {
+        // Make ajax request for advert preview with form data
+        $.post("{% url 'preview_advert' %}", $("#advert-add-edit-form").serialize())           
+        .done(function(response) {
+            $('#advert-preview-area-errors').hide(ANIMATION_DURATION)
+            $('#advert-preview-area').html(response).show(ANIMATION_DURATION);
+        }).fail(function(response) {
+            $('#advert-preview-area').hide(ANIMATION_DURATION);
+            $('#advert-preview-area-errors').text("Could not generate preview, missing or incorrect field(s): " + response.responseText).show(ANIMATION_DURATION);
+        });            
+    });
+</script>
+<script src="{% static 'js/my-ads.js' %}"></script>
 {% endblock %}

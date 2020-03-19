@@ -14,3 +14,10 @@ $('.modal-close, #advert-delete-modal-cancel').click(function() {
     // Hide the modal
     $('#advert-delete-modal').removeClass('is-active');
 })
+
+/* Create/Edit Form */
+$('#id_image').change(function() {
+    // Update filename box when file selected  
+    $('#id_filename').text($(this)[0].files[0].name);
+    $('#id_filename').addClass('has-background-primary');
+})
