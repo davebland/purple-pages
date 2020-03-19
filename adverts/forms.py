@@ -14,19 +14,25 @@ class AdvertForm(ModelForm):
             ('success','success'),
             ('warning','warning'),
             ('danger','danger'),
-        ], widget=RadioSelect(attrs={'element':'radio'})
+        ], label="Background Color", widget=RadioSelect(attrs={'element':'radio'})
     )
 
     class Meta:
         model = Advert
         exclude = ['view_counter','image_height','image_width','active']
         widgets = {
-            'title' : TextInput(attrs={'class':'input'}),
-            'strapline' : TextInput(attrs={'class':'input'}),
-            'text_content' : Textarea(attrs={'class':'textarea'}),
+            'title' : TextInput(attrs={'class':'input is-primary', 'placeholder':"Make it short and catchy..."}),
+            'strapline' : TextInput(attrs={'class':'input', 'placeholder':"Draw them in"}),
+            'text_content' : Textarea(attrs={'class':'textarea', 'placeholder':"The detail..."}),
             'image' : FileInput(attrs={'class':'file-input', 'element':'upload'}),
-            'link_url' : URLInput(attrs={'class':'input'}),
-            'link_text' : TextInput(attrs={'class':'input'}),
+            'link_url' : URLInput(attrs={'class':'input', 'placeholder':"Remember to use the full https://..."}),
+            'link_text' : TextInput(attrs={'class':'input', 'placeholder':"Keep it short or leave empty"}),
             'boards': SelectMultiple(attrs={'element':'select-multiple'}),
             'template' : RadioSelect(attrs={'element':'radio'})
+        }
+        labels = {
+            'text_content': "Main Text",
+            'link_url': "Link URL",
+            'link_text': "Link Text",
+            'boards': "Notice Boards (1 or more)"
         }
