@@ -17,7 +17,7 @@
 <body>
     <header>
         <!-- Nav Bar -->
-        <nav class="navbar">
+        <nav class="navbar is-transparent is-primary">
             <div class="navbar-brand">
                 <a href="{% url 'home' %}" class="navbar-item">                    
                     <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo" class="">
@@ -68,10 +68,9 @@
                     {% endif %} 
                 </div>
             </div>
-        </nav>
-        <hr class="navbar-divider">
+        </nav>        
     </header>
-    <section class="section">
+    <section class="section pp-page-background">
         <div class="container">
             <!-- Message Area -->
             {% if messages %}
