@@ -33,6 +33,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 - PPUser extents django user
 - Notifications
 - Handle paymentintent success webhook from Stripe
+- Customised Bulma CSS framework using SASS
 
 ## Future Additions
 
@@ -43,7 +44,7 @@ The colour scheme of the site will be purple and is complementing colours to ref
 
 - HTML5
 - CSS3
-    - Bulma.io CSS framework
+    - Bulma.io CSS framework (customised for Purple Pages with SASS)
 - JavaScript
     - jQuery
 - Python

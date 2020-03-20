@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+// PURPLE PAGES CUSTOMISATION OF BULMA FRAMEWORK
+
+// Colors
+$primary: #B833FF;
+$warning: #FFC24D;
+$success: #1BB364;
+$info: #8631B3;
+$link: hsl(217, 71%, 53%);
+$danger: #CC148A;
+
+// Fonts
+//$family-sans-serif: "Nunito", sans-serif;
+
+@import "./bulma-0.8.0/bulma.sass";
