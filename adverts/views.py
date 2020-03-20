@@ -59,7 +59,7 @@ def preview_advert(request):
         preview_advert = posted_data_into_form.save(commit=False)
         return HttpResponse(preview_advert.render())
     else:
-        return HttpResponseBadRequest(posted_data_into_form.errors)
+        return HttpResponseBadRequest(posted_data_into_form.errors.as_json())
 
 @login_required
 def delete_advert(request, advert_id):

@@ -67,7 +67,7 @@
                         <div class="notification is-warning no-list">{{ advert_form.image.errors }}</div>
                         {% endif %}
                         <label for="{{ advert_form.image.id_for_label}}" class="label">{{ advert_form.image.label }}</label>
-                        <div class="file has-name is-boxed">
+                        <div class="file has-name is-boxed is-centered">
                             <label class="file-label">
                                 {{ advert_form.image }}
                                 <span class="file-cta">
@@ -116,13 +116,20 @@
                 <div class="notification is-warning no-list">{{ advert_form.template.errors }}</div>
                 {% endif %}
                 <label for="{{ advert_form.template.id_for_label}}" class="label">{{ advert_form.template.label }}</label>
-                <div class="has-text-centered">              
-                {% for radio in advert_form.template %}
-                <label for="{{ radio.id_for_label }}" class="radio">
-                    {{ radio.choice_label }}
-                    {{ radio.tag }}
-                </label>
-                {% endfor %}
+                <div class="columns is-multiline">                                     
+                    {% for radio in advert_form.template %}
+                    <div class="column has-text-centered">                        
+                        <label for="{{ radio.id_for_label }}" class="radio">
+                            {{ radio.choice_label|upper }}
+                            <figure class="image is-3by2 pp-template-thumbnail">  
+                                {% with template_thumbnail=radio.choice_label|lower|slugify %}                                  
+                                <img src="{% static 'img/ad_'|add:template_thumbnail|add:'_thumbnail.jpg' %}">
+                                {% endwith %}
+                            </figure> 
+                            {{ radio.tag }}
+                        </label>                                             
+                    </div>
+                    {% endfor %}                     
                 </div>
             </div>            
             <div class="columns is-vcentered">
@@ -154,11 +161,14 @@
         </div> 
         <!-- Advert Preview -->
         <div class="box">
+            <h2 class="subtitle"><span class="icon has-text-primary"><i class="far fa-eye"></i></span> Preview Advert</h2>
             <div id="advert-preview-area-errors" class="notification is-warning no-list"></div>
-            <div class="has-text-centered">
-                <span id="advert-get-preview" class="button">Get Preview</span>
+            <div class="has-text-centered pp-bottom-margin">
+                <span id="advert-get-preview" class="button is-link is-light is-outlined is-medium">Get Preview</span>
             </div>
-            <div id="advert-preview-area"></div>            
+            <div id="advert-preview-area">
+                <!-- Returned advert HTML -->
+            </div>            
             <hr>
             {% csrf_token %}           
             <div class="field level">
@@ -195,8 +205,14 @@
             $('#advert-preview-area-errors').hide(ANIMATION_DURATION)
             $('#advert-preview-area').html(response).show(ANIMATION_DURATION);
         }).fail(function(response) {
+            // Parse json errors into list and display
+            let formErrors = JSON.parse(response.responseText);
             $('#advert-preview-area').hide(ANIMATION_DURATION);
-            $('#advert-preview-area-errors').text("Could not generate preview, missing or incorrect field(s): " + response.responseText).show(ANIMATION_DURATION);
+            $('#advert-preview-area-errors').text("Could not generate preview, missing or incorrect field(s): ").append("<br><br>");
+            $.each(formErrors, function(field, error) {                 
+                $('#advert-preview-area-errors').append(`<strong>${field}</strong> - ${error[0].message}<br>`);            
+            });
+            $('#advert-preview-area-errors').show(ANIMATION_DURATION);
         });            
     });
 </script>

@@ -60,6 +60,11 @@
     width: 90%;
 }
 
+.pp-template-thumbnail {
+    min-width: 200px;
+    max-width: 300px;
+}
+
 /* SUBSCRIPTIONS */
 
 #stripe-connection-error,

@@ -22,7 +22,7 @@ class AdvertForm(ModelForm):
         exclude = ['view_counter','image_height','image_width','active']
         widgets = {
             'title' : TextInput(attrs={'class':'input is-primary', 'placeholder':"Make it short and catchy..."}),
-            'strapline' : TextInput(attrs={'class':'input', 'placeholder':"Draw them in"}),
+            'strapline' : TextInput(attrs={'class':'input', 'placeholder':"Draw them in..."}),
             'text_content' : Textarea(attrs={'class':'textarea', 'placeholder':"The detail..."}),
             'image' : FileInput(attrs={'class':'file-input', 'element':'upload'}),
             'link_url' : URLInput(attrs={'class':'input', 'placeholder':"Remember to use the full https://..."}),
