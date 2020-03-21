@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
+        <!-- Title and Intro -->
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item has-text-centered">            
+                    <h1 class="title has-text-left-tablet"><span class="icon has-text-primary is-large"><i class="fas fa-user-circle"></i></span><br class="is-hidden-tablet">My Account</h1>           
+                </div>
+            </div>               
+        </div>        
         <!-- User Profile Area -->
         <div class="columns is-vcentered">
-            <div class="column has-text-centered">
-                <figure class="image container is-128x128 has-background-grey">
-                    <img src="" alt="" class="">
-                    <figcaption class="heading">{{ request.user.get_short_name }}</figcaption>
+            <div class="column has-text-centered pp-bottom-margin">
+                <figure class="image container is-128x128">                   
+                    {% if  request.user.get_short_name %}
+                    <figcaption class="heading"> Hi {{ request.user.get_short_name }}</figcaption>
+                    {% else %}
+                    <figcaption class="heading"> Hi {{ request.user.username }}</figcaption>
+                    {% endif %}
+                    <img src="{% static 'img/user_account_avatar.svg' %}" alt="User Avatar">
                 </figure>        
             </div>
             <div class="column">
@@ -42,22 +55,22 @@
                     </div>                    
                 </div>                
             </div>
-        </div>
-        <!-- Profile Links Area -->
-        <div class="columns is-multiline is-vcentered height-400-tablet">
-            <div class="column is-half has-text-centered">
-                <a href="" class="button is-large is-primary">My Ads</a>
-            </div>
-            <div class="column is-half has-text-centered">
-                <a href="" class="button is-large is-info">My Subscription</a>
-            </div>
-            <div class="column is-half has-text-centered">
-                <a href="{% url 'password_change' %}" class="button is-large is-warning is-light">Change Password</a>
-            </div>
-            <div class="column is-half has-text-centered">
-                <a href="{% url 'logout' %}" class="button is-large is-danger is-light">Logout</a>
-            </div>
-        </div>
+        </div>        
+    </div>
+</div>
+<!-- Profile Links Area -->
+<div class="columns is-multiline is-vcentered">
+    <div class="column has-text-centered">
+        <a href="{% url 'my_ads' %}" class="button is-large is-primary">My Ads</a>
+    </div>
+    <div class="column has-text-centered">
+        <a href="{% url 'my_subscription' %}" class="button is-large is-info">My Subscription</a>
+    </div>
+    <div class="column has-text-centered">
+        <a href="{% url 'password_change' %}" class="button is-large is-warning is-light">Change Password</a>
+    </div>
+    <div class="column has-text-centered">
+        <a href="{% url 'logout' %}" class="button is-large is-danger">Logout</a>
     </div>
 </div>
 {% endblock %}

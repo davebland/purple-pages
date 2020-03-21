@@ -1,26 +1,55 @@
 <!-- Page showing all active boards -->
 {% extends 'base.html' %}
 {% block main-content %}
-    <div class="columns is-multiline is-mobile is-centered">
-    {% for board in active_boards %}
-        <!-- Generate a column with box for every active board -->    
-        <div class="column is-narrow">
-            <div class="box">
-                <h2 class="title is-3">{{ board.post_code }}</h2>
-                <p class="subtitle">{{ board.name }}</p>
-                <a href="{% url 'display_single_board' board.pk %}"><button class="button is-success">Go</button></a>
-            </div>
-        </div>             
-    {% endfor %}
-    </div>
-    <div class="hero is-info">
-        <div class="hero-body">
-            <div class="is-pulled-right">
-                <a href="{% url 'create_notice_board' %}" class="button is-large is-primary is-pulled-right">Create A Notice Board</a>   
-            </div>                                
-            <h2 class="title">Is your local notice board not here yet?</h2>
-            <h3 class="subtitle">Be the first, start a new one today!</h3>
-            
+<!-- Title and Intro -->
+<div class="level">
+    <div class="level-left">
+        <div class="level-item has-text-centered">            
+            <h1 class="title has-text-left-tablet"><span class="icon has-text-primary is-large"><i class="fas fa-book"></i></span><br class="is-hidden-tablet">The Purple Pages Notice Boards</h1>           
         </div>
     </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="{% url 'create_notice_board' %}" class="button is-medium is-primary is-pulled-right">Create Notice Board</a>
+        </div>
+    </div>    
+</div>
+<div class="level">
+    <div class="level-item">
+        <div class="panel">
+            <div class="panel-heading">Find notices for your local postcode district or browse anywhere!</div>
+            <div class="panel-block">
+                <p>Postcodes are listed alphabetically...</p>
+            </div>           
+        </div>
+    </div>
+</div>
+<!-- Notice Boards -->
+<div class="columns is-multiline is-mobile is-centered">
+{% for board in active_boards %}
+    <!-- Generate a column with box for every active board -->    
+    <div class="column is-narrow">
+        <div class="box has-background-success">
+            <h2 class="title is-3">{{ board.post_code }}</h2>
+            <p class="subtitle">{{ board.name }}</p>
+            <div class="has-text-right">
+                <a href="{% url 'display_single_board' board.pk %}" class="button is-link">Go To Notice Board</a>
+            </div>            
+        </div>
+    </div>             
+{% endfor %}
+</div>
+<div class="hero is-info">
+    <div class="hero-body">
+        <div class="columns has-text-centered">
+            <div class="column has-text-left-tablet">
+                <h2 class="title">Is your local notice board not here yet?</h2>
+                <h3 class="subtitle">Be the first, start a new one today!</h3>
+            </div>
+            <div class="column is-narrow-tablet">
+                <a href="{% url 'create_notice_board' %}" class="button is-large is-primary">Create Notice Board</a>
+            </div>                        
+        </div>                                                
+    </div>
+</div>
 {% endblock %}

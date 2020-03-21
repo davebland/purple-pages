@@ -2,7 +2,15 @@
 {% extends 'base.html' %}
 {% block main-content %}
 <div class="level">
-    <div class="level-left"></div>
+    <div class="level-left">
+        <div class="level-item has-text-centered">            
+            <h1 class="title has-text-left-tablet">
+                <a href="{% url 'notice_boards' %}">
+                    <span class="icon has-text-primary is-large"><i class="fas fa-arrow-circle-left"></i></span>
+                </a>
+                <br class="is-hidden-tablet">{{ notice_board.post_code }} - {{ notice_board.name }}</h1>           
+        </div>
+    </div>
     <!-- Set/unset as favourite controls -->
     <div class="level-right">
         <div class="level-item">
@@ -23,10 +31,7 @@
     </div>
 </div>
 <!-- Notice Board -->
-<div id="notice-board" class="card">
-    <div class="card-header">
-        <h3 class="card-header-title is-size-4 is-uppercase titan">{{ notice_board.post_code }} - {{ notice_board.name }}</h3>
-    </div>
+<div id="notice-board" class="card">    
     <div class="card-content">
         <!-- All adverts for this notice board -->
         <div class="columns is-multiline">            

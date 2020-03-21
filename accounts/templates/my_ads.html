@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main-content %}
-<!-- Users Own Notice Board -->
-<div id="notice-board" class="card">
-    <div class="card-header">
-        <h3 class="card-header-title is-size-4 is-uppercase titan">My Ads</h3>
+<!-- Title and Intro -->
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title"><span class="icon has-text-primary is-large"><i class="fas fa-ad"></i></span> My Adverts</h1>
+        </div>
     </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="{% url 'new_advert' %}" class="button is-medium is-primary is-pulled-right">Create Advert</a>
+        </div>
+    </div>    
+</div> 
+<!-- Users Own Notice Board -->
+<div id="notice-board" class="card pp-bottom-margin">   
     <div class="card-content">
         <!-- All adverts for this notice board -->
         {% if adverts %}
@@ -49,15 +59,21 @@
         {% endif %}
     </div>                  
 </div>
-<hr>
 <!-- Create Ad CTA -->
 <div class="hero is-info">
     <div class="hero-body">
-        <div class="is-pulled-right">
-            <a href="{% url 'new_advert' %}" class="button is-large is-primary is-pulled-right">Create Advert</a>   
-        </div>                                
-        <h2 class="title">Create an advert today</h2>
-        <h3 class="subtitle">Get started!</h3>              
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <p class="title">Start a new advert today!</p>                  
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <a href="{% url 'new_advert' %}" class="button is-large is-primary is-pulled-right">Create Advert</a>
+                </div>
+            </div>               
+        </div>                                                     
     </div>
 </div>
 <!-- Advert Delete Modal -->
