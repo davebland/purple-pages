@@ -2,8 +2,19 @@
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
-        <div class="box content">
-            <h2>Login to Purple Pages</h2>
+        <!-- Title and Intro -->
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item has-text-centered has-text-left-tablet">            
+                    <h1 class="title">
+                        <span class="icon has-text-primary is-large"><i class="fas fa-door-open"></i></span>
+                        <br class="is-hidden-tablet">Login to Purple Pages
+                    </h1>           
+                </div>
+            </div>               
+        </div> 
+        <!-- Login Form -->
+        <div class="box content">            
             <form action="{% url 'login' %}" method="POST" class="form">
                 {% include "bulma_form_template.html" %}
                 <input type="hidden" name="next" value="{{ next }}">

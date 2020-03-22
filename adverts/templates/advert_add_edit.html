@@ -152,9 +152,18 @@
                         <div class="notification is-warning no-list">{{ advert_form.boards.errors }}</div>
                         {% endif %}
                         <label for="{{ advert_form.boards.id_for_label}}" class="label">{{ advert_form.boards.label }}</label>
-                        <div class="select is-multiple pp-full-width is-primary">
+                        <div class="select is-multiple pp-full-width is-primary pp-bottom-margin">
                             {{ advert_form.boards }}
                         </div>
+                        <!-- Create Board Link -->
+                        <div class="message is-info">
+                            <div class="message-body">
+                                <p class="pp-bottom-margin">Notice board for your postcode not in the list?</p>
+                                <div class="has-text-right">
+                                    <a href="{% url 'create_notice_board' %}" target="_blank" class="button is-link">Create it now!</a>
+                                </div>                                
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>                                       

@@ -3,19 +3,36 @@
 {% block main-content %}
 <div class="columns is-centered">
     <div class="column is-three-quarters-tablet is-half-desktop">
+        <!-- Title and Intro -->
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item has-text-centered has-text-left-tablet">            
+                    <h1 class="title">
+                        <span class="icon has-text-primary is-large"><i class="fas fa-plus-square"></i></span>
+                        <br class="is-hidden-tablet">Create Notice Board
+                    </h1>           
+                </div>
+            </div>               
+        </div> 
+        <!-- Create Board Form -->
         <div class="box">
             <p>Complete the form below to create new notice board.</p>
             <form action="{{ request.path }}" method="POST" class="form">
                 {% include "bulma_form_template.html" with form=board_form %}
                 {% csrf_token %}
-                <div class="field is-grouped is-grouped-right">
-                    <div class="control">
-                        <button class="button is-primary">Create</button>
+                <hr>
+                <div class="field level">
+                    <div class="level-left">
+                        <div class="control level-item">
+                            <a href="{% url 'notice_boards' %}" class="button is-warning">Cancel</a>
+                        </div>
                     </div>
-                    <div class="control">
-                        <a href="{% url 'notice_boards' %}" class="button is-danger is-light">Cancel</a>
-                    </div>
-                </div>                             
+                    <div class="level-right">
+                        <div class="control level-item">
+                            <button class="button is-primary">Create Notice Board</button>
+                        </div>      
+                    </div>                                                   
+                </div>                                             
             </form>
         </div>        
     </div>  
