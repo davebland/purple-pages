@@ -43,5 +43,8 @@ class PPUserCreationForm(UserCreationForm):
         fields = ['username','first_name']
         widgets = {
             'username' : EmailInput(attrs={'class':'input'}),
-            'first_name' : TextInput(attrs={'class':'input'})           
+            'first_name' : TextInput(attrs={'class':'input', 'placeholder':"Or nickname, we don't mind..."})           
+        }
+        labels = {
+            'username' : 'Email'
         }
