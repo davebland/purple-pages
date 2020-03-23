@@ -4,12 +4,24 @@
     <h1 class="title">Welcome to Purple Pages</h1>
     <p class="subtitle">Your online notice board for the community near you</p>
     {% if favourite_notice_board %}
+    <div class="has-text-centered">
+        <p class="tag is-large is-primary">
+            <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
+            <span>Your Favourite Notice Board</span>
+            <span class="icon is-large"><i class="fas fa-arrow-down"></i></span>
+        </p>
+    </div>    
     <!-- Favourite Notice Board -->
-    <h2 class="subtitle">Your favourite board...</h2>
-    <div id="notice-board" class="card">
-        <div class="card-header">
-            <h3 class="card-header-title is-size-4 is-uppercase titan">{{ favourite_notice_board.post_code }} - {{ favourite_notice_board.name }}</h3>
+    <div class="level">
+        <div class="level-left">
+            <div class="level-item has-text-centered">            
+                <h1 class="title has-text-left-tablet">                    
+                    {{ favourite_notice_board.post_code }} - {{ favourite_notice_board.name }}
+                </h1>           
+            </div>
         </div>
+    </div>
+    <div id="notice-board" class="card">        
         <div class="card-content">
             {% if adverts %}
             <div class="columns is-multiline">            

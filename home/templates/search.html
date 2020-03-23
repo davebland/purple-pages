@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 {% block main-content %}
 <div class="level">
-    <div class="level-item">
-        <!-- Search form -->
-        <form class="" action="">
-            <div class="field has-addons">
-                <div class="control">           
-                    <input class="input is-large" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
-                </div>
-                <div class="control">
-                    <button class="button is-primary is-large"><span class="icon is-large"><i class="fas fa-search"></i></span></button>
-                </div>
-            </div>        
-        </form>
+    <div class="level-left">
+        <div class="level-item has-text-centered has-text-left-tablet">            
+            <h1 class="title">
+                <span class="icon has-text-primary is-large"><i class="fas fa-search"></i></span>
+                <br class="is-hidden-tablet">Search Results
+            </h1>           
+        </div>
     </div>
+    <div class="level-right">
+        <div class="level-item">        
+            <!-- Search form -->
+            <form class="" action="">
+                <div class="field has-addons">
+                    <div class="control">           
+                        <input class="input is-large" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary is-large"><span class="icon is-large"><i class="fas fa-search"></i></span></button>
+                    </div>
+                </div>        
+            </form>
+        </div>
+    </div>    
 </div>
 <!-- Search Results -->
-<div id="notice-board" class="card">
-    <div class="card-header">
-        <h3 class="card-header-title is-size-4 is-uppercase titan">Search Results</h3>
-    </div>
+<div id="notice-board" class="card">   
     <div class="card-content">
         {% if adverts %}
         <div class="columns is-multiline">            
@@ -31,7 +38,7 @@
             {% endfor %}
         </div>
         {% else %}
-        <p class="has-text-grey">No results found</p>
+        <p class="has-text-grey">No results found, try adjusting your search...</p>
         {% endif %}
     </div>
 </div>                  

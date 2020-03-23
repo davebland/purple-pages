@@ -42,7 +42,7 @@
         <hr>                                                                    
         <!-- Payment Request Area -->
         <div class="notification is-info has-text-centered">                       
-           <p class="subtitle">Start or extend your subscription for just 1p per day!</p>
+           <p class="subtitle">Start, renew or extend your subscription for just 1p per day!</p>
            <p>Select the number of days <i class="fas fa-arrow-down"></i></p>
         </div>
         <form id="subscription-form" action="" method="POST" class="form">
@@ -52,23 +52,23 @@
                         <input type="hidden" class="input" name="payment-request-url" value="{% url 'create_payment' %}">
                     </div>                                            
                     <div class="control has-text-centered">
-                        <label class="radio">
+                        <label class="radio pp-bottom-margin">
                             <input type="radio" name="subscription-period" value="100" required>
-                            100 Days
+                            <span class="tag is-large is-primary is-light">100 Days</span>
                         </label>
                         <label class="radio">
                             <input type="radio" name="subscription-period" value="200" required>
-                            200 Days
+                            <span class="tag is-large is-primary is-light">200 Days</span>
                         </label>
                         <label class="radio">
                             <input type="radio" name="subscription-period" value="300" required>
-                            300 Days
+                            <span class="tag is-large is-primary is-light">300 Days</span>
                         </label>
                     </div>                                       
                 </div>
                 <div class="column">                    
-                    <div class="control has-text-centered">
-                        <button id="subscribe-button" class="button is-link is-light">Subscribe</button>
+                    <div class="control has-text-centered pp-bottom-margin">
+                        <button id="subscribe-button" class="button is-large is-warning is-light">Subscribe</button>
                     </div>                                                 
                 </div>
                 {% csrf_token %}
@@ -100,7 +100,10 @@
             </div>
             <div class="level-right">
                 <div class="control level-item">
-                    <button id="stripe-submit" type="submit" form="stripe-payment-form" class="button is-primary">Make Payment</button>
+                    <button id="stripe-submit" type="submit" form="stripe-payment-form" class="button is-primary is-medium">
+                        <span><i class="fas fa-credit-card"></i></span>
+                        <span>Make Payment</span>
+                    </button>
                 </div>      
             </div>                                                   
         </div>
@@ -109,7 +112,10 @@
         </div>            
         <hr>
         <!-- Payment Record Area -->
-        <h3 class="subtitle has-text-centered"><span class="has-text-info"><i class="fas fa-credit-card"></i></span> My Payments</h3>
+        <h3 class="subtitle has-text-centered">
+            <span class="has-text-info"><i class="fas fa-receipt"></i></span>
+            <span>My Payments</span>
+        </h3>
         <div class="level">            
             <div class="level-item">                
                 <table class="table is-bordered is-hoverable">
