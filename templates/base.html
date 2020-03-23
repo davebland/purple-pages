@@ -36,10 +36,10 @@
                         <form class="" action="{% url 'search' %}">
                             <div class="field has-addons has-addons-centered">
                                 <div class="control">           
-                                    <input class="input" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
+                                    <input class="input is-link" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
                                 </div>
                                 <div class="control">
-                                    <button class="button is-primary"><span class="icon"><i class="fas fa-search"></i></span></button>
+                                    <button class="button is-link"><span class="icon"><i class="fas fa-search"></i></span></button>
                                 </div>
                             </div>        
                         </form>

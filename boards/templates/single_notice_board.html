@@ -16,23 +16,27 @@
         <div class="level-item">
             {% if request.session.favourite_board == notice_board.pk or request.user.favourite_board == notice_board %}
             <!-- Icon for board is set as favourite -->
-            <a href="{% url 'unset_favourite_board' notice_board.pk %}" class="button is-primary">
+            <a href="{% url 'unset_favourite_board' notice_board.pk %}" class="button is-success">
                 <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
                 <span class="has-text-white">Remove as Favourite</span>
             </a>
             {% else %}
             <!-- Icon for board is not favourite -->
-            <a href="{% url 'set_favourite_board' notice_board.pk %}" class="button">
+            <a href="{% url 'set_favourite_board' notice_board.pk %}" class="button is-success is-light">
                 <span class="icon is-large"><i class="far fa-bookmark"></i></span>
-                <span class="has-text-grey">Set as Favourite</span>
-            </a>
-            {% endif %}                              
+                <span class="has-text-grey">Set as Favourite Board</span>
+            </a>            
+            {% endif %}                                          
         </div>        
+        <div class="level-item">
+            <a href="{% url 'new_advert' %}" class="button is-primary">Create Advert</a>
+        </div>
     </div>
 </div>
 <!-- Notice Board -->
 <div id="notice-board" class="card">    
     <div class="card-content">
+        {% if adverts %}
         <!-- All adverts for this notice board -->
         <div class="columns is-multiline">            
             {% for ad in adverts %}            
@@ -42,6 +46,13 @@
             </div>                                           
             {% endfor %}
         </div>
+        {% else %}
+        <!-- Fallback text and link -->
+        <div class="has-text-centered content">
+            <p>Oops, no ads here yet...</p>
+            <a href="{% url 'new_advert' %}" class="button is-primary is-medium">Be the first, create one now!</a>
+        </div>        
+        {% endif %}
     </div>                  
 </div>
 {% endblock %}

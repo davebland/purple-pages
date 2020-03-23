@@ -12,7 +12,10 @@ class BoardForm(ModelForm):
         model = Board
         fields = ['name','post_code']
         widgets = {
-            'name' : TextInput(attrs={'class':'input'}),
+            'name' : TextInput(attrs={'class':'input', 'placeholder':"Maybe name of the postcode town..."}),
+        }
+        labels = {
+            'name' : "Board Name"
         }
 
     # Set additional attributes of post_code
