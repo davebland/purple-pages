@@ -12,7 +12,7 @@ Django web application utilising Bulma CSS framework, Postgres DB, Stripe paymen
 
 The basic premise of this application is to create a subscription based online ‘notice board’ on which local communities can advertise events, products and services. I have drawn inspiration from a combination of printed local directory type publications (e.g. Yellow Pages) and physical community notice boards as found in the centre of villages and towns all over the UK. Users of the application will be able to advertise their event, product or service on up to 5 boards for a minimal fee.
 
-Initially the notice boards will be segregated into UK postcode districts. Districts are the second largest geographical used by the post code system and are represented by the first 2-4 characters of a standard UK postcode (e.g. W1 xxx). There are approximately 2,960 active districts in the UK and in the real world these represent communities with an average size of 22,000 people. The list of districts will come from a free online resource, see credits.
+Initially the notice boards will be segregated into UK postcode districts. Districts are the second largest geographical used by the post code system and are represented by the first 2-4 characters of a standard UK postcode (e.g. W1 xxx). There are approximately 3000 active districts in the UK and in the real world these represent communities with an average size of 22,000 people. The list of districts will come from a free online resource, see credits.
 
 ## Demo
 
@@ -71,6 +71,7 @@ Postman for webhook.
 ## Content
 
 - Images from PixaBay.com under free licence
+- List of UK postcode districts from https://www.doogal.co.uk/ - available under public licence
 
 ## Acknowledgements
 - Draw.io wireframing tool
