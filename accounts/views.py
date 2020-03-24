@@ -41,7 +41,7 @@ def my_ads(request):
     """ Generate page showing all the ads for the authenticated user """
     user_ads = Advert.objects.filter(ppuser=request.user)
     if (request.user.subscription_status() == 0) or (request.user.subscription_status() == 2):
-        messages.warning(request, "You do not have a active subscription so your ads are not public at the moment.")
+        messages.warning(request, "You do not have an active subscription so your ads are not public at the moment! Visit My Account to subscribe.")
     return render(request, 'my_ads.html', {'adverts':user_ads})
 
 def user_registration(request):
@@ -50,27 +50,30 @@ def user_registration(request):
         # Bind a form and check if valid        
         registration_form = PPUserCreationForm(request.POST)
         if registration_form.is_valid():
-            # Add user and log them in
-            new_user = registration_form.save()
+            # Copy username into email, add user and log them in
+            new_user = registration_form.save(commit=False)
+            new_user.email = new_user.username
+            new_user.save()
             login(request, new_user)
             # Send new user email to admin and user
-            #try:
-            welcome_message_body = """
-                Hi {},
-                Thankyou for creating an account on Purple Pages.
-                Get started @ purple-pages.heroku.co.uk.
-                
-                This message was sent to {}""".format(new_user.get_short_name(), new_user.username)
-            welcome_message = EmailMessage(
-                'Welcome to Purple Pages',
-                welcome_message_body,                    
-                'purplepages@daveb.me.uk',
-                [new_user.username],
-                ['purplepages@daveb.me.uk'],                
-            )
-            welcome_message.send(fail_silently=False)
-            #except:
-                #warnings.warn("Unable to send new user email for {}".format(new_user.username))
+            try:
+                welcome_message_body = """
+                    Hi {},
+
+                    Thankyou for creating an account on Purple Pages.
+                    Get started @ purple-pages.herokuapp.com.
+                    
+                    This message was sent to {}""".format(new_user.get_short_name(), new_user.username)
+                welcome_message = EmailMessage(
+                    'Welcome to Purple Pages',
+                    welcome_message_body,                    
+                    'purplepages@daveb.me.uk',
+                    [new_user.username],
+                    ['purplepages@daveb.me.uk'],                
+                )
+                welcome_message.send(fail_silently=True)
+            except:
+                warnings.warn("Unable to send new user email for {}".format(new_user.username))
             # Return to login page
             messages.success(request, "Registration successful, welcome to Purple Pages {}.".format(new_user.get_short_name()))
             return redirect('my_account')

@@ -38,13 +38,14 @@ class PPUserCreationForm(UserCreationForm):
         super(PPUserCreationForm, self).__init__(*args, **kwargs)        
         self.fields['password1'].widget.attrs['class'] = 'input is-primary'
         self.fields['password2'].widget.attrs['class'] = 'input is-primary'
+    
     # Override user model and enforce email for username
     class Meta(UserCreationForm.Meta):
         model = PPUser
         fields = ['username','first_name']
         widgets = {
             'username' : EmailInput(attrs={'class':'input is-primary'}),
-            'first_name' : TextInput(attrs={'class':'input', 'placeholder':"Or nickname, we don't mind..."})           
+            'first_name' : TextInput(attrs={'class':'input', 'placeholder':"Or nickname, we don't mind..."}),               
         }
         labels = {
             'username' : 'Email'
