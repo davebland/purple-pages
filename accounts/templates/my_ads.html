@@ -23,7 +23,7 @@
             {% for ad in adverts %}            
             <!-- Loop through ads and create column for each -->
             <div class="column is-half-tablet is-one-third-widescreen">
-                <div class="card">
+                <div class="card has-background-white-ter">
                     <!-- Ad header controls -->
                     <div class="card-header">
                         <div class="card-header-title">
@@ -45,7 +45,7 @@
                         </div>
                         {% endfor %}
                         <div class="card-footer-item">
-                            <span class="tag is-primary">Views: {{ ad.view_counter }}</span>
+                            <span class="tag is-success">Views: {{ ad.view_counter }}</span>
                         </div>
                     </div>
                 </div>

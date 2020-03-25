@@ -43,7 +43,7 @@ def advert_add_edit(request, advert_id=None):
         return edit_advert(request, advert_id)
     else:
         # If a new advert create a blank form and pass this into template
-        advert_form = AdvertForm(initial={'background_color_class':'primary'})
+        advert_form = AdvertForm(initial={'background_color_class':'grey'})
         return render(request, 'advert_add_edit.html', {'advert_form':advert_form})
 
 @login_required

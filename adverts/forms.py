@@ -7,13 +7,10 @@ class AdvertForm(ModelForm):
 
     background_color_class = ChoiceField(choices=[
             ('white','white'),
-            ('black','black'),
-            ('primary','primary'),
-            ('info','info'),
-            ('link','link'),
+            ('grey','grey-lighter'),           
+            ('info','info'),           
             ('success','success'),
-            ('warning','warning'),
-            ('danger','danger'),
+            ('warning','warning'),          
         ], label="Background Color", widget=RadioSelect(attrs={'element':'radio'})
     )
 
