@@ -134,17 +134,25 @@ USE_L10N = True
 
 USE_TZ = True
 
+# S3 storage setup
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID','')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY','')
+AWS_STORAGE_BUCKET_NAME = 'purplepages'
+AWS_S3_CUSTOM_DOMAIN = ''
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATICFILES_STORAGE = 'purple_pages.custom_storages.PPStaticStorage'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "public")
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+#STATIC_ROOT = os.path.join(BASE_DIR, "public")
 
 # Media files (user uploads)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "images")
+DEFAULT_FILE_STORAGE = 'purple_pages.custom_storages.PPMediaStorage'
+#MEDIA_ROOT = os.path.join(BASE_DIR, "images")
 MEDIA_URL = '/images/'
 
 # Default URL Overrides

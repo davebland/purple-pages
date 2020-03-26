@@ -68,6 +68,8 @@ Postman for webhook.
 
 ## Deployment
 
+- django-storages (S3)
+
 ## Content
 
 - Images from PixaBay.com under free licence
