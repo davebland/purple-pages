@@ -34,4 +34,4 @@ urlpatterns = [
     #path('test/', include(urls_test)),
     path('account/', include(urls_accounts)),
     #path('subscription/', include(urls_subscriptions),)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Serve media files for dev only
+]

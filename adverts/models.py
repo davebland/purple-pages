@@ -23,13 +23,15 @@ class AdvertTemplate(models.Model):
 class Advert(models.Model):
     """ Data model for adverts """
 
-    IMAGE_UPLOAD_PATH = "adverts/"
+    def image_upload_path(instance, filename):
+        """ Create a image directory for each saved advert """
+        return "adverts/{}/{}".format(instance.pk, filename)
 
     # Advert content
     title = models.CharField(max_length=50)
     strapline = models.CharField(max_length=100, blank=True)
     text_content = models.TextField(blank=True)
-    image = models.ImageField(upload_to=IMAGE_UPLOAD_PATH, height_field="image_height", width_field="image_width", blank=True)
+    image = models.ImageField(upload_to=image_upload_path, height_field="image_height", width_field="image_width", blank=True)
     image_height = models.IntegerField(default=0)
     image_width = models.IntegerField(default=0)
     link_url = models.URLField(blank=True)

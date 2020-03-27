@@ -21,3 +21,8 @@ $('#id_image').change(function() {
     $('#id_filename').text($(this)[0].files[0].name);
     $('#id_filename').addClass('has-background-primary');
 })
+
+$('#advert-add-edit-form').submit(function() {
+    // Add loading spinner when form submitted
+    $('#advert-create-update-submit-button').addClass('is-loading').prop('disabled', true);
+})
