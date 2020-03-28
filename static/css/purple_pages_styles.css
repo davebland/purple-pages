@@ -20,6 +20,12 @@
     }
 }
 
+/** HOME **/
+
+#about-purple-pages-table td {
+    padding: 2.5rem 0 2.5rem 1.5rem;
+}
+
 /** FORMS **/
 
 .colour-swatch {
@@ -34,6 +40,10 @@
 #advert-preview-area,
 #advert-preview-area-errors {
     display: none;
+}
+
+.pp-wide-input {
+    width: 80%;
 }
 
 /** ADVERTS **/

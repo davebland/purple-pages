@@ -1,96 +1,150 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main-content %}
-    <h1 class="title">Welcome to Purple Pages</h1>
-    <p class="subtitle">Your online notice board for the community near you</p>
-    {% if favourite_notice_board %}
-    <div class="has-text-centered">
-        <p class="tag is-large is-primary">
-            <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
-            <span>Your Favourite Notice Board</span>
-            <span class="icon is-large"><i class="fas fa-arrow-down"></i></span>
-        </p>
-    </div>    
-    <!-- Favourite Notice Board -->
-    <div class="level">
-        <div class="level-left">
-            <div class="level-item has-text-centered">            
-                <h1 class="title has-text-left-tablet">                    
-                    {{ favourite_notice_board.post_code }} - {{ favourite_notice_board.name }}
-                </h1>           
-            </div>
+<h1 class="title has-text-centered has-text-white has-text-weight-bold is-1">Welcome to Purple Pages</h1>
+<p class="subtitle has-text-centered">Your online notice board for the community near you</p>
+
+<form action="{% url 'search' %}">
+    <div class="field has-addons has-addons-centered pp-bottom-margin">
+        <div class="control pp-wide-input">           
+            <input class="input is-link is-large" type="text" name="search_string" placeholder="search our adverts..." value="{{ request.GET.search_string }}">               
+        </div>
+        <div class="control">
+            <button class="button is-link is-large"><span class="icon"><i class="fas fa-search"></i></span></button>
+        </div>
+    </div>        
+</form>
+
+{% if favourite_notice_board %}
+<div class="has-text-centered">
+    <p class="tag is-large is-primary">
+        <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
+        <span>Your Favourite Notice Board</span>
+        <span class="icon is-large"><i class="fas fa-arrow-down"></i></span>
+    </p>
+</div>    
+<!-- Favourite Notice Board -->
+<div class="level">
+    <div class="level-left">
+        <div class="level-item has-text-centered">            
+            <h1 class="title has-text-left-tablet">
+                <a href="{% url 'display_single_board' favourite_notice_board.pk %}">
+                    <span class="icon has-text-primary is-large"><i class="fas fa-link"></i></span>
+                </a>
+                <br class="is-hidden-tablet">{{ favourite_notice_board.post_code }} - {{ favourite_notice_board.name }}
+            </h1>           
         </div>
     </div>
-    <div id="notice-board" class="card">        
-        <div class="card-content">
-            {% if adverts %}
-            <div class="columns is-multiline">            
-                {% for ad in adverts %}            
-                <!-- Loop through ads and create column for each -->
-                <div class="column is-half-tablet is-one-third-widescreen">
-                    {{ ad.render }}  
-                </div>                                           
-                {% endfor %}
-            </div>
-            {% else %}
-                <p class="has-text-grey">No ads to show</p>      
-            {% endif %}
+</div>
+<div id="notice-board" class="card">        
+    <div class="card-content">
+        {% if adverts %}
+        <div class="columns is-multiline">            
+            {% for ad in adverts %}            
+            <!-- Loop through ads and create column for each -->
+            <div class="column is-half-tablet is-one-third-widescreen">
+                {{ ad.render }}  
+            </div>                                           
+            {% endfor %}
         </div>
-    </div>  
-    {% else %}
-    <!-- Welcome content where no favourite notice board set -->
-    <div class="hero is-primary">
-        <div class="hero-body">
-            <div class="columns">                
-                <div class="column has-text-centered has-text-left-desktop">
-                    <h2 class="title">Advertise Here</h1>
-                    <p class="subtitle">Just 1p per day!</p>
-                </div>
-                <div class="column has-text-centered has-text-right-desktop">
-                    <a href="{% url 'new_advert' %}" class="button is-large is-link">Get started now...</a>
-                </div>
-            </div>                                                                 
-        </div>
+        {% else %}
+            <p class="has-text-grey">No ads to show</p>      
+        {% endif %}
     </div>
-    <hr>
-    <article class="content">
-        <div class="columns is-vcentered has-text-centered">
-            <div class="column">
-                <div class="card">
-                    <div class="card-header">
+</div>  
+{% else %}
+<!-- Welcome content where no favourite notice board set -->
+<div class="hero is-info">
+    <div class="hero-body">
+        <div class="columns">                
+            <div class="column has-text-centered has-text-left-desktop">
+                <h2 class="title">Advertise Here</h1>
+                <p class="subtitle">Just 1p per day!</p>
+            </div>
+            <div class="column has-text-centered has-text-right-desktop">
+                <a href="{% url 'new_advert' %}" class="button is-large is-primary">Get started now...</a>
+            </div>
+        </div>                                                                 
+    </div>
+</div>
+<hr>
+<article class="content">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-three-quarters-tablet">
+            <div class="card has-background-white-bis">
+                <div class="card-header">
+                    <div class="card-header-icon">
                         <figure class="image is-64x64">
                             <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo" class="">                            
                         </figure>
-                        <h2 class="title">About Purple Pages</h2>
-                    </div>
-                    <div class="card-content">
-                        
-                        <p class="subtitle">Purple Pages is a simple, online system for advertising in your local community. It could be a business, social club, local notices or just about anything else.</p>
-                        <p>Browse for free or dive in and create your own advert for just 1p per day...</p>
-                        <p>Notice boards are categorised by UK post code district.</p>
-                    </div>                    
-                </div>                
-            </div>
-            <div class="column">
-                <p class="subtitle">Take a Look Around</p>
-                <a href="{% url 'notice_boards' %}" class="button is-large is-link">Browse the Notice Boards</a>
-                <p class="muted">You can save a board to make it appear on this homepage.</p>
-            </div>
-        </div>
-    </article>    
-    {% endif %}
-    <hr>
-    <div class="hero is-primary">
-        <div class="hero-body">
-            <div class="columns">                
-                <div class="column has-text-centered has-text-left-desktop">
-                    <h2 class="title">Advertise Here</h1>
-                    <p class="subtitle">Just 1p per day!</p>
+                    </div>                     
+                    <div class="card-header-title">
+                        <p class="title">About Purple Pages</p>
+                    </div>                                                
                 </div>
-                <div class="column has-text-centered has-text-right-desktop">
-                    <a href="{% url 'new_advert' %}" class="button is-large is-link">Get started now...</a>
-                </div>
-            </div>                                                                 
-        </div>
+                <div class="card-content">
+                    <table id="about-purple-pages-table" class="table has-background-white-bis">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="icon has-text-primary is-large"><i class="fas fa-3x fa-info-circle"></i></span>
+                                </td>
+                                <td>
+                                    <p class="subtitle">Purple Pages is a simple platform for advertising in your local community. It could be a business, social club, local notices or just about anything else.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="icon has-text-primary is-large"><i class="fas fa-3x fa-map-marked"></i></span>
+                                </td>
+                                <td>
+                                    <p class="subtitle">Notice boards are categorised by UK post code district.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="icon has-text-primary is-large"><i class="fas fa-3x fa-mouse"></i></span>
+                                </td>
+                                <td>
+                                    <p class="has-text-weight-bold is-size-4">Browse for free!</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="icon has-text-primary is-large"><i class="fas fa-3x fa-ad"></i></span>
+                                </td>
+                                <td>
+                                    <p class="has-text-weight-bold is-size-5">Post your own advert for just 1p per day...</p>
+                                </td>
+                            </tr>
+                        </tbody>                                                 
+                    </table>                                                                                                           
+                </div>                    
+            </div>                
+        </div>            
     </div>
+    <div class="has-text-centered">
+        <h3 class="subtitle is-size-3">Take a Look Around</h3>
+        <a href="{% url 'notice_boards' %}" class="button is-medium is-large-tablet is-link pp-bottom-margin">
+            <span>Browse the Notice Boards</span>
+            <span class="icon"><i class="fas fa-arrow-right"></i></span>                    
+        </a>
+        <p class="has-text-dark is-italic">You can save your favourite notice board to make it appear on this home page</p>
+    </div>    
+</article>    
+{% endif %}
+<hr>
+<div class="hero is-primary">
+    <div class="hero-body">
+        <div class="columns">                
+            <div class="column has-text-centered has-text-left-desktop">
+                <h2 class="title">Advertise Here</h1>
+                <p class="subtitle">Just 1p per day!</p>
+            </div>
+            <div class="column has-text-centered has-text-right-desktop">
+                <a href="{% url 'new_advert' %}" class="button is-large is-link">Get started now...</a>
+            </div>
+        </div>                                                                 
+    </div>
+</div>
 {% endblock %}

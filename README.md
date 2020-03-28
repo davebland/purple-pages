@@ -51,7 +51,8 @@ The colour scheme of the site will be purple and is complementing colours to ref
     - Django
     - Django RelativeFilePathField
     - Pillow
-- Font Awesome
+    - Custom Storages
+- Font Awesome (latest version via kit)
 
 ## Testing
 
