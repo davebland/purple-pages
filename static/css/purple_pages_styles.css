@@ -23,7 +23,12 @@
 /** HOME **/
 
 #about-purple-pages-table td {
-    padding: 2.5rem 0 2.5rem 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.pp-right-padding {
+    padding-right: 1rem;
 }
 
 /** FORMS **/
