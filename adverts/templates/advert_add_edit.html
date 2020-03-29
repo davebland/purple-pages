@@ -140,7 +140,7 @@
                         {% endif %}
                         <label for="{{ advert_form.background_color_class.id_for_label}}" class="label">{{ advert_form.background_color_class.label }}</label>
                         {% for radio in advert_form.background_color_class %}
-                        <label for="{{ radio.id_for_label }}" class="radio has-background-{{radio.choice_label}} colour-swatch">                   
+                        <label for="{{ radio.id_for_label }}" class="radio pp-has-background-{{radio.choice_label}} colour-swatch">                   
                             {{ radio.tag }}
                         </label>
                         {% endfor %}               

@@ -1,6 +1,6 @@
 {% load static %}
 <!-- Advert Template 2 -->
-<article class="box has-background-{{advert.background_color_class}} advert">
+<article class="box pp-has-background-{{advert.background_color_class}}">
     <div class="has-text-centered pp-bottom-margin">
         <figure class="image is-3by1">
             {% if advert.image %}
@@ -30,7 +30,7 @@
         </div>                        
     </div>
     {% else %}
-    <h2 class="title has-text-grey-darker has-text-centered">{{ advert.title }}</h2>
+    <h2 class="title has-text-primary has-text-centered">{{ advert.title }}</h2>
     <p class="subtitle has-text-grey-dark has-text-centered">{{ advert.strapline }}</p>
     {% endif %}                                                         
     <div>

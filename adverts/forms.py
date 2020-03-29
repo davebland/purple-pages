@@ -7,7 +7,7 @@ class AdvertForm(ModelForm):
 
     background_color_class = ChoiceField(choices=[
             ('white','white'),
-            ('grey','grey-lighter'),           
+            ('grey','grey'),           
             ('info','info'),           
             ('success','success'),
             ('warning','warning'),          

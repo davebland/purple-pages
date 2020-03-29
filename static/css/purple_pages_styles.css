@@ -1,7 +1,6 @@
 /** SITE WIDE STYLING **/
 
-.pp-page-background {    
-}
+
 
 /** FONTS **/
 
@@ -53,12 +52,24 @@
 
 /** ADVERTS **/
 
-.advert {
-    
+.pp-has-background-white {
+    background-color: #ffffff;
 }
 
-.advert a {
-    
+.pp-has-background-grey {
+    background-color: rgb(122, 122, 122, 0.5);
+}
+
+.pp-has-background-info {
+    background-color: rgb(0, 140, 177, 0.5);
+}
+
+.pp-has-background-success {
+    background-color: rgb(10, 212, 58, 0.5);
+}
+
+.pp-has-background-warning {
+    background-color: rgb(236, 235, 16, 0.5);
 }
 
 .advert-text-content {
