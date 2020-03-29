@@ -28,7 +28,7 @@
 <div class="has-text-centered">
     <p class="tag is-large is-primary">
         <span class="icon is-large"><i class="fas fa-bookmark"></i></span>
-        <span>Your Favourite Notice Board</span>
+        <span>Your Favourite <span class="is-hidden-mobile">Notice</span> Board</span>
         <span class="icon is-large"><i class="fas fa-arrow-down"></i></span>
     </p>
 </div>    
@@ -40,7 +40,9 @@
                 <a href="{% url 'display_single_board' favourite_notice_board.pk %}">
                     <span class="icon has-text-primary is-large"><i class="fas fa-link"></i></span>
                 </a>
-                <br class="is-hidden-tablet">{{ favourite_notice_board.post_code }} - {{ favourite_notice_board.name }}
+                <br class="is-hidden-tablet">                
+                <span class="has-text-weight-bold has-text-primary">{{ favourite_notice_board.post_code }}</span>
+                 - {{ favourite_notice_board.name }}
             </h1>           
         </div>
     </div>
@@ -57,7 +59,7 @@
             {% endfor %}
         </div>
         {% else %}
-            <p class="has-text-grey">No ads to show</p>      
+            <p class="has-text-grey">Oops, no ads here yet...</p>      
         {% endif %}
     </div>
 </div>  

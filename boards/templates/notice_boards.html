@@ -31,8 +31,8 @@
 {% for board in active_boards %}
     <!-- Generate a column with box for every active board -->    
     <div class="column is-narrow">
-        <div class="box has-background-success">
-            <h2 class="title is-3">{{ board.post_code }}</h2>
+        <div class="box pp-has-background-success">
+            <h2 class="title is-3 has-text-primary has-text-weight-bold">{{ board.post_code }}</h2>
             <p class="subtitle">{{ board.name }}</p>
             <div class="has-text-right">
                 <a href="{% url 'display_single_board' board.pk %}" class="button is-link">Go To Notice Board</a>
