@@ -72,6 +72,11 @@
     background-color: rgb(236, 235, 16, 0.5);
 }
 
+#pp-advert-hints-tips {
+    position: sticky;
+    top: 20px;
+}
+
 .advert-text-content {
     max-height: 300px;   
     background-color: inherit;
@@ -92,7 +97,7 @@
 }
 
 .pp-template-thumbnail {
-    min-width: 200px;
+    min-width: 150px;
     max-width: 300px;
 }
 

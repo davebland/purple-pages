@@ -8,11 +8,14 @@
     <h1><span class="icon has-text-primary is-large"><i class="fas fa-edit"></i></span> Edit Advert</h1>                        
     {% else %}                                            
     <h1><span class="icon has-text-primary is-large"><i class="far fa-plus-square"></i></span> Create Advert</h1>   
-    {% endif %}
-    <div class="level">
-        <div class="level-item">
-            <div class="panel">
-                <div class="panel-heading">Some hints and tips to help you along...</div>
+    {% endif %}           
+</div>
+<!-- Advert Create/Edit Form -->
+<form id="advert-add-edit-form" enctype="multipart/form-data" action="{{ request.path }}" method="POST" class="form">
+    <div class="columns is-centered is-multiline">
+        <div class="column is-one-third-desktop">
+            <div id="pp-advert-hints-tips" class="panel content">
+                <div class="panel-heading has-background-primary has-text-white">Some hints and tips to help you along...</div>
                 <div class="panel-block has-background-white">
                     <ul class="pp-bottom-margin">
                         <li>Enter a <strong>title</strong> and select a <strong>notice board</strong> as a minimum</li>
@@ -23,15 +26,14 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>               
-</div>
-<!-- Advert Create/Edit Form -->
-<form id="advert-add-edit-form" enctype="multipart/form-data" action="{{ request.path }}" method="POST" class="form">
-    <div class="columns is-centered is-multiline">        
-        <div class="column is-three-fifths-desktop">
+        </div>        
+        <div class="column">
             <!-- Advert Content Elements-->
-            <div class="box">                                                  
+            <div class="box">
+                <h2 class="title has-text-primary">
+                    <span class="icon is-large has-text-primary"><i class="far fa-lg fa-file-alt"></i></span>
+                    <span>Advert Text</span>
+                </h2>
                 {% if advert_form.non_field_errors %}
                 <div class="notification is-danger no-list">{{ form.non_field_errors }}</div>
                 {% endif %}
@@ -111,6 +113,10 @@
             </div>                
             <!-- Advert Styling Elements-->
             <div class="box">
+                <h2 class="title has-text-primary">
+                    <span class="icon is-large has-text-primary"><i class="fas fa-lg fa-pencil-alt"></i></span>
+                    <span>Advert Style</span>
+                </h2>
                 <div class="field">
                     {% if advert_form.template.errors %}
                     <div class="notification is-warning no-list">{{ advert_form.template.errors }}</div>
@@ -170,7 +176,10 @@
             </div>      
             <!-- Advert Preview -->
             <div class="box">
-                <h2 class="subtitle"><span class="icon has-text-primary"><i class="far fa-eye"></i></span> Preview Advert</h2>
+                <h2 class="title has-text-primary">
+                    <span class="icon is-large has-text-primary"><i class="fas fa-lg fa-eye"></i></span>
+                    <span>Advert Preview</span>
+                </h2>
                 <div id="advert-preview-area-errors" class="notification is-warning no-list"></div>
                 <div class="has-text-centered pp-bottom-margin">
                     <span id="advert-get-preview" class="button is-link is-light is-outlined is-medium">Get Preview</span>
