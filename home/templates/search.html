@@ -32,8 +32,13 @@
         <div class="columns is-multiline">            
             {% for ad in adverts %}            
             <!-- Loop through ads and create column for each -->
-            <div class="column is-half-tablet is-one-third-desktop">
-                {{ ad.render }}  
+            <div class="column is-half-tablet is-one-third-desktop">                
+                <div class="tags is-marginless">
+                {% for board in ad.boards.all %}
+                    <span class="tag is-info">{{ board }}</span>            
+                {% endfor %}
+                </div>
+                {{ ad.render }}                
             </div>                                           
             {% endfor %}
         </div>
