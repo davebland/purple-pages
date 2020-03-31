@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 images/adverts/
 local_creds.txt
+.coverage
