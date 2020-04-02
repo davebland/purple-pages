@@ -34,7 +34,7 @@
                 <div class="navbar-end">
                     <!-- Search -->
                     <div class="navbar-item">
-                        <form class="" action="{% url 'search' %}">
+                        <form action="{% url 'search' %}">
                             <div class="field has-addons has-addons-centered">
                                 <div class="control">           
                                     <input class="input is-link" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
@@ -48,7 +48,7 @@
                     <!-- User Menus -->
                     {% if user.is_authenticated %}                    
                     <a href="{% url 'my_ads' %}" class="navbar-item">My Ads</a>                    
-                    <div href="#" class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-item has-dropdown is-hoverable">
                         <!-- Dropdown Account Menu -->
                         <a href="{% url 'my_account' %}" class="navbar-link">My Account</a>
                         <div class="navbar-dropdown">
