@@ -140,6 +140,8 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID','')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY','')
 AWS_STORAGE_BUCKET_NAME = 'purplepages'
 AWS_DEFAULT_ACL = None
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_REGION_NAME = 'eu-west-2'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

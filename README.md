@@ -66,6 +66,7 @@ Postman for webhook.
 - 'No reverse match' for password reset token
 - Making ajax POST requests requires including csrf token
 - Storing relative file paths for template files rather than absolute (Alex Hayes package)
+- Manual import routine for postcode districts
 
 ## Deployment
 

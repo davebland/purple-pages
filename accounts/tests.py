@@ -102,13 +102,3 @@ class TestStripe(TestCase):
         """ Test Stripe webhook handler returns 400 when not presented with stripe payment intent """        
         endpoint = self.client.post("/account/confirm_payment/", {}, follow=True)
         self.assertEqual(endpoint.status_code, 400)
-
-#     def test_stripe_payment_intent(self):
-#         """ Test create payment intent """        
-#         intent = stripe_payment_intent({'payment_amount':100,'period':100,'pp_username':1})
-#         self.assertIsInstance(intent, JsonResponse)
-
-#     def test_stripe_webhook(self):
-#         """ Test handling webhook data (stripe_confirm_payment) """
-#         webhook = stripe_confirm_payment({})
-#         self.assertIsInstance(webhook, HttpResponseBadRequest) 
