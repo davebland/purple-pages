@@ -36,11 +36,15 @@
         </div>
         <div class="hero is-info">
             <div class="hero-body">
-                <div class="is-pulled-right">
-                    <a href="{% url 'user_registration' %}" class="button is-large is-primary">Create An Account</a>   
-                </div>                                
-                <h2 class="title">New here?</h2>
-                <h3 class="subtitle">Sign up to get started!</h3>                
+                <div class="columns">                
+                    <div class="column has-text-centered has-text-left-desktop">
+                        <h2 class="title">New here?</h2>
+                        <p class="subtitle">Sign up to get started!</p>
+                    </div>
+                    <div class="column has-text-centered has-text-right-desktop">
+                        <a href="{% url 'user_registration' %}" class="button is-large is-primary">Create An Account</a>
+                    </div>
+                </div>                             
             </div>
         </div>       
     </div>  

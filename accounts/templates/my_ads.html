@@ -62,18 +62,15 @@
 <!-- Create Ad CTA -->
 <div class="hero is-info">
     <div class="hero-body">
-        <div class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <p class="title">Start a new advert today!</p>                  
-                </div>
+        <div class="columns">                
+            <div class="column has-text-centered has-text-left-desktop">
+                <h2 class="title">Got something to advertise?</h2>
+                <p class="subtitle">Start a new advert today!</p>               
             </div>
-            <div class="level-right">
-                <div class="level-item">
-                    <a href="{% url 'new_advert' %}" class="button is-large is-primary is-pulled-right">Create Advert</a>
-                </div>
-            </div>               
-        </div>                                                     
+            <div class="column has-text-centered has-text-right-desktop">
+                <a href="{% url 'new_advert' %}" class="button is-large is-primary">Create Advert</a>
+            </div>
+        </div>                                                           
     </div>
 </div>
 <!-- Advert Delete Modal -->

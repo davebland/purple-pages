@@ -30,7 +30,7 @@
         <div class="column">
             <!-- Advert Content Elements-->
             <div class="box">
-                <h2 class="title has-text-primary">
+                <h2 class="title has-text-primary is-size-4">
                     <span class="icon is-large has-text-primary"><i class="far fa-lg fa-file-alt"></i></span>
                     <span>Advert Text</span>
                 </h2>
@@ -113,7 +113,7 @@
             </div>                
             <!-- Advert Styling Elements-->
             <div class="box">
-                <h2 class="title has-text-primary">
+                <h2 class="title has-text-primary is-size-4">
                     <span class="icon is-large has-text-primary"><i class="fas fa-lg fa-pencil-alt"></i></span>
                     <span>Advert Style</span>
                 </h2>
@@ -129,7 +129,7 @@
                                 {{ radio.choice_label|upper }}
                                 <figure class="image is-3by2 pp-template-thumbnail">  
                                     {% with template_thumbnail=radio.choice_label|lower|slugify %}                                  
-                                    <img src="{% static 'img/ad_'|add:template_thumbnail|add:'_thumbnail.jpg' %}">
+                                    <img src="{% static 'img/ad_'|add:template_thumbnail|add:'_thumbnail.jpg' %}" alt="Ad Thumbnail">
                                     {% endwith %}
                                 </figure> 
                                 {{ radio.tag }}
@@ -158,15 +158,16 @@
                             <div class="notification is-warning no-list">{{ advert_form.boards.errors }}</div>
                             {% endif %}
                             <label for="{{ advert_form.boards.id_for_label}}" class="label">{{ advert_form.boards.label }}</label>
-                            <div class="select is-multiple pp-full-width is-primary pp-bottom-margin">
+                            <div class="select is-multiple pp-full-width is-primary">
                                 {{ advert_form.boards }}
                             </div>
+                            <p class="is-family-code is-size-7 has-text-centered pp-bottom-margin">Use shift key to select multiple</p>
                             <!-- Create Board Link -->
                             <div class="message is-info">
                                 <div class="message-body">
                                     <p class="pp-bottom-margin">Notice board for your postcode not in the list?</p>
                                     <div class="has-text-right">
-                                        <a href="{% url 'create_notice_board' %}" target="_blank" class="button is-link">Create it now!</a>
+                                        <a href="{% url 'create_notice_board' %}" target="_blank" class="button is-link is-outlined">Create it now!</a>
                                     </div>                                
                                 </div>
                             </div>                        
@@ -176,7 +177,7 @@
             </div>      
             <!-- Advert Preview -->
             <div class="box">
-                <h2 class="title has-text-primary">
+                <h2 class="title has-text-primary is-size-4">
                     <span class="icon is-large has-text-primary"><i class="fas fa-lg fa-eye"></i></span>
                     <span>Advert Preview</span>
                 </h2>

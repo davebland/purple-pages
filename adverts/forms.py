@@ -31,5 +31,5 @@ class AdvertForm(ModelForm):
             'text_content': "Main Text",
             'link_url': "Link URL",
             'link_text': "Link Text",
-            'boards': "Notice Boards (1 or more)"
+            'boards': "Notice Boards"
         }
