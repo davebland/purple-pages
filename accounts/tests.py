@@ -3,6 +3,8 @@ from django.http import JsonResponse, HttpResponseBadRequest
 
 from datetime import date, timedelta
 import json
+from unittest import skipIf
+import os
 
 from .models import PPUser, Payment
 from .forms import PPUserCreationForm
@@ -73,20 +75,6 @@ class TestAccountViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'my_subscription.html')
 
-    def test_create_subscription_view(self):
-        """ Test Create Subscription view returns a valid JSON response """
-        # Create user and login
-        PPUser.objects.create_user("test","test@test.com","test")
-        self.client.login(username="test", password="test")
-        # test create subscription view
-        page = self.client.post("/account/create_payment/", {'subscription-period':100}, follow=True)
-        self.assertEqual(page.status_code, 200)    
-
-    def test_stripe_webhook_view(self):
-        """ Test Stripe webhook handler returns 400 when not presented with stripe payment intent """
-        endpoint = self.client.post("/account/confirm_payment/", {}, follow=True)
-        self.assertEqual(endpoint.status_code, 400)
-
 class TestAccountForms(TestCase):
     """ Tests for account forms """    
 
@@ -99,12 +87,28 @@ class TestAccountForms(TestCase):
 class TestStripe(TestCase):
     """ Test for PP Stripe """
 
-    def test_stripe_payment_intent(self):
-        """ Test create payment intent """        
-        intent = stripe_payment_intent({'payment_amount':100,'period':100,'pp_username':1})
-        self.assertIsInstance(intent, JsonResponse)
+    @skipIf(os.getenv('STRIPE_SECRET_KEY')==None,"Stripe Not Setup")
+    def test_create_subscription_view(self):
+        """ Test Stripe Create Subscription view returns a valid JSON response """                
+        # Create user and login
+        PPUser.objects.create_user("test","test@test.com","test")
+        self.client.login(username="test", password="test")
+        # test create subscription view
+        page = self.client.post("/account/create_payment/", {'subscription-period':100}, follow=True)
+        self.assertEqual(page.status_code, 200)    
 
-    def test_stripe_webhook(self):
-        """ Test handling webhook data (stripe_confirm_payment) """
-        webhook = stripe_confirm_payment({})
-        self.assertIsInstance(webhook, HttpResponseBadRequest)
+    @skipIf(os.getenv('STRIPE_SECRET_KEY')==None,"Stripe Not Setup")
+    def test_stripe_webhook_view(self):
+        """ Test Stripe webhook handler returns 400 when not presented with stripe payment intent """        
+        endpoint = self.client.post("/account/confirm_payment/", {}, follow=True)
+        self.assertEqual(endpoint.status_code, 400)
+
+#     def test_stripe_payment_intent(self):
+#         """ Test create payment intent """        
+#         intent = stripe_payment_intent({'payment_amount':100,'period':100,'pp_username':1})
+#         self.assertIsInstance(intent, JsonResponse)
+
+#     def test_stripe_webhook(self):
+#         """ Test handling webhook data (stripe_confirm_payment) """
+#         webhook = stripe_confirm_payment({})
+#         self.assertIsInstance(webhook, HttpResponseBadRequest) 
