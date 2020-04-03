@@ -93,7 +93,9 @@
         <div id="payment-control-buttons" class="level">
             <div class="level-left">
                 <div class="control level-item">
-                    <a href="{% url 'my_subscription' %}" id="payment-cancel-button" class="button is-warning">Cancel</a>
+                    <a href="{% url 'my_subscription' %}">
+                        <button id="payment-cancel-button" class="button is-warning">Cancel</button>
+                    </a>
                 </div>
             </div>
             <div class="level-right">

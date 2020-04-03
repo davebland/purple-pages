@@ -1,11 +1,11 @@
 from django.db import models
 from django.template.loader import render_to_string
-
+from django.conf import settings
 from relativefilepathfield.fields import RelativeFilePathField
 
 import os
 import warnings
-from django.conf import settings
+import uuid
 
 from boards.models import Board
 from accounts.models import PPUser
@@ -25,7 +25,7 @@ class Advert(models.Model):
 
     def image_upload_path(instance, filename):
         """ Create a image directory for each saved advert """
-        return "adverts/{}/{}".format(instance.pk, filename)
+        return "adverts/{}/{}".format(instance.uuid, filename)
 
     # Advert content
     title = models.CharField(max_length=50)
@@ -42,7 +42,7 @@ class Advert(models.Model):
     created_date = models.DateField(auto_now_add=True)
     modified_date = models.DateField(auto_now=True)
     view_counter = models.IntegerField(default=0)
-    active = models.BooleanField(default=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     ppuser = models.ForeignKey(PPUser, on_delete=models.PROTECT)
     boards = models.ManyToManyField(Board)
