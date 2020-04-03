@@ -87,4 +87,3 @@ Postman for webhook.
 - Python and Django official documentation
 - Strip APIs official documentation
 - HTML5 validator https://validator.w3.org/
-- CSS3 validator https://jigsaw.w3.org/css-validator/

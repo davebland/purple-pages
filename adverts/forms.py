@@ -29,7 +29,7 @@ class AdvertForm(ModelForm):
         }
         labels = {
             'text_content': "Main Text",
-            'link_url': "Link URL",
-            'link_text': "Link Text",
+            'link_url': "Link URL (https://...)",
+            'link_text': "Link Button Text",
             'boards': "Notice Boards"
         }
