@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block main-content %}
-<p>Sorry, something went wrong</p>
-<p>Detail: {{ exception }}</p>
+<div class="has-text-centered">
+    <h1 class="title">
+        <span class="icon has-text-primary is-large"><i class="fas fa-exclamation-triangle"></i></span>
+        <br class="is-hidden-tablet">Sorry, we couldn't find that...
+        <hr>        
+        <a href="{% url 'home' %}" class="button is-large is-success">Go Back to Home</a>
+    </h1>
+</div>
 {% endblock %}

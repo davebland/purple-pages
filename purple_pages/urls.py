@@ -15,23 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
 
 from home.views import home, search 
 from boards import urls as urls_boards
 from adverts import urls as urls_adverts
-#from tests import urls as urls_test
 from accounts import urls as urls_accounts
-#from subscriptions import urls as urls_subscriptions
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('search/', search, name="search"),
-    path('boards/', include(urls_boards), name="notice_boards"),
-    path('adverts/', include(urls_adverts)),
-    #path('test/', include(urls_test)),
+    path('boards/', include(urls_boards)),
+    path('adverts/', include(urls_adverts)),  
     path('account/', include(urls_accounts)),
-    #path('subscription/', include(urls_subscriptions),)
 ]
