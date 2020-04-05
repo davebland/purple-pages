@@ -1,4 +1,4 @@
-# Purple Pages
+# <img src="static/img/PurplePages_Icon_Sm.png" width="50px"> Purple Pages
 
 ## Online notice boards for local communities
 
