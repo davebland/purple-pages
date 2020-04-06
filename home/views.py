@@ -31,6 +31,7 @@ def search(request):
     adverts = None
     if 'search_string' in request.GET:
         if request.GET['search_string'] != "":
+            # Return adverts with the search_string present in any text field & filter by active subscription
             adverts = Advert.objects.filter(Q(title__icontains=request.GET['search_string']) |
                         Q(strapline__icontains=request.GET['search_string']) |
                             Q(text_content__icontains=request.GET['search_string']) |

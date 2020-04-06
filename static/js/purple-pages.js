@@ -1,3 +1,5 @@
+/** PURPLE PAGES SITE WIDE JS **/
+
 let ANIMATION_DURATION = 800
 
 // Show and hide menu on mobile

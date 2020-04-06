@@ -128,18 +128,18 @@
                     </thead>
                     <tbody>
                         {% if payments %}
-                            {% for payment in payments %}
-                            <tr>
-                                <th class="has-text-centered">{{ payment.payment_date|date:"j M Y" }}</th>
-                                <td class="has-text-centered">{{ payment.payment_in_pounds }}</td>
-                                <td class="has-text-centered">
-                                    <span class="tag is-primary is-medium">{{ payment.pk }}</span>
-                                    <a href="mailto:pppayments@daveb.me.uk?subject=Purple Pages Payment Query&body=Query payment {{ payment.pk }} for {{ request.user }}." class="icon has-text-info is-large">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
+                        {% for payment in payments %}
+                        <tr>
+                            <th class="has-text-centered">{{ payment.payment_date|date:"j M Y" }}</th>
+                            <td class="has-text-centered">{{ payment.payment_in_pounds }}</td>
+                            <td class="has-text-centered">
+                                <span class="tag is-primary is-medium">{{ payment.pk }}</span>
+                                <a href="mailto:pppayments@daveb.me.uk?subject=Purple Pages Payment Query&body=Query payment {{ payment.pk }} for {{ request.user }}." class="icon has-text-info is-large">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
                         {% else %}
                         <tr>
                             <td colspan="3">No subscription payments yet...</td>

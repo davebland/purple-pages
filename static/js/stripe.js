@@ -1,4 +1,4 @@
-/** Stripe elements for subscription payments  **/
+/** PURPLE PAGES STRIPE ELEMENTS JS FOR SUBSCRIPTION PAYMENTS **/
 
 // Create Stripe payment elements in payment form when subscription form submitted
 $('#subscription-form').submit(function(subscriptionForm) {

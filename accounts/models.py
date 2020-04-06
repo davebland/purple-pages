@@ -27,7 +27,6 @@ class Payment(models.Model):
     payment_date = models.DateTimeField(auto_now_add=True)
     stripe_ref = models.CharField(max_length=30, blank=True)
     amount = models.IntegerField()
-
     user = models.ForeignKey(PPUser, on_delete=models.PROTECT)
 
     def __str__(self):

@@ -1,3 +1,5 @@
+/** PURPLE PAGES MY-ADS JS **/
+
 // Advert delete modal
 $('.advert-delete-button').click(function() {
     // Update the delete URL to reference the selected advert
@@ -16,6 +18,7 @@ $('.modal-close, #advert-delete-modal-cancel').click(function() {
 })
 
 /* Create/Edit Form */
+
 $('#id_image').change(function() {
     // Update filename box when file selected  
     $('#id_filename').text($(this)[0].files[0].name);

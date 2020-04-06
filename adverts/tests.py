@@ -99,7 +99,6 @@ class TestAdvertViews(TestCase):
         self.assertTrue(Advert.objects.get(pk=2))
         delete = self.client.get("/adverts/2/delete/", follow=True)
         self.assertEqual(delete.status_code, 200)              
-        #self.assertRaises(TypeError, Advert.objects.get(), pk=2)
 
 class TestAdvertForms(TestCase):
     """ Tests for advert forms """
@@ -114,5 +113,4 @@ class TestAdvertForms(TestCase):
         """ Test creating and saving an advert form """
         form = AdvertForm({'title':'test ad', 'background_color_class':'white','boards':[1], 'template':1, 'ppuser':1})              
         self.assertTrue(form.is_valid())        
-        self.assertEqual(form.save(),Advert.objects.get(pk=1))
-          
+        self.assertEqual(form.save(),Advert.objects.get(pk=1))          

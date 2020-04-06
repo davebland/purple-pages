@@ -4,11 +4,11 @@
     <div class="has-text-centered pp-bottom-margin">
         <figure class="image is-3by2">
             {% if advert.image %}
-                <img src="{{ advert.image.url }}" alt="Ad Image Here">
+            <img src="{{ advert.image.url }}" alt="Ad Image Here">
             {% else %}
-                <img src="{% static 'img/ad_image_placeholder_rectangle.jpg' %}" alt="Ad Image Here">
+            <img src="{% static 'img/ad_image_placeholder_rectangle.jpg' %}" alt="Ad Image Here">
             {% endif %}
-        </figure>         
+        </figure>        
     </div>
     {% if advert.link_url %}  
     <div class="columns is-vcentered">

@@ -1,102 +1,102 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Purple Pages</title>
-    <link rel="icon" href="{% static 'img/PurplePages_Icon_Sm.png' %}">   
-    <!-- Purple Pages CSS -->
-    <link rel="stylesheet" href="{% static 'css/mybulma/purple_pages_bulma_styles.css' %}">
-    <link rel="stylesheet" href="{% static 'css/purple_pages_styles.css' %}">
-    <!-- Fonts -->    		
-    <link href="https://fonts.googleapis.com/css?family=Titan+One&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8cbca4358e.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <!-- Nav Bar -->
-        <nav class="navbar is-primary">
-            <div class="navbar-brand">
-                <a href="{% url 'home' %}" class="navbar-item">                    
-                    <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo">                    
-                    <span class="titan is-size-5">Purple Pages</span>
-                </a>
-                <a href="{% url 'notice_boards' %}" class="navbar-item">Notice Boards</a>
-                <a class="navbar-burger">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-            <div class="navbar-menu">                                          
-                <div class="navbar-end">
-                    <!-- Search -->
-                    <div class="navbar-item">
-                        <form action="{% url 'search' %}">
-                            <div class="field has-addons has-addons-centered">
-                                <div class="control">           
-                                    <input class="input is-link" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
-                                </div>
-                                <div class="control">
-                                    <button class="button is-link"><span class="icon"><i class="fas fa-search"></i></span></button>
-                                </div>
-                            </div>        
-                        </form>
-                    </div>
-                    <!-- User Menus -->
-                    {% if user.is_authenticated %}                    
-                    <a href="{% url 'my_ads' %}" class="navbar-item">My Ads</a>                    
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <!-- Dropdown Account Menu -->
-                        <a href="{% url 'my_account' %}" class="navbar-link">My Account</a>
-                        <div class="navbar-dropdown">
-                            <a href="{% url 'my_account' %}" class="navbar-item">Overview</a>
-                            <a href="{% url 'my_subscription' %}" class="navbar-item">Subscription</a>
-                            <a href="{% url 'password_change' %}" class="navbar-item">Change Password</a>
-                        </div>
-                    </div>
-                    <div class="navbar-item has-text-centered">
-                        <a href="{% url 'logout' %}" class="button is-warning">
-                            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
-                            <span>Logout</span>
-                        </a> 
-                    </div> 
-                    {% else %}
-                    <div class="navbar-item has-text-centered">
-                        <a href="{% url 'login' %}" class="button is-success">
-                            <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
-                            <span>Login / Signup</span>
-                        </a>
-                    </div>                    
-                    {% endif %} 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Purple Pages</title>
+        <link rel="icon" href="{% static 'img/PurplePages_Icon_Sm.png' %}">   
+        <!-- Purple Pages CSS -->
+        <link rel="stylesheet" href="{% static 'css/mybulma/purple_pages_bulma_styles.css' %}">
+        <link rel="stylesheet" href="{% static 'css/purple_pages_styles.css' %}">
+        <!-- Fonts -->    		
+        <link href="https://fonts.googleapis.com/css?family=Titan+One&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/8cbca4358e.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <!-- Nav Bar -->
+            <nav class="navbar is-primary">
+                <div class="navbar-brand">
+                    <a href="{% url 'home' %}" class="navbar-item">                    
+                        <img src="{% static 'img/PurplePagesIcon.png' %}" alt="Purple Pages Logo">                    
+                        <span class="titan is-size-5">Purple Pages</span>
+                    </a>
+                    <a href="{% url 'notice_boards' %}" class="navbar-item">Notice Boards</a>
+                    <a class="navbar-burger">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
                 </div>
-            </div>
-        </nav>        
-    </header>
-    <section class="section">
-        <div class="container">
-            <!-- Message Area -->
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="notification {% if message.tags %}is-{{message.tags}}{% endif %}">
-                        <button class="delete"></button>
-                        <p>{{ message }}</p>
+                <div class="navbar-menu">                                          
+                    <div class="navbar-end">
+                        <!-- Search -->
+                        <div class="navbar-item">
+                            <form action="{% url 'search' %}">
+                                <div class="field has-addons has-addons-centered">
+                                    <div class="control">           
+                                        <input class="input is-link" type="text" name="search_string" placeholder="search for something..." value="{{ request.GET.search_string }}">               
+                                    </div>
+                                    <div class="control">
+                                        <button class="button is-link"><span class="icon"><i class="fas fa-search"></i></span></button>
+                                    </div>
+                                </div>        
+                            </form>
+                        </div>
+                        <!-- User Menus -->
+                        {% if user.is_authenticated %}                    
+                        <a href="{% url 'my_ads' %}" class="navbar-item">My Ads</a>                    
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <!-- Dropdown Account Menu -->
+                            <a href="{% url 'my_account' %}" class="navbar-link">My Account</a>
+                            <div class="navbar-dropdown">
+                                <a href="{% url 'my_account' %}" class="navbar-item">Overview</a>
+                                <a href="{% url 'my_subscription' %}" class="navbar-item">Subscription</a>
+                                <a href="{% url 'password_change' %}" class="navbar-item">Change Password</a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-text-centered">
+                            <a href="{% url 'logout' %}" class="button is-warning">
+                                <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                                <span>Logout</span>
+                            </a> 
+                        </div> 
+                        {% else %}
+                        <div class="navbar-item has-text-centered">
+                            <a href="{% url 'login' %}" class="button is-success">
+                                <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+                                <span>Login / Signup</span>
+                            </a>
+                        </div>                    
+                        {% endif %} 
                     </div>
-                {% endfor %}
-            {% endif %}
-            <!-- Main Page Content -->
-            {% block main-content %}
-            {% endblock %}
-        </div>
-    </section>    
-    <!-- JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <!-- App JS -->
-    <script src="{% static 'js/purple-pages.js' %}"></script>
-    <!-- View specific scripting area -->
-    {% block scripts %}
-    {% endblock %}    
-</body>
+                </div>
+            </nav>        
+        </header>
+        <section class="section">
+            <div class="container">
+                <!-- Message Area -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="notification {% if message.tags %}is-{{message.tags}}{% endif %}">
+                            <button class="delete"></button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- Main Page Content -->
+                {% block main-content %}
+                {% endblock %}
+            </div>
+        </section>    
+        <!-- JS Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <!-- App JS -->
+        <script src="{% static 'js/purple-pages.js' %}"></script>
+        <!-- View specific scripting area -->
+        {% block scripts %}
+        {% endblock %}    
+    </body>
 </html>

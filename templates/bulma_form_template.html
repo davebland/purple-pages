@@ -3,51 +3,52 @@
 <div class="notification is-danger no-list">{{ form.non_field_errors }}</div>
 {% endif %}
 {% for field in form %}
-    <div class="field">
-        {% if field.errors %}
-        <div class="notification is-warning no-list">{{ field.errors }}</div>
-        {% endif %}
-        <label for="{{ field.id_for_label}}" class="label">{{ field.label }}</label>
-        <div class="control">
-            {% if field.field.widget.attrs.element == 'select' %}
-            <!-- Special case select elements -->
-            <div class="select">
-                {{ field }}
-            </div>
-            {% elif field.field.widget.attrs.element == 'select-multiple' %}
-            <!-- Special case select multiple elements -->
-            <div class="select is-multiple">
-                {{ field }}
-            </div>
-            {% elif field.field.widget.attrs.element == 'upload' %}
-            <!-- Special case file upload elements -->
-            <div class="file has-name is-boxed">
-                <label class="file-label">
-                    {{ field }}
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Choose a file…
-                        </span>
-                    </span>
-                    <span class="file-name">
-                    Select an image to upload
-                    </span>
-                </label>
-            </div>          
-            {% elif field.field.widget.attrs.element == 'radio' %}
-                <!-- Special case radio elements -->
-                {% for radio in field %}
-                <label for="{{ radio.id_for_label }}" class="radio">
-                    {{ radio.choice_label }}
-                    {{ radio.tag }}
-                </label>
-                {% endfor %}
-            {% else %}
+<div class="field">
+    {% if field.errors %}
+    <div class="notification is-warning no-list">{{ field.errors }}</div>
+    {% endif %}
+    <label for="{{ field.id_for_label}}" class="label">{{ field.label }}</label>
+    <div class="control">
+        {% if field.field.widget.attrs.element == 'select' %}
+        <!-- Special case select elements -->
+        <div class="select">
             {{ field }}
-            {% endif %}
         </div>
+        {% elif field.field.widget.attrs.element == 'select-multiple' %}
+        <!-- Special case select multiple elements -->
+        <div class="select is-multiple">
+            {{ field }}
+        </div>
+        {% elif field.field.widget.attrs.element == 'upload' %}
+        <!-- Special case file upload elements -->
+        <div class="file has-name is-boxed">
+            <label class="file-label">
+                {{ field }}
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Choose a file…
+                    </span>
+                </span>
+                <span class="file-name">
+                Select an image to upload
+                </span>
+            </label>
+        </div>          
+        {% elif field.field.widget.attrs.element == 'radio' %}
+        <!-- Special case radio elements -->
+        {% for radio in field %}
+        <label for="{{ radio.id_for_label }}" class="radio">
+            {{ radio.choice_label }}
+            {{ radio.tag }}
+        </label>
+        {% endfor %}
+        {% else %}
+        <!-- If not special case render regular field markup -->
+        {{ field }}
+        {% endif %}
     </div>
+</div>
 {% endfor %}

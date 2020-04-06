@@ -6,11 +6,9 @@ from .models import PPUser, Payment
 # Create a custom user admin for PPUser
 class CustomUserAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ('favourite_board','subscription_expiry',)
-
     fieldsets = UserAdmin.fieldsets + (
         ("Purple Pages", {'fields': ('favourite_board', 'subscription_expiry')}),
     )
-
     add_fieldsets = UserAdmin.add_fieldsets + (
         ("Purple Pages", {'fields': ('favourite_board', 'subscription_expiry')}),
     )

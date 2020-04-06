@@ -91,4 +91,3 @@ class TestBoardForms(TestCase):
         form = BoardForm({'name':'testboard', 'post_code':PostCodeDistrict.objects.get(pk=1)})
         self.assertTrue(form.is_valid())
         self.assertEqual(form.save(),Board.objects.get(pk=1))
-

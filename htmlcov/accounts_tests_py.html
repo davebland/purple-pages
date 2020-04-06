@@ -155,22 +155,12 @@
     <p id="t102" class="pln"><span class="n"><a href="#t102">102</a></span><span class="t">        <span class="str">""" Test Stripe webhook handler returns 400 when not presented with stripe payment intent """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t103" class="run"><span class="n"><a href="#t103">103</a></span><span class="t">        <span class="nam">endpoint</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">client</span><span class="op">.</span><span class="nam">post</span><span class="op">(</span><span class="str">"/account/confirm_payment/"</span><span class="op">,</span> <span class="op">{</span><span class="op">}</span><span class="op">,</span> <span class="nam">follow</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t104" class="run"><span class="n"><a href="#t104">104</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">endpoint</span><span class="op">.</span><span class="nam">status_code</span><span class="op">,</span> <span class="num">400</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t105" class="pln"><span class="n"><a href="#t105">105</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t106" class="pln"><span class="n"><a href="#t106">106</a></span><span class="t"><span class="com">#     def test_stripe_payment_intent(self):</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t107" class="pln"><span class="n"><a href="#t107">107</a></span><span class="t"><span class="com">#         """ Test create payment intent """        </span>&nbsp;</span><span class="r"></span></p>
-    <p id="t108" class="pln"><span class="n"><a href="#t108">108</a></span><span class="t"><span class="com">#         intent = stripe_payment_intent({'payment_amount':100,'period':100,'pp_username':1})</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t109" class="pln"><span class="n"><a href="#t109">109</a></span><span class="t"><span class="com">#         self.assertIsInstance(intent, JsonResponse)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t"><span class="com">#     def test_stripe_webhook(self):</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t112" class="pln"><span class="n"><a href="#t112">112</a></span><span class="t"><span class="com">#         """ Test handling webhook data (stripe_confirm_payment) """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t113" class="pln"><span class="n"><a href="#t113">113</a></span><span class="t"><span class="com">#         webhook = stripe_confirm_payment({})</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t114" class="pln"><span class="n"><a href="#t114">114</a></span><span class="t"><span class="com">#         self.assertIsInstance(webhook, HttpResponseBadRequest) </span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.0.4</a>,
-            created at 2020-04-03 09:06
+            created at 2020-04-06 12:44
         </p>
     </div>
 </div>

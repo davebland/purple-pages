@@ -1,6 +1,4 @@
-/** SITE WIDE STYLING **/
-
-
+/** PURPLE PAGES CSS **/
 
 /** FONTS **/
 
@@ -50,6 +48,15 @@
     width: 80%;
 }
 
+.pp-full-width select {
+    width: 100%;
+}
+
+.pp-template-thumbnail {
+    min-width: 150px;
+    max-width: 300px;
+}
+
 /** ADVERTS **/
 
 .pp-has-background-white {
@@ -90,15 +97,6 @@
 
 .pp-full-width {
     width: 100%;
-}
-
-.pp-full-width select {
-    width: 100%;
-}
-
-.pp-template-thumbnail {
-    min-width: 150px;
-    max-width: 300px;
 }
 
 /* SUBSCRIPTIONS */

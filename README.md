@@ -52,14 +52,16 @@ Before starting development, the ‘look and feel’ of each page was sketched u
 - Ability to post colour coded notifications on any page using Django messaging system.
 - Customisation of the Bulma CSS framework using SASS
 - Ability for user to upload custom images to adverts and have these stored in persistent datastore, AWS S3. This is achieved with ```django-storages``` and each advert having a UUID under which images are organised in the bucket.
+- Searching for key words within multiple fields of an advert using Django’s Q objects
 
 ## Future Additions
 
 - Improved search functionality to filter by notice board
 - Addition of categories to better organise adverts (e.g. product, service, social club etc.)
 - Live preview of advert images on the create advert page
-- Automatic resizing of uploaded images into thumbnails for better loading times
+- Automatic resizing and rotating of user uploaded images into thumbnails for better loading times
 - Tiered pricing structure according to number of adverts and number of boards used
+- Pagination of notice boards page and adverts on a noticeboard
 
 ## Technologies
 
@@ -80,11 +82,11 @@ Before starting development, the ‘look and feel’ of each page was sketched u
 
 ## Testing
 
-Purple Pages was built from the start with test driven development in mind. Within each Django app there is a test.py with unit tests (using Django’s TestCase) that are relevant to the models, views and forms within that app. In most cases the process followed for each piece of functionality was to write a test that determined if the functionality was working (failing initially), then build the functionality and get the test to pass.
+Purple Pages was built from the start with test driven development in mind. Within each Django app there is a test.py with unit tests (using Django’s TestCase) that are relevant to the models, views and forms within that app. In most cases the process followed for each piece of functionality was to write a test that determined if the functionality was working (failing initially), then build the functionality and get the test to pass. It was also necessary to import data ‘fixtures’ into the test routines to populate the test database. These can be found in the fixtures directory within each app.
 
 I have used Python’s coverage package to check the testing hits as much of the code as possible (collected by using ```coverage run manage.py test```). The coverage configuration file ```.converagerc``` has exclusions from coverage such as the python virtual env and Django’s own python code.
 
-Purple Pages has 26 individual test functions giving 88% coverage of the sites code. 
+Purple Pages has 26 individual test functions giving 88% coverage of the application’s code. The statements that have not been tested are largely branches or Stripe payment handling functions (it would be necessary to create actual Stripe payments to test these). 
 
 There is continuous integration testing using Travis-CI. This involved setting up the repository on travis-ci.com and added ```.travis.yml``` configuration file to the project. Travis-CI automatically sets up and environment and runs ```python manage.py test``` each time a commit is made to GitHub. The current status of the test is reflected in the badge at the top of this readme. One challenge with Travis-CI was setting up the skipping of Stripe payment tests using ```@skipIf``` decorator in this environment (Stripe environment variables deliberately not added to Travis to reduce exposure of secret key).
 

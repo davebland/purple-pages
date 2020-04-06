@@ -63,7 +63,7 @@ def preview_advert(request):
 
 @login_required
 def delete_advert(request, advert_id):
-    """ Delete the specified advert from db is the user owns it """
+    """ Delete the specified advert from db if the user owns it """
     get_object_or_404(Advert, pk=advert_id, ppuser=request.user).delete()
     messages.info(request, "Advert deleted")
     return redirect('my_ads')
