@@ -64,19 +64,19 @@
 }
 
 .pp-has-background-grey {
-    background-color: rgb(122, 122, 122, 0.5);
+    background-color: rgba(122, 122, 122, 0.5);
 }
 
 .pp-has-background-info {
-    background-color: rgb(0, 140, 177, 0.5);
+    background-color: rgba(0, 140, 177, 0.5);
 }
 
 .pp-has-background-success {
-    background-color: rgb(10, 212, 58, 0.5);
+    background-color: rgba(10, 212, 58, 0.5);
 }
 
 .pp-has-background-warning {
-    background-color: rgb(236, 235, 16, 0.5);
+    background-color: rgba(236, 235, 16, 0.5);
 }
 
 #pp-advert-hints-tips {
@@ -132,4 +132,11 @@
 
 #stripe-card-errors {
     margin-bottom: 1.5rem;
+}
+
+/* MISC */
+
+.is-error {
+    background-color: rgba(220, 32, 32, 0.5);
+    color: #ffffff;
 }

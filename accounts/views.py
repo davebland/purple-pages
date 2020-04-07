@@ -41,7 +41,9 @@ def my_ads(request):
     """ Generate page showing all the ads for the authenticated user """
     user_ads = Advert.objects.filter(ppuser=request.user)
     if (request.user.subscription_status() == 0) or (request.user.subscription_status() == 2):
-        messages.warning(request, "You do not have an active subscription so your ads are not public at the moment! Visit My Account to subscribe.")
+        messages.error(request, "You do not have an active subscription so your ads are not public at the moment! Visit My Account to subscribe.")
+    else:
+        messages.warning(request, "All your ads are public, remember to delete any you don't need.")
     return render(request, 'my_ads.html', {'adverts':user_ads})
 
 def user_registration(request):
