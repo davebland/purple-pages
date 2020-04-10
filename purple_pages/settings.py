@@ -173,7 +173,8 @@ EMAIL_HOST_USER = os.getenv('AWS_SES_HOST_USER', 'nouser')
 EMAIL_HOST_PASSWORD = os.getenv('AWS_SES_HOST_PASSWORD', 'nopassword')
 EMAIL_TIMEOUT = 60
 
-# Heroku Configuration (ensures https used)
+# Heroku Configuration (ensures https used in production)
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+if os.getenv('ENVIRONMENT') != 'development':
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
